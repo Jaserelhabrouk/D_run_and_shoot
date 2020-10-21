@@ -3,7 +3,7 @@
 \begin{figure}
     \centering 
     \includegraphics[width=\columnwidth]{singleplayer.pdf}
-    \caption{Single player block flowchart }
+    \caption{Single player block flowchart. white blocks will be implemented in the first release.}
     \label{fig:singleplayer}
 \end{figure}
 
@@ -77,15 +77,15 @@ typedef struct Map {
 } Map;
 
 /* Block: Load the map - first release
- * Assigned to:
+ * Assigned to: Pari
  * Load map information from an input file using provided information
  * from options.
- * Input: file_p
+ * Input: file_p, mapSelector
  * Output: Map */
-Map loadMap(FILE* file_p);
+Map loadMap(FILE* file_p, int mapSelector);
 
 /* Block: Update barriers and arrow's locations - first release
- * Assigned to:
+ * Assigned to: Jin
  * Update barrier position in the map
  * Input: barrier, space
  * Output: barrier 
@@ -93,7 +93,7 @@ Map loadMap(FILE* file_p);
 void updateBarrier(MapBarrier* barrier, MapSpace space);
 
 /* Block: Update barriers and arrow's locations - first release
- * Assigned to:
+ * Assigned to: Jaser
  * Update arrows' position in the map
  * Input: arrow, space
  * Output: arrow
@@ -101,28 +101,28 @@ void updateBarrier(MapBarrier* barrier, MapSpace space);
 void updateArrow(MapArrow* arrow, MapSpace space);
 
 /* Block: Pause - first release
- * Assigned to:
+ * Assigned to: Pari
  * It continues the game when the game is on pause 
  * Input: void
  * Return: void */
 void continueGame(void);
 
 /* Block: Pause - first release
- * Assigned to:
+ * Assigned to: Jin
  * It pause the game
  * Input: void
  * Return: void */
 void pauseGame(void);
 
 /* Block: Back to menu - first release
- * Assigned to:
+ * Assigned to: Jaser
  * It goes back to Menu
  * Input: void
  * Return: void */
 void backToMenu(void);
 
 /* Block: Hit barrier? - first release
- * Assigned to:
+ * Assigned to: Mahsa
  * Check if there is any barrier on the way of player.
  * Input: player, barrier
  * Output: 0 ---> player no hit & 1---> player is hit
@@ -130,7 +130,7 @@ void backToMenu(void);
 int isBarrierHit(Player player, MapBarrier* barrier_p, MapSpace space);
 
 /* Block: Update player position - first release
- * Assigned to:
+ * Assigned to: Mahsa
  * Update player position in the map.
  * Input: player, arrowKey
  * Output: player 
@@ -138,7 +138,7 @@ int isBarrierHit(Player player, MapBarrier* barrier_p, MapSpace space);
 void updatePlayerPos(Player* player_p, int arrowKey);
 
 /* Block: Arrows hit the player - first release
- * Assigned to:
+ * Assigned to: Pari
  * check if the player is hit by arrows.
  * Input: player, arrow
  * Output: 1 ---> if the player is hit
@@ -147,7 +147,7 @@ int isPlayerHit(Player player, MapArrow* arrow_p);
 
 
 /* Block: Takes a heart from the player - first release
- * Assigned to:
+ * Assigned to: Jin
  * Takes a heart from the player.
  * Input: player
  * Output: player
@@ -155,7 +155,7 @@ int isPlayerHit(Player player, MapArrow* arrow_p);
 void takeHeart(Player* player_p);
 
 /* Block: hearts left - first release
- * Assigned to:
+ * Assigned to: Jaser
  * Check if the player lost all its heart.
  * Input: player
  * Output: 1 ---> if the player lost all its heart
@@ -163,7 +163,7 @@ void takeHeart(Player* player_p);
 int isGameOver(Player player);
 
 /* Block: player lose the game - first release
- * Assigned to:
+ * Assigned to: Pari
  * inform player that he/she lost the game
  * Input: player
  * Output: void
@@ -172,7 +172,7 @@ void gameOver(Player player);
 
 
 /* Block: player reached the goal - first release
- * Assigned to:
+ * Assigned to: Jaser
  * Checks if the player reached the goal
  * Input: player, goal
  * Output: 1 ---> if the player reached the goal
@@ -180,7 +180,7 @@ void gameOver(Player player);
 int isReachGoal(Player player, Goal goal);
 
 /* Block: player win the game - first release
- * Assigned to:
+ * Assigned to: Mahsa
  * inform player that he/she win the game
  * Input: player
  * Output: void
@@ -188,7 +188,7 @@ int isReachGoal(Player player, Goal goal);
 void winGame(Player player);
 
 /* Block: generate a view- first release
- * Assigned to:
+ * Assigned to: Jin
  * Generate a 2d graphic map using updated information
  * Input: map
  * Return: void */

@@ -1,5 +1,8 @@
+% \vspace{0.75\baselineskip} 
+% \rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}
+% \rule{\textwidth}{1.6pt}
+% \vspace{2\baselineskip}
 \section{Options flowchart and explanation~\ref{fig:options}}
-
 \begin{figure}
     \centering 
     \includegraphics[width=\columnwidth]{options.pdf}
@@ -7,15 +10,14 @@
     \label{fig:options}
 \end{figure}
 
-
 This flow chart explains all the steps happening on the options block. 
 As it is shown in Figure~\ref{fig:options} initially, options items which are map selection and game difficulty are printed for the user. 
 Next, according to the user input key the program goes to one of the following states: 
 back to menu, adjust the selector, choose between map selection, or game difficulty, and read another input. 
 A selector is placed besides each option item; the player can see the selector and is informed on its selection.
 Similarly, some items will be printed for game difficulties and available maps and the user is able to choose from them.
-In each stage escape key goes to the previous stage and enter key chooses and option. 
-The selected difficulty and map will be used to do the single-player and multi-player setup later.
+In each stage escape key goes to the previous stage and enter key chooses and item. 
+The selected difficulty and map is used to do the single-player and multi-player setup later.
 
 \subsection{Options functions prototypes}
 
@@ -28,8 +30,7 @@ In this section we define the required functions prototypes and its relation to 
 #define OPTION_NUM_MAPS 2
 #define OPTION_NUM_DIFFICAULTIES 3
 
-typedef enum 
-{
+typedef enum {
     OPTION_TOP,
     OPTION_DIFFICAULTY,
     OPTION_MAP,
@@ -53,22 +54,22 @@ typedef struct Option {
 void backToMenu(void);
 
 /* Block: Print the options - second release
- * Assigned to:
+ * Assigned to: Jin
  * Prints the options' items on the console.
  * Input: option
  * Return: void */
 void printOptions(Option* option_p);
 
 /* Block: update the selector - second release
- * Assigned to:
+ * Assigned to: Jaser
  * Updates the selector position according to input key.
  * Input: option_p, arrowKey
  * Output: option_p
  * Return: void*/
 void updateSelector(Option* option_p, int arrowkey);
 
-/* Block: update the selector - second release
- * Assigned to:
+/* Block: choose option menu  - second release
+ * Assigned to: Pari
  * This will call functions related to each option
  * Input: selector
  * Output: 
@@ -76,7 +77,7 @@ void updateSelector(Option* option_p, int arrowkey);
 void chooseMenuOption(OptionMenues optionMenu);
 
 /* Block: Setup for easy/moderate/hard game - second release
- * Assigned to:
+ * Assigned to: Mahsa
  * select a difficulty level
  * Input: option, key
  * Output: difficulty level
@@ -84,7 +85,7 @@ void chooseMenuOption(OptionMenues optionMenu);
 void setDifficulty(Option option_p, int key);
 
 /* Block: Setup map 1/2 - second release
- * Assigned to:
+ * Assigned to: Pari
  * select a map
  * Input: option, key
  * Output: map number

@@ -2,17 +2,59 @@
 #include<stdio.h>
 
 /**
-* \def Define constants.
+* \def Define the maximun heart number of a player.
 */
+#ifndef HEART
 #define HEART 3
+#endif
+/**
+* \def Define the maximun name length of a player.
+*/
+#ifndef MAX_NAME_SIZE
 #define MAX_NAME_SIZE 100
+#endif 
+/**
+* \def Define the maximun number of barriers on a map.
+*/
+#ifndef MAP_MAX_NUM_OF_BARRIERS
 #define MAP_MAX_NUM_OF_BARRIERS 10
+#endif
+/**
+* \def Define the maximun number of arrows on a map.
+*/
+#ifndef MAP_MAX_NUM_OF_ARROWS
 #define MAP_MAX_NUM_OF_ARROWS 20
+#endif 
+/**
+* \def Define the maximun name length of an option item.
+*/
+#ifndef OPTION_ITEM_MAX_SIZE
 #define OPTION_ITEM_MAX_SIZE 1000
+#endif 
+/**
+* \def Define the number of option items.
+*/
+#ifndef OPTION_NUM_ITEMS
 #define OPTION_NUM_ITEMS 2
+#endif 
+/**
+* \def Define the number of maps.
+*/
+#ifndef OPTION_NUM_MAPS
 #define OPTION_NUM_MAPS 2
+#endif 
+/**
+* \def Define the number of difficulties of the game.
+*/
+#ifndef OPTION_NUM_DIFFICAULTIES
 #define OPTION_NUM_DIFFICAULTIES 3
+#endif 
+/**
+* \def Define the step size for barrier movement.
+*/
+#ifndef STEP_SIZE
 #define STEP_SIZE 2
+#endif 
 
 /**
 * \enum Define enumeration constants.
@@ -21,99 +63,99 @@ typedef enum {
 	OPTION_TOP,
 	OPTION_DIFFICAULTY,
 	OPTION_MAP,
-} OptionMenues;
+}option_menus;
 
 typedef enum {
 	DIRECTION_RIGHT,
 	DIRECTION_LEFT,
 	DIRECTION_UP,
 	DIRECTION_DOWN
-} Direction;
+} direction;
 
 typedef enum {
 	SPEED_LOW,
 	SPEED_NORMAL,
 	SPEED_HIGH,
-} Speed;
+} speed;
 
 /**
 * \struct Define relevant structures.
 */
-typedef struct tagPosition {
+typedef struct tag_position {
 	int x;
 	int y;
-} Position;
+} position;
 
-typedef struct tagPlayer{
+typedef struct tag_player{
 	char name[MAX_NAME_SIZE];
-	Position currentPos;
+	position current_pos;
 	int heart;
-} Player;
+} player;
 
-typedef struct tagOptionItem{
+typedef struct tag_option_item{
 	char str[OPTION_ITEM_MAX_SIZE];
-} OptionItem;
+} option_item;
 
-typedef struct tagOption{
+typedef struct tag_option{
 	int selector;
-	int difficualtySelector;
-	int mapSelector;
-	OptionItem items[OPTION_NUM_ITEMS];
-	OptionItem difficaultyItems[OPTION_NUM_DIFFICAULTIES];
-	OptionItem mapItems[OPTION_NUM_ITEMS];
-	OptionMenues optionMenu;
-	FILE* configFile;
+	int difficualty_selector;
+	int map_selector;
+	option_item items[OPTION_NUM_ITEMS];
+	option_item difficaulty_items[OPTION_NUM_DIFFICAULTIES];
+	option_item map_items[OPTION_NUM_ITEMS];
+	option_menus option_menu;
+	FILE* config_file;
 } Option;
 
-typedef struct tagMapSpace {
+typedef struct tag_map_space {
 	int xMin;
 	int xMax;
 	int yMin;
 	int yMax;
-} MapSpace;
+} map_space;
 
-typedef struct tagMapBarrier {
-	Position currentPos;
+typedef struct tag_map_barrier {
+	position current_pos;
 	int length;
-	Direction currectDir;
-} MapBarrier;
+	direction currect_dir;
+} map_barrier;
 
-typedef struct tagMapArrow {
-	Position currentPos;
-	Speed speed;
-} MapArrow;
+typedef struct tag_map_arrow {
+	position current_pos;
+	speed spd;
+} map_arrow;
 
-typedef struct tagGoal{
-	Position goal;
-} Goal;
+typedef struct tag_goal{
+	position goal;
+} goal;
 
-typedef struct tagMap{
-	MapSpace space;
-	int numberOfBarriers;
-	int numberOfArrows;
-	MapBarrier barrier[MAP_MAX_NUM_OF_BARRIERS];
-	MapArrow arrow[MAP_MAX_NUM_OF_ARROWS];
-	Goal goal;
-	Player player;
-} Map;
+typedef struct tag_map{
+	map_space space;
+	int number_of_barriers;
+	int number_of_arrows;
+	map_barrier barrier[MAP_MAX_NUM_OF_BARRIERS];
+	map_arrow arrow[MAP_MAX_NUM_OF_ARROWS];
+	goal gl;
+	player pl;
+} map;
 
 /**
 * Function Prototypes.
 */
-void updateBarrier(MapBarrier* barrier, MapSpace space);
+void update_barrier(map_barrier*, map_space);
 
-void updateView(Map map);
+void update_view(map);
 
-void pauseGame(void);
+void pause_game(void);
 
-void userManual(void);
+void user_manual(void);
 
 
-void takeHeart(Player* player);
+void take_heart(player*);
 
-//void multiPlayer(void);
+//void multi_player(void);
 
-//void printOption(Option* option);
+//void print_option(option* option);
 
 
 

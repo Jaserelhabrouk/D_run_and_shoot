@@ -2,12 +2,12 @@
 
 /**
 * \brief This function is to update barrier position in the map.
-* @param [in] barrier a pointer to access to each barrier stored in a MapBarrier structure array.
-* @param [in] space represents a MapSpace structure.
+* @param [in] barrier a pointer to access to each barrier stored in a map_barrier structure array.
+* @param [in] space represents a map_space structure.
 */
-void updateBarrier(MapBarrier* barrier, MapSpace space) {
+void updateBarrier(map_barrier* barrier, map_space space) {
 
-	MapBarrier* p;  
+	map_barrier* p;  
 	
 	if (barrier == NULL) {
 		return;
@@ -20,48 +20,48 @@ void updateBarrier(MapBarrier* barrier, MapSpace space) {
 			return;
 		}
 		/** Compare the position of the barrier pointed by p with the range of the given space. */
-		if (p->currentPos.x<space.xMin || p->currentPos.x>space.xMax || p->currentPos.y<space.yMin || p->currentPos.y>space.yMax)
+		if (p->current_pos.x<space.xMin || p->current_pos.x>space.xMax || p->current_pos.y<space.yMin || p->current_pos.y>space.yMax)
 		{
 			continue;
 		}
 		/** Move the barrier pointed by p according to its current moving direction.*/
-		switch (p->currectDir) {
+		switch (p->currect_dir) {
 
 			case DIRECTION_RIGHT:
-				if (p->currentPos.x + p->length == space.xMax)  /**< the barrier exceeds the right boundary of the map sapce.*/
+				if (p->current_pos.x + p->length == space.xMax)  /**< the barrier exceeds the right boundary of the map sapce.*/
 				{
-					p->currectDir = DIRECTION_LEFT;  /**< change the direction reversely.*/
-					p->currentPos.x -= STEP_SIZE;
+					p->currect_dir = DIRECTION_LEFT;  /**< change the direction reversely.*/
+					p->current_pos.x -= STEP_SIZE;
 					break;
 				}
-				p->currentPos.x += STEP_SIZE;  /**< move the barrier rightward with x value increased by STEP_SIZE.*/
+				p->current_pos.x += STEP_SIZE;  /**< move the barrier rightward with x value increased by STEP_SIZE.*/
 				break;
 			case DIRECTION_LEFT:
-				if (p->currentPos.x == space.xMin)  /**< the barrier exceeds the left boundary of the map sapce.*/
+				if (p->current_pos.x == space.xMin)  /**< the barrier exceeds the left boundary of the map sapce.*/
 				{
-					p->currectDir = DIRECTION_RIGHT; 
-					p->currentPos.x += STEP_SIZE;
+					p->currect_dir = DIRECTION_RIGHT; 
+					p->current_pos.x += STEP_SIZE;
 					break;
 				}
-				p->currentPos.x -= STEP_SIZE;  /**< move the barrier leftward with x value decreased by STEP_SIZE.*/
+				p->current_pos.x -= STEP_SIZE;  /**< move the barrier leftward with x value decreased by STEP_SIZE.*/
 				break;
 			case DIRECTION_UP:
-				if (p->currentPos.y == space.yMin)  /**< the barrier reaches the up boundary of the map sapce.*/
+				if (p->current_pos.y == space.yMin)  /**< the barrier reaches the up boundary of the map sapce.*/
 				{
-					p->currectDir = DIRECTION_DOWN; 
-					p->currentPos.y += STEP_SIZE;
+					p->currect_dir = DIRECTION_DOWN; 
+					p->current_pos.y += STEP_SIZE;
 					break;
 				}
-				p->currentPos.y -= STEP_SIZE;  /**< move the barrier upward with y value decreased by STEP_SIZE.*/
+				p->current_pos.y -= STEP_SIZE;  /**< move the barrier upward with y value decreased by STEP_SIZE.*/
 				break;
 			case DIRECTION_DOWN:
-				if (p->currentPos.y == space.yMax) /**< the barrier reaches the down boundary of the map sapce.*/
+				if (p->current_pos.y == space.yMax) /**< the barrier reaches the down boundary of the map sapce.*/
 				{
-					p->currectDir = DIRECTION_UP;
-					p->currentPos.y -= STEP_SIZE;
+					p->currect_dir = DIRECTION_UP;
+					p->current_pos.y -= STEP_SIZE;
 					break;
 				}
-				p->currentPos.y += STEP_SIZE;  /**< move the barrier downward with y value increased by STEP_SIZE.*/
+				p->current_pos.y += STEP_SIZE;  /**< move the barrier downward with y value increased by STEP_SIZE.*/
 				break;
 			default :
 				break;
@@ -76,7 +76,7 @@ void updateBarrier(MapBarrier* barrier, MapSpace space) {
 * Input: map
 * Return: void
 */
-void updateView(Map map){
+void update_view(map m){
 
 }
 
@@ -85,7 +85,7 @@ void updateView(Map map){
 * Input: void
 * Return: void
 */
-void pauseGame(void)
+void pause_game()
 {
 
 }
@@ -96,13 +96,13 @@ void pauseGame(void)
 * Output: void
 * Return: void
 */
-void userManual(void)
+void user_manual()
 {
 
 }
 
 
 /**release 2
-*void printOption(Option* option);
+*void print_option(option* opt);
 */
 

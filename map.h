@@ -15,7 +15,7 @@
  * @typedef position_t
  * A structure represents the position.
  */
-typedef struct position_t {
+typedef struct position {
 	int x;             /**< position in x coordinate */
 	int y;             /**< position in y coordinate */
 } position_t;
@@ -24,7 +24,7 @@ typedef struct position_t {
  * @enum direction_t
  * The enumeration of movement direction.
  */
-typedef enum direction_t {
+typedef enum direction {
 	DIRECTION_RIGHT,
 	DIRECTION_LEFT,
 	DIRECTION_UP,
@@ -35,7 +35,7 @@ typedef enum direction_t {
  * @enum speed_t
  * The enumeration of speed level.
  */
-typedef enum speed_t {
+typedef enum speed {
 	SPEED_LOW,
 	SPEED_NORMAL,
 	SPEED_HIGH,
@@ -45,7 +45,7 @@ typedef enum speed_t {
  * @typedef map_space_t
  * A structure represents the space which map is defined in it.
  */
-typedef struct map_space_t {
+typedef struct map_space {
 	int x_min;
 	int x_max;
 	int y_min;
@@ -56,7 +56,7 @@ typedef struct map_space_t {
  * @typedef map_barrier_t
  * A structure represents the a barrier in the map.
  */
-typedef struct map_barrier_t {
+typedef struct map_barrier {
 	position_t current_pos;     /**< current position of a barrier*/
 	int length;                 /**< length of a barrier*/
 	direction_t current_dir;    /**< current direction of a barrier*/
@@ -66,7 +66,7 @@ typedef struct map_barrier_t {
  * @typedef arrow_t
  * A structure represents an arrow in the map
  */
-typedef struct arrow_t {
+typedef struct arrow {
 	position_t current_pos;    /**< current position of an arrow*/
 	speed_t speed;             /**< the speed of an arrow*/
 	direction_t direction;     /**< direction of an arrow*/
@@ -76,7 +76,7 @@ typedef struct arrow_t {
  * @typedef player_t
  * A structure represents a player in the map
  */
-typedef struct player_t {
+typedef struct player {
 	char name;                 /**< name of the player*/
 	position_t current_pos;    /**< current position of the player*/
 	int heart;                 /**< number of the heart the player have*/
@@ -86,7 +86,7 @@ typedef struct player_t {
  * @typedef goal_t
  * A structure represents the goal in the map
  */
-typedef struct goal_t {
+typedef struct goal {
 	position_t pos;         /**< position of the goal in the map*/
 } goal_t;
 
@@ -94,7 +94,7 @@ typedef struct goal_t {
  * @typedef map_t
  * A structure represents the map
  */
-typedef struct map_t {
+typedef struct map {
 	map_space_t space;                                 /**< space of the map*/
 	int number_of_barriers;                            /**< number of barriers in the map*/
 	int number_of_arrows;                              /**< number of arrows in the map*/

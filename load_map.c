@@ -80,7 +80,7 @@ map_t load_map(char* file_path) {
  *
  * @return 0 in success.
  */
-int test(){
+int test_load_map(){
 
 	char file_path[1000] = "./test_file.txt";
 	FILE* map_file = fopen((const char*)file_path, "w");

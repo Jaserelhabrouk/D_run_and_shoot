@@ -9,30 +9,6 @@
 #include <assert.h>
 #include "menu.h"
 
-void credit(){
-	printf("credit\n");
-}
-
-void exit_game(){
-	printf("exit\n");
-}
-
-void multi_player() {
-	printf("multi_player\n");
-}
-
-void single_player() {
-	printf("single_player\n");
-}
-
-void user_manual() {
-	printf("user_manual\n");
-}
-
-void option(){
-	printf("option\n");
-}
-
 
 /**
  * @brief chooses a menu item.
@@ -50,12 +26,6 @@ void choose_menu_item(menu_t menu) {
 			break;
 		case MENU_ITEM_SINGLE_PLAYER:
 			single_player();
-			break;
-		case MENU_ITEM_MULTI_PLAYER:
-			multi_player();
-			break;
-		case MENU_ITEM_OPTION:
-			option();
 			break;
 		case MENU_ITEM_CREDIT:
 			credit();

@@ -1,60 +1,44 @@
 #pragma once
 #include<stdio.h>
 
+#ifndef COMMON_H_
+#define COMMON_H_
 /**
-* \def Define the maximun heart number of a player.
+* \def Define the maximum heart number of a player.
 */
-#ifndef HEART
 #define HEART 3
-#endif
 /**
-* \def Define the maximun name length of a player.
+* \def Define the maximum name length of a player.
 */
-#ifndef MAX_NAME_SIZE
 #define MAX_NAME_SIZE 100
-#endif 
 /**
-* \def Define the maximun number of barriers on a map.
+* \def Define the maximum number of barriers on a map.
 */
-#ifndef MAP_MAX_NUM_OF_BARRIERS
 #define MAP_MAX_NUM_OF_BARRIERS 10
-#endif
 /**
-* \def Define the maximun number of arrows on a map.
+* \def Define the maximum number of arrows on a map.
 */
-#ifndef MAP_MAX_NUM_OF_ARROWS
 #define MAP_MAX_NUM_OF_ARROWS 20
-#endif 
 /**
-* \def Define the maximun name length of an option item.
+* \def Define the maximum name length of an option item.
 */
-#ifndef OPTION_ITEM_MAX_SIZE
 #define OPTION_ITEM_MAX_SIZE 1000
-#endif 
 /**
 * \def Define the number of option items.
 */
-#ifndef OPTION_NUM_ITEMS
 #define OPTION_NUM_ITEMS 2
-#endif 
 /**
 * \def Define the number of maps.
 */
-#ifndef OPTION_NUM_MAPS
 #define OPTION_NUM_MAPS 2
-#endif 
 /**
 * \def Define the number of difficulties of the game.
 */
-#ifndef OPTION_NUM_DIFFICAULTIES
-#define OPTION_NUM_DIFFICAULTIES 3
-#endif 
+#define OPTION_NUM_DIFFICAULTIES 3 
 /**
 * \def Define the step size for barrier movement.
 */
-#ifndef STEP_SIZE
 #define STEP_SIZE 2
-#endif 
 
 /**
 * \enum Define enumeration constants.
@@ -63,86 +47,86 @@ typedef enum {
 	OPTION_TOP,
 	OPTION_DIFFICAULTY,
 	OPTION_MAP,
-}option_menus;
+}option_menus_t;
 
 typedef enum {
 	DIRECTION_RIGHT,
 	DIRECTION_LEFT,
 	DIRECTION_UP,
 	DIRECTION_DOWN
-} direction;
+} direction_t;
 
 typedef enum {
 	SPEED_LOW,
 	SPEED_NORMAL,
 	SPEED_HIGH,
-} speed;
+} speed_t;
 
 /**
 * \struct Define relevant structures.
 */
-typedef struct tag_position {
+typedef struct position {
 	int x;
 	int y;
-} position;
+} position_t;
 
-typedef struct tag_player{
+typedef struct player{
 	char name[MAX_NAME_SIZE];
-	position current_pos;
+	position_t current_pos;
 	int heart;
-} player;
+} player_t;
 
-typedef struct tag_option_item{
+typedef struct option_item{
 	char str[OPTION_ITEM_MAX_SIZE];
-} option_item;
+} option_item_t;
 
-typedef struct tag_option{
+typedef struct option{
 	int selector;
 	int difficualty_selector;
 	int map_selector;
-	option_item items[OPTION_NUM_ITEMS];
-	option_item difficaulty_items[OPTION_NUM_DIFFICAULTIES];
-	option_item map_items[OPTION_NUM_ITEMS];
-	option_menus option_menu;
+	option_item_t items[OPTION_NUM_ITEMS];
+	option_item_t difficaulty_items[OPTION_NUM_DIFFICAULTIES];
+	option_item_t map_items[OPTION_NUM_ITEMS];
+	option_menus_t option_menu;
 	FILE* config_file;
-} Option;
+} option_t;
 
-typedef struct tag_map_space {
-	int xMin;
-	int xMax;
-	int yMin;
-	int yMax;
-} map_space;
+typedef struct map_space {
+	int x_min;
+	int x_max;
+	int y_min;
+	int y_max;
+} map_space_t;
 
-typedef struct tag_map_barrier {
-	position current_pos;
+typedef struct map_barrier {
+	position_t current_pos;
 	int length;
-	direction currect_dir;
-} map_barrier;
+	direction_t currect_dir;
+} map_barrier_t;
 
-typedef struct tag_map_arrow {
-	position current_pos;
-	speed spd;
-} map_arrow;
+typedef struct map_arrow {
+	position_t current_pos;
+	speed_t spd;
+} map_arrow_t;
 
-typedef struct tag_goal{
-	position goal;
-} goal;
+typedef struct goal{
+	position_t goal;
+} goal_t;
 
-typedef struct tag_map{
-	map_space space;
+typedef struct map{
+	map_space_t space;
 	int number_of_barriers;
 	int number_of_arrows;
-	map_barrier barrier[MAP_MAX_NUM_OF_BARRIERS];
-	map_arrow arrow[MAP_MAX_NUM_OF_ARROWS];
-	goal gl;
-	player pl;
-} map;
+	map_barrier_t barrier[MAP_MAX_NUM_OF_BARRIERS];
+	map_arrow_t arrow[MAP_MAX_NUM_OF_ARROWS];
+	goal_t gl;
+	player_t pl;
+} map_t;
 
 /**
 * Function Prototypes.
 */
-void update_barrier(map_barrier*, map_space);
+void update_barrier(map_barrier_t*, map_space_t);
 
 void update_view(map);
 
@@ -151,11 +135,11 @@ void pause_game(void);
 void user_manual(void);
 
 
-void take_heart(player*);
+void take_heart(player_t*);
 
 //void multi_player(void);
 
 //void print_option(option* option);
 
-
+#endif /* COMMON_H_ */
 

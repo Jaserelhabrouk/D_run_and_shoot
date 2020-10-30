@@ -3,7 +3,7 @@
 
 void test_update_barrier()
 {
-    map_barrier barriers[MAP_MAX_NUM_OF_BARRIERS] = {
+    map_barrier_t barriers[MAP_MAX_NUM_OF_BARRIERS] = {
       {{.x = 60,.y = 10} ,5,DIRECTION_RIGHT},
       {{.x = 40,.y = 20} ,5,DIRECTION_LEFT},
       {{.x = 30,.y = 30} ,5,DIRECTION_UP},
@@ -16,9 +16,9 @@ void test_update_barrier()
       {{.x = 20,.y = 20} ,5,DIRECTION_RIGHT}
     };
 
-    map_space space = { 0,100,0,100 };
+    map_space_t space = { 0,100,0,100 };
 
-    updateBarrier(&barriers, space);
+    update_barrier(&barriers, space);
 
     assert(barriers[4].current_pos.x == 93);
     assert(barriers[5].current_pos.x == 2);
@@ -29,12 +29,13 @@ void test_update_barrier()
 
 void test_take_heart() {
 
-    player p1 = { "Mark",{.x = 40,.y = 20},1 };
-    player p2 = { "Marry",{.x = 30,.y = 10},0 };
-    player p3 = { "Marry",{.x = 30,.y = 10},-1 };
+    player_t p1 = { "Mark",{.x = 40,.y = 20},1 };
+    player_t p2 = { "Marry",{.x = 30,.y = 10},0 };
+    player_t p3 = { "Marry",{.x = 30,.y = 10},-1 };
 
     take_heart(&p1);
     take_heart(&p2);
+    take_heart(&p3);
 
     assert(p1.heart == 0);
     assert(p2.heart == 0);

@@ -9,6 +9,7 @@
 
 #define MAP_MAX_NUM_OF_BARRIERS 10
 #define MAP_MAX_NUM_OF_ARROWS 20
+#define BARRIER_MOVE_STEP_SIZE 2
 
 /**
  * @typedef position_t
@@ -111,6 +112,22 @@ typedef struct map {
  * @return filled map structure.
  */
 map_t load_map(char* file_path);
+
+/**
+* \brief updates the barrier.
+* 
+* This function is to update barrier position in the map.
+* @param [in] barrier a pointer to access to each barrier stored in a map_barrier structure array.
+* @param [in] space represents a map_space structure.
+*/
+void update_barrier(map_barrier_t*, map_space_t);
+
+/** \brief updates the view of map.
+*
+* This function is to generate a 2d graphic map using updated information
+* @param [in] map 
+*/
+void update_view(map);
 
 #endif /* MAP_H_ */
 

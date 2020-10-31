@@ -1,4 +1,5 @@
-#include "common.h"
+#include"map.h"
+#include<stdio.h>
 
 /**
 * \brief This function is to update barrier position in the map.
@@ -25,43 +26,43 @@ void update_barrier(map_barrier_t* p_barrier, map_space_t space) {
 			continue;
 		}
 		/** Move the barrier pointed by p according to its current moving direction.*/
-		switch (p_bar->currect_dir) {
+		switch (p_bar->current_dir) {
 
 			case DIRECTION_RIGHT:
 				if (p_bar->current_pos.x + p_bar->length == space.x_max)  /**< the barrier exceeds the right boundary of the map sapce.*/
 				{
-					p_bar->currect_dir = DIRECTION_LEFT;  /**< change the direction reversely.*/
-					p_bar->current_pos.x -= STEP_SIZE;
+					p_bar->current_dir = DIRECTION_LEFT;  /**< change the direction reversely.*/
+					p_bar->current_pos.x -= BARRIER_MOVE_STEP_SIZE;
 					break;
 				}
-				p_bar->current_pos.x += STEP_SIZE;  /**< move the barrier rightward with x value increased by STEP_SIZE.*/
+				p_bar->current_pos.x += BARRIER_MOVE_STEP_SIZE;  /**< move the barrier rightward with x value increased by STEP_SIZE.*/
 				break;
 			case DIRECTION_LEFT:
 				if (p_bar->current_pos.x == space.x_min)  /**< the barrier exceeds the left boundary of the map sapce.*/
 				{
-					p_bar->currect_dir = DIRECTION_RIGHT;
-					p_bar->current_pos.x += STEP_SIZE;
+					p_bar->current_dir = DIRECTION_RIGHT;
+					p_bar->current_pos.x += BARRIER_MOVE_STEP_SIZE;
 					break;
 				}
-				p_bar->current_pos.x -= STEP_SIZE;  /**< move the barrier leftward with x value decreased by STEP_SIZE.*/
+				p_bar->current_pos.x -= BARRIER_MOVE_STEP_SIZE;  /**< move the barrier leftward with x value decreased by STEP_SIZE.*/
 				break;
 			case DIRECTION_UP:
 				if (p_bar->current_pos.y == space.y_min)  /**< the barrier reaches the up boundary of the map sapce.*/
 				{
-					p_bar->currect_dir = DIRECTION_DOWN;
-					p_bar->current_pos.y += STEP_SIZE;
+					p_bar->current_dir = DIRECTION_DOWN;
+					p_bar->current_pos.y += BARRIER_MOVE_STEP_SIZE;
 					break;
 				}
-				p_bar->current_pos.y -= STEP_SIZE;  /**< move the barrier upward with y value decreased by STEP_SIZE.*/
+				p_bar->current_pos.y -= BARRIER_MOVE_STEP_SIZE;  /**< move the barrier upward with y value decreased by STEP_SIZE.*/
 				break;
 			case DIRECTION_DOWN:
 				if (p_bar->current_pos.y == space.y_max) /**< the barrier reaches the down boundary of the map sapce.*/
 				{
-					p_bar->currect_dir = DIRECTION_UP;
-					p_bar->current_pos.y -= STEP_SIZE;
+					p_bar->current_dir = DIRECTION_UP;
+					p_bar->current_pos.y -= BARRIER_MOVE_STEP_SIZE;
 					break;
 				}
-				p_bar->current_pos.y += STEP_SIZE;  /**< move the barrier downward with y value increased by STEP_SIZE.*/
+				p_bar->current_pos.y += BARRIER_MOVE_STEP_SIZE;  /**< move the barrier downward with y value increased by STEP_SIZE.*/
 				break;
 			default :
 				break;
@@ -100,7 +101,6 @@ void user_manual()
 {
 
 }
-
 
 /**release 2
 *void print_option(option* opt);

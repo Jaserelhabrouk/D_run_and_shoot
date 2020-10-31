@@ -1,4 +1,5 @@
-#include "common.h"
+#include"player.h"
+#include<stdio.h>
 
 /**
 * \brief This function is to takes a heart from the player.

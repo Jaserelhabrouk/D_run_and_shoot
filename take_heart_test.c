@@ -1,3 +1,8 @@
+/**
+* @file take_heart_test.c
+* @author Jin
+*/
+
 #include "map.h"
 #include <assert.h>
 

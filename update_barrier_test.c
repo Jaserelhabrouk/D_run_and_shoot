@@ -1,3 +1,8 @@
+/**
+* @file update_barrier_test.c
+* @author Jin
+*/
+
 #include "map.h"
 #include <assert.h>
 

@@ -1,3 +1,8 @@
+/**
+* @file player.c
+* @author Jin
+*/
+
 #include"player.h"
 #include<stdio.h>
 

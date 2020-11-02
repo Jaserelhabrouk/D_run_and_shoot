@@ -1,3 +1,8 @@
+/**
+* @file update_barrier.c
+* @author Jin
+*/
+
 #include"map.h"
 #include<stdio.h>
 

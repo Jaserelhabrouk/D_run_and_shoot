@@ -3,7 +3,7 @@
 * @author Jin
 */
 
-#include "map.h"
+#include "../include/map.h"
 #include <assert.h>
 
 void take_heart_test() {

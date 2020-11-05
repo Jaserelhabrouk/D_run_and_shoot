@@ -12,14 +12,14 @@
 * @param [in] space represents a map_space structure.
 */
 
-void update_barrier(map_barrier_t* p_barrier, map_space_t space) {
+void update_barrier(map_barrier_t* p_barrier, map_t* map) {
 
 	map_barrier_t* p_bar;
 
 	if (p_barrier == NULL) {
 		return;
 	}
-	for (int i = 0; i < MAP_MAX_NUM_OF_BARRIERS; i++)  /**< A loop repeats for MAP_MAX_NUM_OF_BARRIERS times.*/
+	for (int i = 0; i < map->number_of_barriers; i++)  /**< A loop repeats for MAP_MAX_NUM_OF_BARRIERS times.*/
 	{
 		p_bar = p_barrier + i;  /**< make p point to each barrier in a consecutive way.*/
 		if (p_bar == NULL)
@@ -27,7 +27,7 @@ void update_barrier(map_barrier_t* p_barrier, map_space_t space) {
 			return;
 		}
 		/** Compare the position of the barrier pointed by p with the range of the given space. */
-		if (p_bar->current_pos.x<space.x_min || p_bar->current_pos.x>space.x_max || p_bar->current_pos.y<space.y_min || p_bar->current_pos.y>space.y_max)
+		if (p_bar->current_pos.x<map->space.x_min || p_bar->current_pos.x>map->space.x_max || p_bar->current_pos.y<map->space.y_min || p_bar->current_pos.y>map->space.y_max)
 		{
 			continue;
 		}
@@ -35,7 +35,7 @@ void update_barrier(map_barrier_t* p_barrier, map_space_t space) {
 		switch (p_bar->current_dir) {
 
 		case DIRECTION_RIGHT:
-			if (p_bar->current_pos.x + p_bar->length == space.x_max)  /**< the barrier exceeds the right boundary of the map sapce.*/
+			if (p_bar->current_pos.x + p_bar->length == map->space.x_max)  /**< the barrier exceeds the right boundary of the map sapce.*/
 			{
 				p_bar->current_dir = DIRECTION_LEFT;  /**< change the direction reversely.*/
 				p_bar->current_pos.x -= BARRIER_MOVE_STEP_SIZE;
@@ -44,7 +44,7 @@ void update_barrier(map_barrier_t* p_barrier, map_space_t space) {
 			p_bar->current_pos.x += BARRIER_MOVE_STEP_SIZE;  /**< move the barrier rightward with x value increased by STEP_SIZE.*/
 			break;
 		case DIRECTION_LEFT:
-			if (p_bar->current_pos.x == space.x_min)  /**< the barrier exceeds the left boundary of the map sapce.*/
+			if (p_bar->current_pos.x == map->space.x_min)  /**< the barrier exceeds the left boundary of the map sapce.*/
 			{
 				p_bar->current_dir = DIRECTION_RIGHT;
 				p_bar->current_pos.x += BARRIER_MOVE_STEP_SIZE;
@@ -53,7 +53,7 @@ void update_barrier(map_barrier_t* p_barrier, map_space_t space) {
 			p_bar->current_pos.x -= BARRIER_MOVE_STEP_SIZE;  /**< move the barrier leftward with x value decreased by STEP_SIZE.*/
 			break;
 		case DIRECTION_UP:
-			if (p_bar->current_pos.y == space.y_min)  /**< the barrier reaches the up boundary of the map sapce.*/
+			if (p_bar->current_pos.y == map->space.y_min)  /**< the barrier reaches the up boundary of the map sapce.*/
 			{
 				p_bar->current_dir = DIRECTION_DOWN;
 				p_bar->current_pos.y += BARRIER_MOVE_STEP_SIZE;
@@ -62,7 +62,7 @@ void update_barrier(map_barrier_t* p_barrier, map_space_t space) {
 			p_bar->current_pos.y -= BARRIER_MOVE_STEP_SIZE;  /**< move the barrier upward with y value decreased by STEP_SIZE.*/
 			break;
 		case DIRECTION_DOWN:
-			if (p_bar->current_pos.y == space.y_max) /**< the barrier reaches the down boundary of the map sapce.*/
+			if (p_bar->current_pos.y == map->space.y_max) /**< the barrier reaches the down boundary of the map sapce.*/
 			{
 				p_bar->current_dir = DIRECTION_UP;
 				p_bar->current_pos.y -= BARRIER_MOVE_STEP_SIZE;

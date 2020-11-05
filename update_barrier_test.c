@@ -8,6 +8,7 @@
 
 void update_barrier_test()
 {
+    map_t map = {0};
     map_barrier_t barriers[MAP_MAX_NUM_OF_BARRIERS] = {
       {{.x = 60,.y = 10} ,5,DIRECTION_RIGHT},
       {{.x = 40,.y = 20} ,5,DIRECTION_LEFT},
@@ -21,9 +22,13 @@ void update_barrier_test()
       {{.x = 20,.y = 20} ,5,DIRECTION_RIGHT}
     };
 
-    map_space_t space = { 0,100,0,100 };
+    map.space.x_min = 0;
+    map.space.x_max = 100; 
+    map.space.y_min = 0;
+    map.space.y_max = 100;
+    map.number_of_barriers = 10;
 
-    update_barrier(&barriers, space);
+    update_barrier(&barriers, &map);
 
     assert(barriers[4].current_pos.x == 93);
     assert(barriers[5].current_pos.x == 2);

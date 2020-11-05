@@ -3,7 +3,7 @@
 * @author Jin
 */
 
-#include"map.h"
+#include"../include/map.h"
 #include<stdio.h>
 
 /**

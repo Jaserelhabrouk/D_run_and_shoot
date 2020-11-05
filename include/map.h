@@ -120,7 +120,7 @@ map_t load_map(char* file_path);
 * @param [in] barrier a pointer to access to each barrier stored in a map_barrier structure array.
 * @param [in] space represents a map_space structure.
 */
-void update_barrier(map_barrier_t*, map_space_t);
+void update_barrier(map_barrier_t*, map_t*);
 
 /** \brief updates the view of map.
 *

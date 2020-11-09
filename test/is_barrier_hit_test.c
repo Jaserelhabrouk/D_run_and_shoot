@@ -13,154 +13,157 @@
 
 int main(){
 
-
-    player_t p;
+    map_t map;
     map_barrier_t* map_b;
-    map_space_t sp;
 
     /** size of map is 8*8 */
-    sp.x_min = 0;
-    sp.x_max = 7;
-    sp.y_min = 0;
-    sp.y_max =7;
+    map.space.x_min = 0;
+    map.space.x_max = 7;
+    map.space.y_min = 0;
+    map.space.y_max = 7;
 
 
-    /** player is in place of (5,6)*/
-    p.current_pos.x = 5;
-    p.current_pos.y = 6;
+    /** player is in place of (6,5)*/
+    map.player.current_pos.x = 6;
+    map.player.current_pos.y = 5;
+
 
     /** defining barriers position, direction and size*/
+    map.number_of_barriers = 2;
+
     map_b[0].current_dir = DIRECTION_RIGHT;
-    map_b[0].current_pos.x = 4;
-    map_b[0].current_pos.y = 2;
+    map_b[0].current_pos.x = 2;
+    map_b[0].current_pos.y = 4;
     map_b[0].length = 6;
 
     map_b[1].current_dir = DIRECTION_LEFT;
-    map_b[1].current_pos.x = 6;
-    map_b[1].current_pos.y = 4;
+    map_b[1].current_pos.x = 4;
+    map_b[1].current_pos.y = 6;
     map_b[1].length = 3;
+
+    map.barrier[0] = map_b[0];
+    map.barrier[1] = map_b[1];
+
+
 
     bool hit = false;
 
     /** 1.Checking the collision with barriers of the map*/
 
-    printf("player is now at the place of (%d,%d): \n", p.current_pos.x, p.current_pos.y);
+    hit = is_barrier_hit(map,DIRECTION_UP);
 
-    hit = is_barrier_hit(p,map_b,sp,DIRECTION_UP);
-
-    printf("The player wants to go up. Hits? (Y/N): %d \n",hit);
+    assert(hit==1);
 
 
 
-    hit = is_barrier_hit(p,map_b,sp,DIRECTION_RIGHT);
+    hit = is_barrier_hit(map,DIRECTION_RIGHT);
 
-    printf("The player wants to go right. Hits? (Y/N): %d \n",hit);
-
-
-	hit = is_barrier_hit(p,map_b,sp,DIRECTION_DOWN);
-
-    printf("The player wants to go down. Hits? (Y/N): %d \n",hit);
+    assert(hit==0);
 
 
-    hit = is_barrier_hit(p,map_b,sp,DIRECTION_LEFT);
+	hit = is_barrier_hit(map,DIRECTION_DOWN);
 
-    printf("The player wants to go left. Hits? (Y/N): %d \n",hit);
-
-
-    /** player is in place of (4,1)*/
-    p.current_pos.x = 4;
-    p.current_pos.y = 1;
-
-    printf("player is now at the place of (%d,%d): \n", p.current_pos.x, p.current_pos.y);
-
-    hit = is_barrier_hit(p,map_b,sp,DIRECTION_RIGHT);
-
-    printf("The player wants to go right. Hits? (Y/N): %d \n",hit);
+    assert(hit==1);
 
 
-    /** player is in place of (6,7)*/
-    p.current_pos.x = 6;
-    p.current_pos.y = 7;
+    hit = is_barrier_hit(map,DIRECTION_LEFT);
 
-    printf("player is now at the place of (%d,%d): \n", p.current_pos.x, p.current_pos.y);
-
-    hit = is_barrier_hit(p,map_b,sp,DIRECTION_LEFT);
-
-    printf("The player wants to go left. Hits? (Y/N): %d \n",hit);
+    assert(hit==0);
 
 
-    /** player is in place of (7,5)*/
-    p.current_pos.x = 7;
-    p.current_pos.y = 5;
+    /** player is in place of (1,4)*/
+    map.player.current_pos.x = 1;
+    map.player.current_pos.y = 4;
 
-    printf("player is now at the place of (%d,%d): \n", p.current_pos.x, p.current_pos.y);
 
-    hit = is_barrier_hit(p,map_b,sp,DIRECTION_UP);
+    hit = is_barrier_hit(map,DIRECTION_RIGHT);
 
-    printf("The player wants to go up. Hits? (Y/N): %d \n",hit);
+    assert(hit==1);
+
+
+
+    /** player is in place of (7,6)*/
+    map.player.current_pos.x = 7;
+    map.player.current_pos.y = 6;
+
+
+    hit = is_barrier_hit(map,DIRECTION_LEFT);
+
+    assert(hit==1);
+
+
+
+    /** player is in place of (5,7)*/
+    map.player.current_pos.x = 5;
+    map.player.current_pos.y = 7;
+
+
+    hit = is_barrier_hit(map,DIRECTION_UP);
+
+    assert(hit==1);
+
 
 
     /** 2.Checking the borders of the map*/
 
-	/** player is in place of (0,7) top right corner*/
-    p.current_pos.x = 0;
-    p.current_pos.y = 7;
+	/** player is in place of (7,0) top right corner*/
+	map.player.current_pos.x = 7;
+    map.player.current_pos.y = 0;
 
-    printf("player is now at the place of (%d,%d): \n", p.current_pos.x, p.current_pos.y);
 
-	hit = is_barrier_hit(p,map_b,sp,DIRECTION_UP);
+	hit = is_barrier_hit(map,DIRECTION_UP);
 
-    printf("The player wants to go up. Hits? (Y/N): %d \n",hit);
+    assert(hit==1);
 
-	hit = is_barrier_hit(p,map_b,sp,DIRECTION_RIGHT);
+	hit = is_barrier_hit(map,DIRECTION_RIGHT);
 
-    printf("The player wants to go right. Hits? (Y/N): %d \n",hit);
+    assert(hit==1);
+
 
 
     /** player is in place of (0,0) top left corner*/
-    p.current_pos.x = 0;
-    p.current_pos.y = 0;
-
-    printf("player is now at the place of (%d,%d): \n", p.current_pos.x, p.current_pos.y);
-
-	hit = is_barrier_hit(p,map_b,sp,DIRECTION_UP);
-
-    printf("The player wants to go up. Hits? (Y/N): %d \n",hit);
-
-	hit = is_barrier_hit(p,map_b,sp,DIRECTION_LEFT);
-
-    printf("The player wants to go left. Hits? (Y/N): %d \n",hit);
+    map.player.current_pos.x = 0;
+    map.player.current_pos.y = 0;
 
 
-    /** player is in place of (7,0) bottom left corner*/
-    p.current_pos.x = 7;
-    p.current_pos.y = 0;
+	hit = is_barrier_hit(map,DIRECTION_UP);
 
-    printf("player is now at the place of (%d,%d): \n", p.current_pos.x, p.current_pos.y);
+    assert(hit==1);
 
-	hit = is_barrier_hit(p,map_b,sp,DIRECTION_DOWN);
+	hit = is_barrier_hit(map,DIRECTION_LEFT);
 
-    printf("The player wants to go down. Hits? (Y/N): %d \n",hit);
+    assert(hit==1);
 
-	hit = is_barrier_hit(p,map_b,sp,DIRECTION_LEFT);
 
-    printf("The player wants to go left. Hits? (Y/N): %d \n",hit);
+    /** player is in place of (0,7) bottom left corner*/
+    map.player.current_pos.x = 0;
+    map.player.current_pos.y = 7;
+
+
+	hit = is_barrier_hit(map,DIRECTION_DOWN);
+
+    assert(hit==1);
+
+	hit = is_barrier_hit(map,DIRECTION_LEFT);
+
+    assert(hit==1);
 
 
 
     /** player is in place of (7,7) bottom right corner*/
-    p.current_pos.x = 7;
-    p.current_pos.y = 7;
+    map.player.current_pos.x = 7;
+    map.player.current_pos.y = 7;
 
-    printf("player is now at the place of (%d,%d): \n", p.current_pos.x, p.current_pos.y);
 
-	hit = is_barrier_hit(p,map_b,sp,DIRECTION_DOWN);
 
-    printf("The player wants to go down. Hits? (Y/N): %d \n",hit);
+	hit = is_barrier_hit(map,DIRECTION_DOWN);
 
-	hit = is_barrier_hit(p,map_b,sp,DIRECTION_RIGHT);
+    assert(hit==1);
 
-    printf("The player wants to go right. Hits? (Y/N): %d \n",hit);
+	hit = is_barrier_hit(map,DIRECTION_RIGHT);
+
+    assert(hit==1);
+
 
 
     return 0;

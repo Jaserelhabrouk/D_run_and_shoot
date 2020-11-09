@@ -6,8 +6,10 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <assert.h>
 #include "map.h"
 #include "is_barrier_hit.h"
+
 
 
 /**
@@ -21,7 +23,7 @@
  * @param [in] direction, for player's next move prediction
  * @return boolean that represents if player hit a barrier or not
  */
-bool is_barrier_hit(player_t player,map_barrier_t* barrier, map_space_t space, direction_t direction){
+bool is_barrier_hit(map_t map, direction_t direction){
 
     bool hitted = false;
 
@@ -29,26 +31,26 @@ bool is_barrier_hit(player_t player,map_barrier_t* barrier, map_space_t space, d
 
     switch(direction){
         case DIRECTION_UP:
-            if(player.current_pos.x == space.x_min){
+            if(map.player.current_pos.y == map.space.y_min){
                 hitted = true;
             }
 
         break;
 
         case DIRECTION_DOWN:
-            if(player.current_pos.x == space.x_max){
+            if(map.player.current_pos.y == map.space.y_max){
                 hitted = true;
             }
         break;
 
         case DIRECTION_RIGHT:
-            if(player.current_pos.y == space.y_max){
+            if(map.player.current_pos.x == map.space.x_max){
                 hitted = true;
             }
         break;
 
         case DIRECTION_LEFT:
-            if(player.current_pos.y == space.y_min){
+            if(map.player.current_pos.x == map.space.x_min){
                 hitted = true;
             }
         break;
@@ -69,44 +71,44 @@ bool is_barrier_hit(player_t player,map_barrier_t* barrier, map_space_t space, d
     map_barrier_t* p_barrier;
 
 
-    for (int i = 0 ; i < MAP_MAX_NUM_OF_BARRIERS; i++){ /** iteration through all the barriers in the map*/
+    for (int i = 0 ; i < map.number_of_barriers; i++){ /** iteration through all the barriers in the map*/
 
-        p_barrier = barrier + i; /** Pointer to barrier of number i in the map*/
+        p_barrier = map.barrier + i; /** Pointer to barrier of number i in the map*/
 
 
         switch(direction){
 
             case DIRECTION_UP:
-                if( (player.current_pos.x -1) == p_barrier->current_pos.x){
-                    if( (player.current_pos.y >= p_barrier->current_pos.y) &&
-                        (player.current_pos.y <= (p_barrier->current_pos.y + p_barrier->length -1))){
+                if( (map.player.current_pos.y -1) == p_barrier->current_pos.y){
+                    if( (map.player.current_pos.x >= p_barrier->current_pos.x) &&
+                        (map.player.current_pos.x <= (p_barrier->current_pos.x + p_barrier->length -1))){
                             hitted = true;
                     }
                 }
             break;
 
             case DIRECTION_DOWN:
-                if( (player.current_pos.x +1) == p_barrier->current_pos.x){
-                    if( (player.current_pos.y >= p_barrier->current_pos.y) &&
-                        (player.current_pos.y <= (p_barrier->current_pos.y + p_barrier->length -1))){
+                if( (map.player.current_pos.y +1) == p_barrier->current_pos.y){
+                    if( (map.player.current_pos.x >= p_barrier->current_pos.x) &&
+                        (map.player.current_pos.x <= (p_barrier->current_pos.x + p_barrier->length -1))){
                         hitted = true;
                     }
                 }
             break;
 
             case DIRECTION_RIGHT:
-                if( (player.current_pos.x) == p_barrier->current_pos.x){
-                    if( (player.current_pos.y +1 >= p_barrier->current_pos.y) &&
-                        (player.current_pos.y +1 <= (p_barrier->current_pos.y + p_barrier->length -1))){
+                if( (map.player.current_pos.y) == p_barrier->current_pos.y){
+                    if( (map.player.current_pos.x +1 >= p_barrier->current_pos.x) &&
+                        (map.player.current_pos.x +1 <= (p_barrier->current_pos.x + p_barrier->length -1))){
                         hitted = true;
                     }
                 }
             break;
 
             case DIRECTION_LEFT:
-                 if( (player.current_pos.x) == p_barrier->current_pos.x){
-                    if( (player.current_pos.y -1 >= p_barrier->current_pos.y) &&
-                        (player.current_pos.y -1 <= (p_barrier->current_pos.y + p_barrier->length -1))){
+                 if( (map.player.current_pos.y) == p_barrier->current_pos.y){
+                    if( (map.player.current_pos.x -1 >= p_barrier->current_pos.x) &&
+                        (map.player.current_pos.x -1 <= (p_barrier->current_pos.x + p_barrier->length -1))){
                         hitted = true;
                     }
                  }

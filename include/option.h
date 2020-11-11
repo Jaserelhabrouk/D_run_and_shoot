@@ -2,13 +2,9 @@
 #include"map.h"
 #include<stdio.h>
 
-<<<<<<< HEAD
-#ifndef OPTION_H_
-#define OPTION_H_
-=======
 #ifndef __OPTION_H__
 #define __OPTION_H__
->>>>>>> 1414336... arranged file structure
+
 /**
 * \def Define constants.
 */
@@ -50,9 +46,5 @@ void user_manual(void);
 
 //void print_option(option* option);
 
-<<<<<<< HEAD
-#endif /* OPTION_H_ */
-=======
 #endif /* __OPTION_H__ */
->>>>>>> 1414336... arranged file structure
 

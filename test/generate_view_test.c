@@ -65,10 +65,10 @@ int generate_view_test()
         return -1;
     }
 
-    //初始化字体库
+    /**Initialize font library*/
     if (TTF_Init() == -1)
         return -1;
-    //打开字体
+    /**Open the font*/
  /*   g_font = TTF_OpenFont("simkai.ttf", 16);
     if (!g_font)
     {

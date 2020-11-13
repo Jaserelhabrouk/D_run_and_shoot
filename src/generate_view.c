@@ -13,7 +13,7 @@
 * Generate a 2d graphic map using updated information
 * Input: map
 * Return: void */
-void update_view(map_t* p_map, SDL_Renderer* p_renderer, SDL_Texture* p_player_texture,SDL_Texture* p_goal_texture, SDL_Texture* p_barrier_texture, SDL_Texture* p_arrow_down_texture, SDL_Texture* p_arrow_up_texture) {
+void generate_view(map_t* p_map, SDL_Renderer* p_renderer, SDL_Texture* p_player_texture,SDL_Texture* p_goal_texture, SDL_Texture* p_barrier_texture, SDL_Texture* p_arrow_down_texture, SDL_Texture* p_arrow_up_texture) {
     if (p_map->barrier != NULL)
     {
         update_barrier(p_map);

@@ -13,8 +13,7 @@
 
 int main(){
 
-    map_t map;
-    map_barrier_t* map_b;
+    map_t map = {0};
 
     /** size of map is 8*8 */
     map.space.x_min = 0;
@@ -31,18 +30,16 @@ int main(){
     /** defining barriers position, direction and size*/
     map.number_of_barriers = 2;
 
-    map_b[0].current_dir = DIRECTION_RIGHT;
-    map_b[0].current_pos.x = 2;
-    map_b[0].current_pos.y = 4;
-    map_b[0].length = 6;
+    map.barrier[0].current_dir = DIRECTION_RIGHT;
+    map.barrier[0].current_pos.x = 2;
+    map.barrier[0].current_pos.y = 4;
+    map.barrier[0].length = 6;
 
-    map_b[1].current_dir = DIRECTION_LEFT;
-    map_b[1].current_pos.x = 4;
-    map_b[1].current_pos.y = 6;
-    map_b[1].length = 3;
+    map.barrier[1].current_dir = DIRECTION_LEFT;
+    map.barrier[1].current_pos.x = 4;
+    map.barrier[1].current_pos.y = 6;
+    map.barrier[1].length = 3;
 
-    map.barrier[0] = map_b[0];
-    map.barrier[1] = map_b[1];
 
 
 

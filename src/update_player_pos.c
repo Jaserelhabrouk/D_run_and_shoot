@@ -27,13 +27,13 @@ void update_player_pos(player_t* player, direction_t direction){
     switch(direction){
 
     case DIRECTION_UP:
-        player->current_pos.x -= 1; break;
+        player->current_pos.y -= 1; break;
     case DIRECTION_DOWN:
-        player->current_pos.x +=1; break;
-    case DIRECTION_RIGHT:
         player->current_pos.y +=1; break;
+    case DIRECTION_RIGHT:
+        player->current_pos.x +=1; break;
     case DIRECTION_LEFT:
-        player->current_pos.y -=1; break;
+        player->current_pos.x -=1; break;
 
     default:
         player->current_pos.x = player->current_pos.x;

@@ -6,10 +6,12 @@
  */
 #ifndef MAP_H_
 #define MAP_H_
+#include <SDL.h>
 
 #define MAP_MAX_NUM_OF_BARRIERS 10
 #define MAP_MAX_NUM_OF_ARROWS 20
 #define BARRIER_MOVE_STEP_SIZE 2
+#define ARROW_MOVE_STEP_SIZE 2
 
 /**
  * @typedef position_t
@@ -120,14 +122,15 @@ map_t load_map(char* file_path);
 * @param [in] barrier a pointer to access to each barrier stored in a map_barrier structure array.
 * @param [in] space represents a map_space structure.
 */
-void update_barrier(map_barrier_t*, map_t*);
+void update_barrier(map_t*);
 
 /** \brief updates the view of map.
 *
 * This function is to generate a 2d graphic map using updated information
 * @param [in] map 
 */
-void update_view(map);
+void generate_view(map_t* p_map, SDL_Renderer* p_renderer, 
+	SDL_Texture* p_player_texture, SDL_Texture* p_goal_texture, SDL_Texture* p_barrier_texture, SDL_Texture* p_arrow_texture, SDL_Texture* p_arrow_up_texture);
 
 #endif /* MAP_H_ */
 

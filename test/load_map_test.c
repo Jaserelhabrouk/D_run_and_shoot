@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
-#include "map.h"
+#include "../include/map.h"
 
 /**
  * \brief load_map_test() function.

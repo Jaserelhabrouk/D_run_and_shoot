@@ -37,7 +37,7 @@ int main(){
 
     update_player_pos(p,dir);
 
-    assert(p->current_pos.x == 4 && p->current_pos.y == 7);
+    assert(p->current_pos.x == 7 && p->current_pos.y == 4);
 
     /** 3. Moving DOWN */
 
@@ -53,7 +53,7 @@ int main(){
 
     update_player_pos(p,dir);
 
-    assert(p->current_pos.x == 5 && p->current_pos.y == 6);
+    assert(p->current_pos.x == 6 && p->current_pos.y == 5);
 
 
 

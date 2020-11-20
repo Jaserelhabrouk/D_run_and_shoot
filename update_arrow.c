@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 /**
-* \brief This function is to update barrier position in the map.
+* \brief This function is to update arrow position in the map.
 * @param [in] arrow a pointer to access to each arrow stored in a arrow structure array.
 * @param [in] space represents a map_space structure.
 */
@@ -27,17 +27,17 @@ void update_arrow(arrow_t* p_arrow, map_t* map) {
 			return;
 		}
 		/** Compare the position of the arrow pointed by p with the range of the given space. */
-		if (p_arr->current_pos.x < map->space.x_min || p_arr->current_pos.x > map->space.x_max || p_arr->current_pos.y < map->space.y_min || p_arr->current_pos.y > map->space.y_max)
+		if (p_arr->current_pos.y < map->space.y_min || p_arr->current_pos.y > map->space.y_max)
 		{
 			continue;
 		}
 		/** Move the arrow pointed by p according to its current moving direction.*/
-		switch (p_arr->current_dir) {
+		switch (p_arr->current_pos) {
 
 		case DIRECTION_UP:
 			if (p_arr->current_pos.y == map->space.y_min)  /**< the arrow reaches the up boundary of the map sapce.*/
 			{
-				p_arr->current_dir = DIRECTION_DOWN;
+				p_arr->current_pos = DIRECTION_DOWN;
 				p_arr->current_pos.y += ARROW_MOVE_STEP_SIZE;
 				break;
 			}
@@ -46,7 +46,7 @@ void update_arrow(arrow_t* p_arrow, map_t* map) {
 		case DIRECTION_DOWN:
 			if (p_arr->current_pos.y == map->space.y_max) /**< the arrow reaches the down boundary of the map sapce.*/
 			{
-				p_arr->current_dir = DIRECTION_UP;
+				p_arr->current_pos = DIRECTION_UP;
 				p_arr->current_pos.y -= ARROW_MOVE_STEP_SIZE;
 				break;
 			}

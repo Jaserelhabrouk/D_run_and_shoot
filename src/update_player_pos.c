@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <assert.h>
-#include "map.h"
+#include "../include/map.h"
 
 /**
  * @brief update the position of the player
@@ -20,27 +20,24 @@
  * @param [in] direction, gets the direction to move player into that direction
  * @param [out] player, the position of the player will be updated
  */
-
-
-void update_player_pos(player_t* player, direction_t direction){
-
-    switch(direction){
-
-    case DIRECTION_UP:
-        player->current_pos.y -= 1; break;
-    case DIRECTION_DOWN:
-        player->current_pos.y +=1; break;
-    case DIRECTION_RIGHT:
-        player->current_pos.x +=1; break;
-    case DIRECTION_LEFT:
-        player->current_pos.x -=1; break;
-
-    default:
-        player->current_pos.x = player->current_pos.x;
-        player->current_pos.y = player->current_pos.y;
-
+void update_player_pos(player_t* player, direction_t direction)
+{
+    int step_size = 10;
+    switch(direction)
+    {
+        case DIRECTION_UP:
+            player->current_pos.y -= step_size;
+            break;
+        case DIRECTION_DOWN:
+            player->current_pos.y += step_size;
+            break;
+        case DIRECTION_RIGHT:
+            player->current_pos.x += step_size;
+            break;
+        case DIRECTION_LEFT:
+            player->current_pos.x -= step_size;
+            break;
+        default:
+            break;
     }
-
-
-
 }

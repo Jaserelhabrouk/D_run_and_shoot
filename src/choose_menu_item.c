@@ -13,17 +13,6 @@ void user_manual() {
 	/*TODO*/
 }
 
-void single_player() {
-	/*TODO*/
-}
-
-void credit() {
-	/*TODO*/
-}
-
-void exit_game() {
-	/*TODO*/
-}
 /**
  * \brief chooses a menu item.
  *

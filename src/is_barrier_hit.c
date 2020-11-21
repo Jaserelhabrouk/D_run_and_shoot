@@ -7,8 +7,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <assert.h>
-#include "map.h"
-#include "is_barrier_hit.h"
+#include "../include/map.h"
+#include "../include/is_barrier_hit.h"
 
 
 
@@ -23,13 +23,14 @@
  * @param [in] direction, for player's next move prediction
  * @return boolean that represents if player hit a barrier or not
  */
-bool is_barrier_hit(map_t map, direction_t direction){
-
+bool is_barrier_hit(map_t map, direction_t direction)
+{
     bool hitted = false;
 
     /** 1.Checking the borders */
 
-    switch(direction){
+    switch (direction)
+    {
         case DIRECTION_UP:
             if(map.player.current_pos.y == map.space.y_min){
                 hitted = true;

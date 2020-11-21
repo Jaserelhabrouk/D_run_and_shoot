@@ -1,63 +1,111 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include <SDL.h>
-#include <sdl_ttf.h>
-#include <SDL_image.h>
+#include <SDL2/SDL.h>
+#include <SDL2/sdl_ttf.h>
+#include <SDL2/SDL_image.h>
 #include <stdbool.h>
-#include "map.h"
-
-SDL_Window* g_window = NULL;
-SDL_Renderer* g_renderer = NULL;
-
-TTF_Font* g_font = NULL;
-/**define the constants representing different texture*/
-SDL_Texture* g_player_texture = NULL;
-SDL_Texture* g_barrier_texture = NULL;
-SDL_Texture* g_arrow_down_texture = NULL;
-SDL_Texture* g_arrow_up_texture = NULL;
-SDL_Texture* g_goal_texture = NULL;
-
-int g_screen_width = 1024;
-int g_screen_height = 768;
-
-///** define the width and height of the scrren.*/
-//const int SCREEN_WIDTH = 1024;
-//const int SCREEN_HEIGHT = 768;
-//
-//SDL_Window* g_window = NULL;
-//SDL_Renderer* g_renderer = NULL;
-//
-//TTF_Font* g_font=NULL;
-///**define the global variables representing different texture*/
-//SDL_Texture* g_player_texture = NULL;			
-//SDL_Texture* g_barrier_texture = NULL;
-//SDL_Texture* g_arrow_down_texture = NULL;
-//SDL_Texture* g_arrow_up_texture = NULL;
-//SDL_Texture* g_goal_texture = NULL;	
-
-//SDL_Texture* Load_image(const char* filePath)
-//{
-//    SDL_Surface* p_picture = NULL;
-//
-//    p_picture = IMG_Load(filePath);
-//    
-//    /**set the background to be transparent*/
-//    Uint32 colorkey = SDL_MapRGB(p_picture->format, 0, 0, 0);
-//    SDL_SetColorKey(p_picture, SDL_TRUE, colorkey);
-//
-//    SDL_Texture* p_result = SDL_CreateTextureFromSurface(g_renderer, p_picture);
-//    SDL_FreeSurface(p_picture);
-//
-//    return p_result;
-//}
+#include "../include/map.h"
+#include "../include/common.h"
+#include "../include/menu.h"
+#include "../include/credit.h"
+#include "../include/single_player.h"
 
 int main()
 {
-    //update_barrier_test();
-    //take_heart_test();
 
-    generate_view_test();
+    /*initialize SDL*/
+    TTF_Init();
+
+    /*initialize and open a window*/
+    SDL_Window* p_window = SDL_CreateWindow(
+                               "Run and Shoot",
+                               SDL_WINDOWPOS_UNDEFINED,
+                               SDL_WINDOWPOS_UNDEFINED,
+                               SCREEN_WIDTH,
+                               SCREEN_HEIGHT,
+                               SDL_WINDOW_RESIZABLE);
+
+    if (p_window == NULL)
+    {
+        printf("Window could not create: %s\n", SDL_GetError());
+        assert(false);
+    }
+
+    menu_t menu = {
+            .selector = MENU_ITEM_USER_MANUAL,
+            .items[0] = {"User manual"},
+            .items[1] = {"Single player"},
+            .items[2] = {"Credit"},
+            .items[3] = {"Exit"}
+    };
+
+    /*initialize a renderer*/
+    SDL_Renderer* p_renderer = SDL_CreateRenderer(p_window, -1, 0);
+
+    print_menu(p_window, &menu);
+
+    /*quit the window if the quit botton is pressed*/
+    bool quit = false;
+    SDL_Event event;
+    while (!quit)
+    {
+        SDL_WaitEvent(&event);
+        switch (event.type)
+        {
+            case SDL_QUIT:
+            {
+                quit = true;
+                break;
+            }
+            case SDL_KEYDOWN:
+            {
+                if (event.key.keysym.sym == SDLK_DOWN)
+                {
+                    if (menu.selector < MENU_ITEM_NUM_OF_ITEMS - 1)
+                    {
+                        menu.selector++;
+                    }
+                    print_menu(p_window, &menu);
+
+                }
+                else if (event.key.keysym.sym == SDLK_UP)
+                {
+                    if (menu.selector > 0)
+                    {
+                        menu.selector--;
+                    }
+                    print_menu(p_window, &menu);
+                }
+                else if (event.key.keysym.sym == SDLK_RETURN)
+                {
+                    if (menu.selector == MENU_ITEM_SINGLE_PLAYER)
+                    {
+                        quit = single_player(p_window);
+                        print_menu(p_window, &menu);
+                    }
+                    else if (menu.selector == MENU_ITEM_CREDIT)
+                    {
+                        quit = credit(p_window);
+                        print_menu(p_window, &menu);
+                    }
+                    if (menu.selector == MENU_ITEM_EXIT)
+                    {
+                        quit = true;
+                    }
+                    break;
+                }
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
+    SDL_DestroyRenderer(p_renderer);
+    SDL_DestroyWindow(p_window);
+    TTF_Quit();
+    return 0;
 }
 
 

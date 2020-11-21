@@ -8,9 +8,9 @@
 #ifndef MENU_H_
 #define MENU_H_
 
+#include <SDL2/SDL.h>
+
 #define MAX_ITEM_SIZE 100      /**< maximum legth of menu item*/
-#define TRUE 1
-#define FALSE 0
 
 /**
  * @enum menu_items_t
@@ -23,6 +23,7 @@ typedef enum menu_items {
 	MENU_ITEM_EXIT,
 	MENU_ITEM_NUM_OF_ITEMS
 } menu_items_t;
+
 
 /**
  * @typedef item_t
@@ -49,10 +50,8 @@ typedef struct menu {
  * @return void.
  */
 void choose_menu_item(menu_t menu);
+void print_menu(SDL_Window* p_window, menu_t* p_menu);
 
 void user_manual();
-void single_player();
-void credit();
-void exit_game();
 
 #endif /* MENU_H_ */

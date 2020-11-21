@@ -4,7 +4,8 @@
 */
 
 #include"../include/map.h"
-#include<stdio.h>
+#include <stdio.h>
+#include "../include/single_player.h"
 
 /**
 * \brief This function is to update barrier position in the map.

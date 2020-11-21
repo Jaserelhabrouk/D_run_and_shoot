@@ -16,17 +16,15 @@
  * \param [in] p_window the width and heigth of the window is used to put the text on the proper location.
  * \param [in] p_renderer renderer pointer
  */
-void win_game(SDL_Window* p_window, SDL_Renderer* p_renderer) {
+void win_game(SDL_Window* p_window) {
     int w;
     int h;
     SDL_GetWindowSize(p_window, &w, &h);
+    SDL_Renderer* p_renderer = SDL_GetRenderer(p_window);
     SDL_RenderClear(p_renderer);
 
-    /*initialize ttf (a library needed to write a text on renderer)*/
-    TTF_Init();
-
     /*loading font file from data directory and initialize color of text*/
-    TTF_Font* p_font = TTF_OpenFont("../data/FreeSans.ttf", 40);
+    TTF_Font* p_font = TTF_OpenFont("data/FreeSans.ttf", 40);
     SDL_Color color = {0, 255, 0};
     SDL_Surface* p_surface = TTF_RenderText_Solid(p_font, "Win Game", color);
     SDL_Texture* p_texture = SDL_CreateTextureFromSurface(p_renderer, p_surface);
@@ -45,5 +43,4 @@ void win_game(SDL_Window* p_window, SDL_Renderer* p_renderer) {
     SDL_DestroyTexture(p_texture);
     SDL_FreeSurface(p_surface);
     TTF_CloseFont(p_font);
-    TTF_Quit();
 }

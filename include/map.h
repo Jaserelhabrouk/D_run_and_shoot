@@ -6,12 +6,13 @@
  */
 #ifndef MAP_H_
 #define MAP_H_
-#include <SDL.h>
+
+#include <SDL2/SDL.h>
 
 #define MAP_MAX_NUM_OF_BARRIERS 10
 #define MAP_MAX_NUM_OF_ARROWS 20
-#define BARRIER_MOVE_STEP_SIZE 2
-#define ARROW_MOVE_STEP_SIZE 2
+#define BARRIER_MOVE_STEP_SIZE 5
+#define ARROW_MOVE_STEP_SIZE 5
 
 /**
  * @typedef position_t
@@ -92,6 +93,13 @@ typedef struct goal {
 	position_t pos;         /**< position of the goal in the map*/
 } goal_t;
 
+typedef struct map_textures {
+    SDL_Texture* p_texture_player;
+    SDL_Texture* p_texture_goal;
+    SDL_Texture* p_texture_arrow_down;
+    SDL_Texture* p_texture_barrier;
+} map_textures_t;
+
 /**
  * @typedef map_t
  * A structure represents the map
@@ -104,6 +112,7 @@ typedef struct map {
 	arrow_t arrow[MAP_MAX_NUM_OF_ARROWS];              /**< arrows in the map*/
 	goal_t goal;                                       /**< goal in the map*/
 	player_t player;                                   /**< player in the map*/
+	map_textures_t textures;                           /**< map element textures*/
 } map_t;
 
 /**
@@ -114,23 +123,6 @@ typedef struct map {
  * @return filled map structure.
  */
 map_t load_map(char* file_path);
-
-/**
-* \brief updates the barrier.
-* 
-* This function is to update barrier position in the map.
-* @param [in] barrier a pointer to access to each barrier stored in a map_barrier structure array.
-* @param [in] space represents a map_space structure.
-*/
-void update_barrier(map_t*);
-
-/** \brief updates the view of map.
-*
-* This function is to generate a 2d graphic map using updated information
-* @param [in] map 
-*/
-void generate_view(map_t* p_map, SDL_Renderer* p_renderer, 
-	SDL_Texture* p_player_texture, SDL_Texture* p_goal_texture, SDL_Texture* p_barrier_texture, SDL_Texture* p_arrow_texture, SDL_Texture* p_arrow_up_texture);
 
 #endif /* MAP_H_ */
 

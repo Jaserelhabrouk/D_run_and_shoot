@@ -32,7 +32,7 @@ void update_arrow(arrow_t* p_arrow, map_t* map) {
 			continue;
 		}
 		/** Move the arrow pointed by p according to its current moving direction.*/
-		switch (p_arr->current_pos) {
+		switch (p_arr->direction) {
 
 		case DIRECTION_UP:
 			if (p_arr->current_pos.y == map->space.y_min)  /**< the arrow reaches the up boundary of the map sapce.*/

@@ -8,8 +8,8 @@
 #include <stdio.h>
 #include <assert.h>
 
-#include "map.h"
-
+#include "../include/map.h"
+#include "../include/single_player.h"
 
 /**
  * @brief Checks if the player is hit.

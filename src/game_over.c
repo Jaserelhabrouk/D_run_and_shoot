@@ -16,10 +16,11 @@
  * \param [in] p_window the width and heigth of the window is used to put the text on the proper location.
  * \param [in] p_renderer renderer pointer
  */
-void game_over(SDL_Window* p_window, SDL_Renderer* p_renderer) {
+void game_over(SDL_Window* p_window) {
 	int w;
 	int h;
 	SDL_GetWindowSize(p_window, &w, &h);
+	SDL_Renderer* p_renderer = SDL_GetRenderer(p_window);
     SDL_RenderClear(p_renderer);
 
 	/*initialize ttf (a library needed to write a text on renderer)*/

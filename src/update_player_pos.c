@@ -22,7 +22,7 @@
  */
 void update_player_pos(player_t* player, direction_t direction)
 {
-    int step_size = 10;
+    int step_size = 5;
     switch(direction)
     {
         case DIRECTION_UP:

@@ -6,8 +6,13 @@
  */
 #ifndef MAP_H_
 #define MAP_H_
-
-#include <SDL2/SDL.h>
+#ifdef _WIN32
+	#include <SDL.h>
+	#include <sdl_ttf.h>
+	#include <SDL_image.h>
+#elif __APPLE__
+	#include <SDL2/SDL.h>
+#endif
 
 #define MAP_MAX_NUM_OF_BARRIERS 10
 #define MAP_MAX_NUM_OF_ARROWS 20
@@ -95,6 +100,7 @@ typedef struct goal {
 
 typedef struct map_textures {
     SDL_Texture* p_texture_player;
+	SDL_Texture* p_texture_heart;
     SDL_Texture* p_texture_goal;
     SDL_Texture* p_texture_arrow_down;
     SDL_Texture* p_texture_barrier;

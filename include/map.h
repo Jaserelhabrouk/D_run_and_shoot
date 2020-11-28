@@ -13,11 +13,13 @@
 #elif __APPLE__
 	#include <SDL2/SDL.h>
 #endif
+#include "map_textures.h"
 
 #define MAP_MAX_NUM_OF_BARRIERS 10
 #define MAP_MAX_NUM_OF_ARROWS 20
-#define BARRIER_MOVE_STEP_SIZE 2
-#define ARROW_MOVE_STEP_SIZE 2
+#define BARRIER_MOVE_STEP_SIZE 1
+#define ARROW_MOVE_STEP_SIZE 4
+#define PLAYER_MOVE_STEP_SIZE 10
 
 /**
  * @typedef position_t
@@ -103,6 +105,7 @@ typedef struct map_textures {
 	SDL_Texture* p_texture_heart;
     SDL_Texture* p_texture_goal;
     SDL_Texture* p_texture_arrow_down;
+    SDL_Texture* p_texture_arrow_up;
     SDL_Texture* p_texture_barrier;
 } map_textures_t;
 

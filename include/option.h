@@ -41,7 +41,6 @@ typedef struct option{
 */
 void pause_game(void);
 
-void user_manual(void);
 
 //void print_option(option* option);
 

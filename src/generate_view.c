@@ -10,7 +10,7 @@
 	#include <SDL.h>
 #elif __APPLE__
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #endif
 
 
@@ -67,8 +67,7 @@ void generate_view(SDL_Window* p_window, map_t* p_map)
     SDL_QueryTexture(p_heart_texture, NULL, NULL, &w, &h);
     SDL_Rect heart_rect = { p_map->space.x_max-50, p_map->space.y_max,  w, h };
     SDL_RenderCopy(p_renderer, p_heart_texture, NULL, &heart_rect);
-
-    itoa(p_map->player.heart, heartNum, 10);   
+    sprintf(heartNum, "%d",  p_map->player.heart);
     SDL_Surface* p_surface = TTF_RenderText_Solid(p_font, heartNum, color);
     p_heartNum_texture = SDL_CreateTextureFromSurface(p_renderer, p_surface);
     SDL_QueryTexture(p_heartNum_texture, NULL, NULL, &w, &h);

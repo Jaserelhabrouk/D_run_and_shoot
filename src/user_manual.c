@@ -16,6 +16,7 @@
 #endif
 #include "../include/menu.h"
 #include "../include/common.h"
+#include "../include/single_player.h"
 
 
 

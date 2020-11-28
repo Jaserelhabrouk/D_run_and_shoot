@@ -22,9 +22,10 @@ int is_player_hit(map_t* map) {
 	int flag = 0;
 	for (int i = 0; i < map->number_of_arrows; i++)
 	{
-		if ((map->player.current_pos.x - 10 <= map->arrow[i].current_pos.x &&
-		     map->player.current_pos.x + 10 >= map->arrow[i].current_pos.x) &&
-		     map->player.current_pos.y == map->arrow[i].current_pos.y)
+		if ((map->player.current_pos.x - 15 <= map->arrow[i].current_pos.x &&
+		     map->player.current_pos.x + 15 >= map->arrow[i].current_pos.x) &&
+		     map->player.current_pos.y  >  map->arrow[i].current_pos.y - ARROW_MOVE_STEP_SIZE &&
+		     map->player.current_pos.y  <=  map->arrow[i].current_pos.y)
 		{
 			flag = 1;
 			break;

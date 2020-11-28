@@ -52,6 +52,5 @@ typedef struct menu {
 void choose_menu_item(menu_t menu);
 void print_menu(SDL_Window* p_window, menu_t* p_menu);
 
-void user_manual();
 
 #endif /* MENU_H_ */

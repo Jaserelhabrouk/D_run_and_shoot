@@ -1,9 +1,15 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#ifdef _WIN64
+#include <SDL.h>
+#include <sdl_ttf.h>
+#include <SDL_image.h>
+#elif __APPLE__
 #include <SDL2/SDL.h>
 #include <SDL2/sdl_ttf.h>
 #include <SDL2/SDL_image.h>
+#endif
 #include <stdbool.h>
 #include "../include/map.h"
 #include "../include/common.h"
@@ -79,7 +85,12 @@ int main()
                 }
                 else if (event.key.keysym.sym == SDLK_RETURN)
                 {
-                    if (menu.selector == MENU_ITEM_SINGLE_PLAYER)
+                    if (menu.selector == MENU_ITEM_USER_MANUAL)
+                    {
+                        quit = user_manual(p_window);
+                        print_menu(p_window, &menu);
+                    }
+                    else if (menu.selector == MENU_ITEM_SINGLE_PLAYER)
                     {
                         quit = single_player(p_window);
                         print_menu(p_window, &menu);

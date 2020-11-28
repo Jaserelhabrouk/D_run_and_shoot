@@ -6,7 +6,11 @@
 #include "../include/single_player.h"
 #include "../include/player.h"
 #include "../include/map_textures.h"
-#include "SDL2/SDL.h"
+#ifdef _WIN64
+#include <SDL.h>
+#elif __APPLE__
+#include <SDL2/SDL.h>
+#endif
 
 /* key codes:
 * return = 13, space = 32, up =1073741906 ,down = 1073741905,
@@ -39,6 +43,7 @@ bool single_player(SDL_Window* p_window)
 
 	/*initialize map textures*/
     map.textures.p_texture_player = get_player_texture(p_renderer);
+	map.textures.p_texture_heart = get_heart_texture(p_renderer);
     map.textures.p_texture_goal = get_goal_texture(p_renderer);
     map.textures.p_texture_arrow_down = get_arrow_down_texture(p_renderer);
     map.textures.p_texture_barrier = get_barrier_texture(p_renderer);

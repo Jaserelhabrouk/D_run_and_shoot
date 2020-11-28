@@ -292,9 +292,9 @@ SDL_Texture* get_arrow_down_texture(SDL_Renderer* p_renderer)
     return p_texture;
 }
 
-SDL_Texture* get_barrier_texture(SDL_Renderer* p_renderer)
+SDL_Texture* get_barrier_texture(SDL_Renderer* p_renderer, int length)
 {
-    int width = 250;
+    int width = length;
     int height = 3;
 
     SDL_Surface* p_surface = SDL_CreateRGBSurface(SDL_SWSURFACE,
@@ -306,9 +306,9 @@ SDL_Texture* get_barrier_texture(SDL_Renderer* p_renderer)
                                                   0x0000ff00,  // Bmask,
                                                   0x000000ff); //Amask
 
-    Uint32 pixels[3 * 250];
+    Uint32 pixels[height * width];
 
-    for (int i = 0; i < 3 * 250; i++)
+    for (int i = 0; i < height * width; i++)
     {
         pixels[i] = 0xfaa32aff;
     }

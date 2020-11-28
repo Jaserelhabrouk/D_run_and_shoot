@@ -16,7 +16,7 @@
 * return = 13, space = 32, up =1073741906 ,down = 1073741905,
 * right = 1073741903, left =1073741904 , esc = 27,
 */
-#define TIMER_INTERVAL 50
+#define TIMER_INTERVAL 10
 
 Uint32 timer_callback(Uint32 interval, void *param)
 {
@@ -29,7 +29,7 @@ Uint32 timer_callback(Uint32 interval, void *param)
 bool single_player(SDL_Window* p_window)
 {
 	/*initialize timer*/
-	SDL_AddTimer(TIMER_INTERVAL, timer_callback, NULL);
+    SDL_TimerID timer = SDL_AddTimer(TIMER_INTERVAL, timer_callback, NULL);
 
 	/*initialize game state*/
 	game_state_t game_state = GAME_STATE_RUN;
@@ -46,7 +46,7 @@ bool single_player(SDL_Window* p_window)
 	map.textures.p_texture_heart = get_heart_texture(p_renderer);
     map.textures.p_texture_goal = get_goal_texture(p_renderer);
     map.textures.p_texture_arrow_down = get_arrow_down_texture(p_renderer);
-    map.textures.p_texture_barrier = get_barrier_texture(p_renderer);
+    map.textures.p_texture_barrier = get_barrier_texture(p_renderer, map.barrier[0].length);
 
 	/*read an event until window is not quit.*/
 	SDL_Event event;
@@ -136,7 +136,7 @@ bool single_player(SDL_Window* p_window)
 			}
 		}
 	}
-
+	SDL_RemoveTimer(timer);
 	return event.type == SDL_QUIT;
 
 }

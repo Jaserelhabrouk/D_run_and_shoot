@@ -16,6 +16,7 @@ typedef enum game_state {
 
 void game_over(SDL_Window* p_window);
 void win_game(SDL_Window* p_window);
+bool user_manual(SDL_Window* p_window);
 bool is_barrier_hit(map_t map, direction_t direction);
 void update_player_pos(player_t* player, direction_t direction);
 int is_player_hit(map_t* map);

@@ -63,10 +63,6 @@ bool single_player(SDL_Window* p_window)
 				    {
 				        quit = true;
 				    }
-				    if(event.key.keysym.sym == SDLK_ESCAPE)
-				    {
-
-					}
 				    else if (event.key.keysym.sym == SDLK_SPACE)
 				    {
 						/*space: to stop the game*/
@@ -96,15 +92,6 @@ bool single_player(SDL_Window* p_window)
 						{
 						    update_player_pos(&map.player, direction);
 						}
-						if (is_player_hit(&map) == true)
-						{
-							take_heart(&map.player);
-							if (map.player.heart == 0)
-							{
-								game_over(p_window);
-								game_state = GAME_STATE_LOSE;
-							}
-						}
 						else
 						{
 							if (is_reach_goal(&map.player, &map.goal) == true)
@@ -116,13 +103,24 @@ bool single_player(SDL_Window* p_window)
 					}
 					break;
 				}
-				case SDL_USEREVENT:
+				case SDL_USEREVENT: /*timer*/
 				{
 					if (game_state == GAME_STATE_RUN)
 					{
 						update_barrier(map.barrier, &map);
 						update_arrow(map.arrow, &map);
-					    generate_view(p_window, &map);
+                        generate_view(p_window, &map);
+
+					    if (is_player_hit(&map) == true)
+                        {
+					        printf("----\n");
+                            take_heart(&map.player);
+                            if (map.player.heart == 0)
+                            {
+                                game_over(p_window);
+                                game_state = GAME_STATE_LOSE;
+                            }
+                         }
 					}
 					break;
 				}

@@ -27,7 +27,7 @@ void game_over(SDL_Window* p_window) {
 	TTF_Init();
 
 	/*loading font file from data directory and initialize color of text*/
-	TTF_Font* p_font = TTF_OpenFont("../data/FreeSans.ttf", 40);
+	TTF_Font* p_font = TTF_OpenFont("data/FreeSans.ttf", 40);
 	SDL_Color color = {255, 0, 0};
 	SDL_Surface* p_surface = TTF_RenderText_Solid(p_font, "Game Over", color);
 	SDL_Texture* p_texture = SDL_CreateTextureFromSurface(p_renderer, p_surface);

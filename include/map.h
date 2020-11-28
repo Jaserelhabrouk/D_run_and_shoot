@@ -11,8 +11,8 @@
 
 #define MAP_MAX_NUM_OF_BARRIERS 10
 #define MAP_MAX_NUM_OF_ARROWS 20
-#define BARRIER_MOVE_STEP_SIZE 5
-#define ARROW_MOVE_STEP_SIZE 5
+#define BARRIER_MOVE_STEP_SIZE 2
+#define ARROW_MOVE_STEP_SIZE 2
 
 /**
  * @typedef position_t

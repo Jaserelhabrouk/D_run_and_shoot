@@ -22,20 +22,19 @@
  */
 void update_player_pos(player_t* player, direction_t direction)
 {
-    int step_size = 5;
     switch(direction)
     {
         case DIRECTION_UP:
-            player->current_pos.y -= step_size;
+            player->current_pos.y -= PLAYER_MOVE_STEP_SIZE;
             break;
         case DIRECTION_DOWN:
-            player->current_pos.y += step_size;
+            player->current_pos.y += PLAYER_MOVE_STEP_SIZE;
             break;
         case DIRECTION_RIGHT:
-            player->current_pos.x += step_size;
+            player->current_pos.x += PLAYER_MOVE_STEP_SIZE;
             break;
         case DIRECTION_LEFT:
-            player->current_pos.x -= step_size;
+            player->current_pos.x -= PLAYER_MOVE_STEP_SIZE;
             break;
         default:
             break;

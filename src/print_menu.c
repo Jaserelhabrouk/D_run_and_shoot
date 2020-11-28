@@ -1,8 +1,13 @@
+#ifdef _WIN64
+#include <SDL.h>
+#include <SDL_ttf.h>
+#elif __APPLE__
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_ttf.h"
 #include "../include/menu.h"
 
 /**

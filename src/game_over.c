@@ -2,12 +2,17 @@
  * @file game_over.c
  * \brief game over file
  */
-
+#ifdef _WIN64
+#include <SDL.h>
+#include <SDL_ttf.h>
+#elif __APPLE__
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/single_player.h"
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_ttf.h"
+
 
 /**
  * \brief game over function

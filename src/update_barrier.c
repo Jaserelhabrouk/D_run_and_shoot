@@ -2,9 +2,8 @@
 * @file update_barrier.c
 * @author Jin
 */
-
-#include"../include/map.h"
 #include <stdio.h>
+#include"../include/map.h"
 #include "../include/single_player.h"
 
 /**
@@ -27,16 +26,11 @@ void update_barrier(map_barrier_t* p_barrier, map_t* map) {
 		{
 			return;
 		}
-		/** Compare the position of the barrier pointed by p with the range of the given space. */
-		if (p_bar->current_pos.x<map->space.x_min || p_bar->current_pos.x>map->space.x_max || p_bar->current_pos.y<map->space.y_min || p_bar->current_pos.y>map->space.y_max)
-		{
-			continue;
-		}
 		/** Move the barrier pointed by p according to its current moving direction.*/
 		switch (p_bar->current_dir) {
 
 		case DIRECTION_RIGHT:
-			if (p_bar->current_pos.x + 250 >= map->space.x_max)  /**< the barrier exceeds the right boundary of the map sapce.*/
+			if (p_bar->current_pos.x + p_bar->length >= map->space.x_max)  /**< the barrier exceeds the right boundary of the map sapce.*/
 			{
 				p_bar->current_dir = DIRECTION_LEFT;  /**< change the direction reversely.*/
 				p_bar->current_pos.x -= BARRIER_MOVE_STEP_SIZE;

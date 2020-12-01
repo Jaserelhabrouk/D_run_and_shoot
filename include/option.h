@@ -36,13 +36,5 @@ typedef struct option{
 	FILE* config_file;
 } option_t;
 
-/**
-* Function Prototypes.
-*/
-void pause_game(void);
-
-
-//void print_option(option* option);
-
 #endif /* OPTION_H_ */
 

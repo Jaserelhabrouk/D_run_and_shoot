@@ -12,13 +12,14 @@
 #endif
 #include <stdbool.h>
 #include "../include/map.h"
-#include "../include/common.h"
 #include "../include/menu.h"
-#include "../include/credit.h"
 #include "../include/single_player.h"
 
 int main()
 {
+    map_t map = load_map("data/map_file.txt");
+    int screen_width = map.space.x_max - map.space.x_min + 1;
+    int screen_higth = map.space.y_max - map.space.y_min + 1;
 
     /*initialize SDL*/
     TTF_Init();
@@ -28,8 +29,8 @@ int main()
                                "Run and Shoot",
                                SDL_WINDOWPOS_UNDEFINED,
                                SDL_WINDOWPOS_UNDEFINED,
-                               SCREEN_WIDTH,
-                               SCREEN_HEIGHT,
+                               screen_width,
+                               screen_higth,
                                SDL_WINDOW_RESIZABLE);
 
     if (p_window == NULL)

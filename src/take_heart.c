@@ -2,8 +2,7 @@
 * @file player.c
 * @author Jin
 */
-
-#include "../include/player.h"
+#include "../include/single_player.h"
 #include <stdio.h>
 
 /**
@@ -20,7 +19,3 @@ void take_heart(player_t* p_player)
 		return;
 	}
 }
-
-/**release 2
-*void multiPlayer(void);
-*/

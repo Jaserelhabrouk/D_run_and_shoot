@@ -1,3 +1,7 @@
+/**
+ * @file single_player.c
+ * @brief main file which handle single player mode.
+ */
 #ifdef _WIN64
 #include <SDL.h>
 #elif __APPLE__
@@ -14,6 +18,7 @@
 
 #define TIMER_INTERVAL 20
 
+/** timer*/
 Uint32 timer_callback(Uint32 interval, void *param)
 {
 	SDL_Event event;
@@ -22,6 +27,16 @@ Uint32 timer_callback(Uint32 interval, void *param)
 	return TIMER_INTERVAL;
 }
 
+/**
+ * @brief single_player function
+ *
+ * This is the main function which handle single player mode.
+ * Different functions are called here: first a map file is loaded and then
+ * according to the input key different entities is updated and a view will be generated.
+ * A timer is initialized to update every thing in each TIMER_INTERVAL seconds.
+ * @param[in] p_window a SDL window which is passed from the main function.
+ * @return bool if window is quit or back_space key is pressed, return true.
+ */
 bool single_player(SDL_Window* p_window)
 {
 	/*initialize timer*/
@@ -67,7 +82,7 @@ bool single_player(SDL_Window* p_window)
 				    }
 				    else if (event.key.keysym.sym == SDLK_SPACE)
 				    {
-						/*space: to stop the game*/
+						/**press space key to stop or play the game*/
 						if (game_state == GAME_STATE_RUN)
 						{
 							game_state = GAME_STATE_PAUSE;
@@ -97,7 +112,7 @@ bool single_player(SDL_Window* p_window)
 					}
 					break;
 				}
-				case SDL_USEREVENT: /*timer*/
+				case SDL_USEREVENT: /**timer*/
 				{
 					if (game_state == GAME_STATE_RUN)
 					{
@@ -131,6 +146,5 @@ bool single_player(SDL_Window* p_window)
 	}
 	SDL_RemoveTimer(timer);
 	return event.type == SDL_QUIT;
-
 }
 

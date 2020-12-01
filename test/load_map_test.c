@@ -1,6 +1,6 @@
 /**
  * @file load_map_test.c
- * \brief A testcase to check if load_map() works correctly.
+ * @brief A testcase to check if load_map() works properly.
  */
 #include <stdio.h>
 #include <string.h>
@@ -8,7 +8,7 @@
 #include "../include/map.h"
 
 /**
- * \brief load_map_test() function.
+ * @brief load_map_test() function.
  *
  * This is the test function for load_map(). It has no input or output variable.
  * This function creates a map_file and defines the map requirements into that.

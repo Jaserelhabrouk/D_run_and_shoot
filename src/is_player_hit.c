@@ -1,9 +1,6 @@
 /**
  * @file is_player_hit.c
- * @author: pari
  * @brief Checks if the player is hit.
- *
- * This file contains is_player_hit() function.
  */
 #include <stdio.h>
 #include <assert.h>

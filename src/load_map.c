@@ -1,8 +1,6 @@
 /**
  * @file load_map.c
- * \brief Loads the map.
- *
- * This file implements map loading functionality.
+ * @brief Loads the map.
  */
 #include <stdio.h>
 #include <string.h>
@@ -10,7 +8,7 @@
 #include "../include/map.h"
 
 /**
- * \brief loads the map.
+ * @brief loads the map.
  *
  * This function parses the map file and initializes the map structure using input file.
  * @param [in] file_path input file path.

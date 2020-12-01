@@ -1,8 +1,6 @@
-/*
- * map_textures.h
- *
- *  Created on: Nov 21, 2020
- *      Author: pari
+/**
+ * @file map_texture.h
+ * @brief function declaration and type definition to create the map texture.
  */
 
 #ifndef INCLUDE_MAP_TEXTURES_H_
@@ -15,7 +13,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/sdl_ttf.h>
 #endif
-
+#include <assert.h>
 
 #define MAP_TEXTURE_PLAYER_WIDTH 30
 #define MAP_TEXTURE_PLAYER_HEIGHT 30
@@ -26,7 +24,13 @@
 #define MAP_TEXTURE_ARROW_WIDTH 10
 #define MAP_TEXTURE_ARROW_HEIGHT 40
 #define MAP_TEXTURE_BARRIER_HEIGHT 3
+#define MAP_TEXTURE_BARRIER_WIDTH_MAX 400
 
+/**
+ * @brief creats player texture.
+ * @param[in] p_renderer
+ * @return p_texture player texture
+ */
 static inline SDL_Texture* get_player_texture(SDL_Renderer* p_renderer)
 {
     SDL_Surface* p_surface = SDL_CreateRGBSurface(SDL_SWSURFACE,
@@ -93,6 +97,11 @@ static inline SDL_Texture* get_player_texture(SDL_Renderer* p_renderer)
     return p_texture;
 }
 
+/**
+ * @brief creats heart texture.
+ * @param[in] p_renderer
+ * @return p_texture heart texture
+ */
 static inline SDL_Texture* get_heart_texture(SDL_Renderer* p_renderer)
 {
     SDL_Surface* p_surface = SDL_CreateRGBSurface(SDL_SWSURFACE,
@@ -153,6 +162,11 @@ static inline SDL_Texture* get_heart_texture(SDL_Renderer* p_renderer)
     return p_texture;
 }
 
+/**
+ * @brief creats goal texture.
+ * @param[in] p_renderer
+ * @return p_texture goal texture
+ */
 static inline SDL_Texture* get_goal_texture(SDL_Renderer* p_renderer)
 {
     SDL_Surface* p_surface = SDL_CreateRGBSurface(SDL_SWSURFACE,
@@ -213,6 +227,11 @@ static inline SDL_Texture* get_goal_texture(SDL_Renderer* p_renderer)
     return p_texture;
 }
 
+/**
+ * @brief creats arrow down texture.
+ * @param[in] p_renderer
+ * @return p_texture arrow down texture
+ */
 static inline SDL_Texture* get_arrow_down_texture(SDL_Renderer* p_renderer)
 {
     int width = 10;
@@ -290,6 +309,11 @@ static inline SDL_Texture* get_arrow_down_texture(SDL_Renderer* p_renderer)
     return p_texture;
 }
 
+/**
+ * @brief creats arrow up texture.
+ * @param[in] p_renderer
+ * @return p_texture arrow up texture
+ */
 static inline SDL_Texture* get_arrow_up_texture(SDL_Renderer* p_renderer)
 {
     SDL_Surface* p_surface = SDL_CreateRGBSurface(SDL_SWSURFACE,
@@ -364,7 +388,12 @@ static inline SDL_Texture* get_arrow_up_texture(SDL_Renderer* p_renderer)
     return p_texture;
 }
 
-
+/**
+ * @brief creats barrier texture.
+ * @param[in] p_renderer
+ * @param[in] length of barrier. Read from map file.
+ * @return p_texture barrier texture
+ */
 static inline SDL_Texture* get_barrier_texture(SDL_Renderer* p_renderer, int length)
 {
     int width = length;
@@ -378,7 +407,8 @@ static inline SDL_Texture* get_barrier_texture(SDL_Renderer* p_renderer, int len
                                                   0x0000ff00,  // Bmask,
                                                   0x000000ff); //Amask
 
-    Uint32 pixels[MAP_TEXTURE_BARRIER_HEIGHT * width];
+    assert(width <= MAP_TEXTURE_BARRIER_WIDTH_MAX);
+    Uint32 pixels[MAP_TEXTURE_BARRIER_HEIGHT * MAP_TEXTURE_BARRIER_WIDTH_MAX];
 
     for (int i = 0; i < MAP_TEXTURE_BARRIER_HEIGHT * width; i++)
     {

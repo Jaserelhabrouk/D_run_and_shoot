@@ -1,6 +1,6 @@
 /**
  * @file menu.h
- * \brief decleration of the menu
+ * @brief decleration of the menu
  *
  * Function decleration and type definition for the game's menu.
  */
@@ -48,13 +48,11 @@ typedef struct menu {
 } menu_t;
 
 /**
- * \brief chooses a menu item.
- *
- * This function choose one of the menu items based on the selector.
- * @param [in] menu which is a structure.
- * @return void.
- */
-void choose_menu_item(menu_t menu);
+* @brief Prints the game start up menu on SDL window.
+* @param[in] p_window A SDL window is passed to the function.
+* @param[in] p_menu A structure represents menu item.
+* @return void
+*/
 void print_menu(SDL_Window* p_window, menu_t* p_menu);
 
 

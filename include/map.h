@@ -1,6 +1,6 @@
 /**
  * @file map.h
- * \brief decleration of the map
+ * @brief decleration of the map
  *
  * Function decleration and type definition for the game's map.
  */
@@ -125,7 +125,7 @@ typedef struct map {
 } map_t;
 
 /**
- * \brief loads the map.
+ * @brief loads the map.
  *
  * This function parses the map file and initializes the map structure using input file.
  * @param [in] file_path input file path.

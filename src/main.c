@@ -1,7 +1,4 @@
-﻿#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
-#ifdef _WIN64
+﻿#ifdef _WIN64
 #include <SDL.h>
 #include <sdl_ttf.h>
 #include <SDL_image.h>
@@ -10,6 +7,9 @@
 #include <SDL2/sdl_ttf.h>
 #include <SDL2/SDL_image.h>
 #endif
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
 #include <stdbool.h>
 #include "../include/map.h"
 #include "../include/menu.h"

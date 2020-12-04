@@ -101,13 +101,16 @@ bool single_player(SDL_Window* p_window)
 							 event.key.keysym.sym == SDLK_RIGHT ||
 							 event.key.keysym.sym == SDLK_LEFT)
 				    {
-				        direction_t direction = event.key.keysym.sym == SDLK_UP ? DIRECTION_UP :
-				                                event.key.keysym.sym == SDLK_DOWN ? DIRECTION_DOWN:
-				                                event.key.keysym.sym == SDLK_RIGHT? DIRECTION_RIGHT: DIRECTION_LEFT;
+						if (game_state == GAME_STATE_RUN){
+							
+							direction_t direction = event.key.keysym.sym == SDLK_UP ? DIRECTION_UP :
+													event.key.keysym.sym == SDLK_DOWN ? DIRECTION_DOWN:
+													event.key.keysym.sym == SDLK_RIGHT? DIRECTION_RIGHT: DIRECTION_LEFT;
 
-						if (is_barrier_hit(map, direction) == false)
-						{
-						    update_player_pos(&map.player, direction);
+							if (is_barrier_hit(map, direction) == false)
+							{
+								update_player_pos(&map.player, direction);
+							}
 						}
 					}
 					break;

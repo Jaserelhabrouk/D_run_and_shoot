@@ -2,7 +2,7 @@
 * @file take_heart.c
 * @author Jin
 */
-#include "../include/singleplayer.h"
+#include "../include/single_player.h"
 #include <stdio.h>
 
 /**

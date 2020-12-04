@@ -109,6 +109,18 @@ typedef struct map_textures {
     SDL_Texture* p_texture_barrier;
 } map_textures_t;
 
+typedef struct map_textures_multi {
+	SDL_Texture* p_texture_player;
+	SDL_Texture* p_texture_heart;
+	SDL_Texture* p_texture_player_1;
+	SDL_Texture* p_texture_heart_1;
+	SDL_Texture* p_texture_goal;
+	SDL_Texture* p_texture_arrow_down;
+	SDL_Texture* p_texture_arrow_up;
+	SDL_Texture* p_texture_barrier;
+} map_textures_multi_t;
+
+
 /**
  * @typedef map_t
  * A structure represents the map
@@ -122,6 +134,8 @@ typedef struct map {
 	goal_t goal;                                       /**< goal in the map*/
 	player_t player;                                   /**< player in the map*/
 	map_textures_t textures;                           /**< map element textures*/
+	player_t player1;                                   /**< player in the map*/
+	map_textures_multi_t textures1;                           /**< map element textures*/
 } map_t;
 
 /**

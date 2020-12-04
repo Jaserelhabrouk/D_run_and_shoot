@@ -1,6 +1,6 @@
 /**
  * @file user_manual.c
- * @brief Gives Credit Information
+ * \brief Gives Information about operation keys
  */
 #ifdef _WIN64
 #include <SDL.h>
@@ -18,7 +18,13 @@
 #include "../include/menu.h"
 #include "../include/single_player.h"
 
-
+ /**
+  * \brief user_manual function
+  *
+  * This is the function which prints information about keys to operate when playing the game.
+  * @param[in] p_window a SDL window which is passed from the main function.
+  * @return bool if window is quit or back_space key is pressed, return true.
+  */
 bool user_manual(SDL_Window* p_window)
 {
     int w;
@@ -27,20 +33,20 @@ bool user_manual(SDL_Window* p_window)
     SDL_Renderer* p_renderer = SDL_GetRenderer(p_window);
     SDL_RenderClear(p_renderer);
 
-    //setups for font and color of the text
+    /**setups for font and color of the text*/
     TTF_Font* p_font = TTF_OpenFont("data/FreeSans.ttf", 30);
     SDL_Color color = { 0, 255, 255 };
     SDL_Surface* p_surface = TTF_RenderText_Solid(p_font, "USER MANUAL", color);
     SDL_Texture* p_texture = SDL_CreateTextureFromSurface(p_renderer, p_surface);
 
-    //set location of the text
+    /**set location of the text*/
     int text_w = 0;
     int text_h = 0;
     SDL_QueryTexture(p_texture, NULL, NULL, &text_w, &text_h);
     SDL_Rect rect = { w / 2 - 120, h / 2 - 150, text_w, text_h };
 
 
-    //The previous steps for other names
+    /**The previous steps for other names*/
     SDL_Surface* p_surface_1 = TTF_RenderText_Solid(p_font, "UP KEY: Select above menu item or Player move upwards", color);
     SDL_Texture* p_texture_1 = SDL_CreateTextureFromSurface(p_renderer, p_surface_1);
     SDL_QueryTexture(p_texture_1, NULL, NULL, &text_w, &text_h);
@@ -73,7 +79,7 @@ bool user_manual(SDL_Window* p_window)
     SDL_Rect rect_6 = { w / 2 - 420, h / 2 + 200 , text_w, text_h };
 
 
-    //update renderer
+    /**update renderer*/
     SDL_RenderCopy(p_renderer, p_texture, NULL, &rect);
     SDL_RenderCopy(p_renderer, p_texture_1, NULL, &rect_1);
     SDL_RenderCopy(p_renderer, p_texture_2, NULL, &rect_2);
@@ -103,7 +109,7 @@ bool user_manual(SDL_Window* p_window)
         }
     }
 
-    //close commands
+    /**close commands*/
     SDL_DestroyTexture(p_texture);
     SDL_DestroyTexture(p_texture_1);
     SDL_DestroyTexture(p_texture_2);

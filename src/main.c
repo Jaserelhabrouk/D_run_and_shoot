@@ -13,7 +13,7 @@
 #include <stdbool.h>
 #include "../include/map.h"
 #include "../include/menu.h"
-#include "../include/single_player.h"
+//#include "../include/single_player.h"
 
 int main()
 {
@@ -43,8 +43,9 @@ int main()
             .selector = MENU_ITEM_USER_MANUAL,
             .items[0] = {"User manual"},
             .items[1] = {"Single player"},
-            .items[2] = {"Credit"},
-            .items[3] = {"Exit"}
+            .items[2] = {"Multi player"},
+            .items[3] = {"Credit"},
+            .items[4] = {"Exit"}
     };
 
     /*initialize a renderer*/
@@ -94,6 +95,11 @@ int main()
                     else if (menu.selector == MENU_ITEM_SINGLE_PLAYER)
                     {
                         quit = single_player(p_window);
+                        print_menu(p_window, &menu);
+                    }
+                    else if (menu.selector == MENU_ITEM_MULTI_PLAYER)
+                    {
+                        quit = multi_player(p_window);
                         print_menu(p_window, &menu);
                     }
                     else if (menu.selector == MENU_ITEM_CREDIT)

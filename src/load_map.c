@@ -34,10 +34,14 @@ map_t load_map(char* file_path) {
 		   &map.goal.pos.x,
 		   &map.goal.pos.y);
 
-	fscanf(map_file, "player = %d %d %d\n",
-		   &map.player.current_pos.x,
-		   &map.player.current_pos.y,
-		   &map.player.heart);
+	fscanf(map_file,"number_of_players = %d\n", &map.number_of_players);
+	assert(map.number_of_players <= MAP_MAX_NUM_OF_PLAYERS);
+	for (int i = 0; i < map.number_of_players; i++) {
+        fscanf(map_file, "player = %d %d %d\n",
+               &map.player[i].current_pos.x,
+               &map.player[i].current_pos.y,
+               &map.player[i].heart);
+	}
 
 	fscanf(map_file,"number_of_barriers = %d\n", &map.number_of_barriers);
 	assert(map.number_of_barriers <= MAP_MAX_NUM_OF_BARRIERS);

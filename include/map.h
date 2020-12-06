@@ -13,10 +13,11 @@
 #elif __APPLE__
 	#include <SDL2/SDL.h>
 #endif
-#include "map_textures.h"
+
 
 #define MAP_MAX_NUM_OF_BARRIERS 10
 #define MAP_MAX_NUM_OF_ARROWS 20
+#define MAP_MAX_NUM_OF_PLAYERS 2
 #define BARRIER_MOVE_STEP_SIZE 1
 #define ARROW_MOVE_STEP_SIZE 4
 #define PLAYER_MOVE_STEP_SIZE 10
@@ -50,6 +51,13 @@ typedef enum speed {
 	SPEED_NORMAL,
 	SPEED_HIGH,
 } speed_t;
+
+
+typedef enum player_index {
+    PLAYER_1,
+    PLAYER_2,
+} player_index_t;
+
 
 /**
  * @typedef map_space_t
@@ -92,6 +100,7 @@ typedef struct player {
 	int heart;                 /**< number of the heart the player have*/
 } player_t;
 
+
 /**
  * @typedef goal_t
  * A structure represents the goal in the map
@@ -101,8 +110,8 @@ typedef struct goal {
 } goal_t;
 
 typedef struct map_textures {
-    SDL_Texture* p_texture_player;
-	SDL_Texture* p_texture_heart;
+    SDL_Texture* p_texture_player[MAP_MAX_NUM_OF_PLAYERS];
+    SDL_Texture* p_texture_heart[MAP_MAX_NUM_OF_PLAYERS];
     SDL_Texture* p_texture_goal;
     SDL_Texture* p_texture_arrow_down;
     SDL_Texture* p_texture_arrow_up;
@@ -117,10 +126,11 @@ typedef struct map {
 	map_space_t space;                                 /**< space of the map*/
 	int number_of_barriers;                            /**< number of barriers in the map*/
 	int number_of_arrows;                              /**< number of arrows in the map*/
+	int number_of_players;                             /**< number of players in the map*/
 	map_barrier_t barrier[MAP_MAX_NUM_OF_BARRIERS];    /**< barries in the map*/
 	arrow_t arrow[MAP_MAX_NUM_OF_ARROWS];              /**< arrows in the map*/
 	goal_t goal;                                       /**< goal in the map*/
-	player_t player;                                   /**< player in the map*/
+	player_t player[MAP_MAX_NUM_OF_PLAYERS];           /**< player in the map*/
 	map_textures_t textures;                           /**< map element textures*/
 } map_t;
 

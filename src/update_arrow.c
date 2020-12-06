@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include "../include/map.h"
 #include "../include/single_player.h"
+#include "../include/map_textures.h"
 
 /**
 * \brief This function is to update arrow position in the map.

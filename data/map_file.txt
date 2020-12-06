@@ -1,5 +1,6 @@
 space = 0 1024 0 768
 goal = 50 50
+number_of_players = 1
 player = 950 650 3
 number_of_barriers = 2
 barrier = 250 200 250 0

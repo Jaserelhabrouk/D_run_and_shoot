@@ -9,6 +9,7 @@
 #include <assert.h>
 #include "../include/map.h"
 #include "../include/single_player.h"
+#include "../include/map_textures.h"
 
 
 
@@ -23,7 +24,7 @@
  * @param [in] direction, for player's next move prediction
  * @return boolean that represents if player hit a barrier or not
  */
-bool is_barrier_hit(map_t map, direction_t direction)
+bool is_barrier_hit(map_t map, direction_t direction, player_index_t player_index)
 {
     bool hitted = false;
 
@@ -32,26 +33,26 @@ bool is_barrier_hit(map_t map, direction_t direction)
     switch (direction)
     {
         case DIRECTION_UP:
-            if(map.player.current_pos.y  <= map.space.y_min){
+            if(map.player[player_index].current_pos.y  <= map.space.y_min){
                 hitted = true;
             }
 
         break;
 
         case DIRECTION_DOWN:
-            if(map.player.current_pos.y + MAP_TEXTURE_PLAYER_HEIGHT  >= map.space.y_max) {
+            if(map.player[player_index].current_pos.y + MAP_TEXTURE_PLAYER_HEIGHT  >= map.space.y_max) {
                 hitted = true;
             }
         break;
 
         case DIRECTION_RIGHT:
-            if(map.player.current_pos.x + MAP_TEXTURE_PLAYER_WIDTH >= map.space.x_max) {
+            if(map.player[player_index].current_pos.x + MAP_TEXTURE_PLAYER_WIDTH >= map.space.x_max) {
                 hitted = true;
             }
         break;
 
         case DIRECTION_LEFT:
-            if(map.player.current_pos.x  <= map.space.x_min){
+            if(map.player[player_index].current_pos.x  <= map.space.x_min){
                 hitted = true;
             }
         break;
@@ -76,10 +77,10 @@ bool is_barrier_hit(map_t map, direction_t direction)
 
         p_barrier = map.barrier + i; /** Pointer to barrier of number i in the map*/
 
-        if (map.player.current_pos.x >= p_barrier->current_pos.x &&
-            map.player.current_pos.x <= p_barrier->current_pos.x + p_barrier->length &&
-            map.player.current_pos.y <= p_barrier->current_pos.y &&
-            map.player.current_pos.y + MAP_TEXTURE_PLAYER_HEIGHT >= p_barrier->current_pos.y)
+        if (map.player[player_index].current_pos.x >= p_barrier->current_pos.x &&
+            map.player[player_index].current_pos.x <= p_barrier->current_pos.x + p_barrier->length &&
+            map.player[player_index].current_pos.y <= p_barrier->current_pos.y &&
+            map.player[player_index].current_pos.y + MAP_TEXTURE_PLAYER_HEIGHT >= p_barrier->current_pos.y)
         {
             hitted = true;
             break;
@@ -88,11 +89,11 @@ bool is_barrier_hit(map_t map, direction_t direction)
         switch(direction) {
 
             case DIRECTION_UP:
-                if (map.player.current_pos.x >= p_barrier->current_pos.x &&
-                    map.player.current_pos.x <= p_barrier->current_pos.x + p_barrier->length)
+                if (map.player[player_index].current_pos.x >= p_barrier->current_pos.x &&
+                    map.player[player_index].current_pos.x <= p_barrier->current_pos.x + p_barrier->length)
                 {
-                    if (map.player.current_pos.y >= p_barrier->current_pos.y &&
-                        map.player.current_pos.y - PLAYER_MOVE_STEP_SIZE <= p_barrier->current_pos.y)
+                    if (map.player[player_index].current_pos.y >= p_barrier->current_pos.y &&
+                        map.player[player_index].current_pos.y - PLAYER_MOVE_STEP_SIZE <= p_barrier->current_pos.y)
                     {
                         hitted = true;
                         break;
@@ -101,11 +102,11 @@ bool is_barrier_hit(map_t map, direction_t direction)
             break;
 
             case DIRECTION_DOWN:
-                if (map.player.current_pos.x >= p_barrier->current_pos.x &&
-                    map.player.current_pos.x <= p_barrier->current_pos.x + p_barrier->length)
+                if (map.player[player_index].current_pos.x >= p_barrier->current_pos.x &&
+                    map.player[player_index].current_pos.x <= p_barrier->current_pos.x + p_barrier->length)
                 {
-                    if(map.player.current_pos.y + MAP_TEXTURE_PLAYER_HEIGHT <= p_barrier->current_pos.y &&
-                       map.player.current_pos.y + MAP_TEXTURE_PLAYER_HEIGHT + PLAYER_MOVE_STEP_SIZE >= p_barrier->current_pos.y)
+                    if(map.player[player_index].current_pos.y + MAP_TEXTURE_PLAYER_HEIGHT <= p_barrier->current_pos.y &&
+                       map.player[player_index].current_pos.y + MAP_TEXTURE_PLAYER_HEIGHT + PLAYER_MOVE_STEP_SIZE >= p_barrier->current_pos.y)
                     {
                         hitted = true;
                         break;

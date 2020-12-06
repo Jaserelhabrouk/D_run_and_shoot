@@ -59,12 +59,12 @@ void win_game(SDL_Window* p_window);
  * @param [in] map represent the map structure which has player position and arrows' positions.
  * @return flag if the player is hit, flag = 1, otherwise flag = 0.
  */
-int is_player_hit(map_t* map);
+int is_player_hit(map_t* map, player_index_t player_index);
 
 
 bool credit(SDL_Window* p_window);
 bool user_manual(SDL_Window* p_window);
-bool is_barrier_hit(map_t map, direction_t direction);
+bool is_barrier_hit(map_t map, direction_t direction, player_index_t player_index);
 void update_player_pos(player_t* player, direction_t direction);
 void generate_view(SDL_Window* p_window, map_t* p_map);
 bool is_reach_goal(player_t* p_player, goal_t* p_goal);

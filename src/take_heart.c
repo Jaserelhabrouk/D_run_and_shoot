@@ -1,6 +1,5 @@
 /**
 * @file player.c
-* @author Jin
 */
 #include "../include/single_player.h"
 #include <stdio.h>

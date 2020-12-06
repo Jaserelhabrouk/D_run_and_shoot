@@ -28,15 +28,15 @@ void generate_view(SDL_Window* p_window, map_t* p_map)
     //setups for font and color of the text
     TTF_Font* p_font = TTF_OpenFont("data/FreeSans.ttf", 15);
     SDL_Color color = { 0, 255, 255 };
-    char heart_num[10];
+    char heart_1_num[10];
 
     SDL_Texture* p_barrier_texture = p_map->textures.p_texture_barrier;
     SDL_Texture* p_arrow_down_texture = p_map->textures.p_texture_arrow_down;
     SDL_Texture* p_arrow_up_texture = p_map->textures.p_texture_arrow_up;
     SDL_Texture* p_goal_texture = p_map->textures.p_texture_goal;
-    SDL_Texture* p_player_texture = p_map->textures.p_texture_player;
-    SDL_Texture* p_heart_texture = p_map->textures.p_texture_heart;
-    SDL_Texture* p_heartNum_texture = NULL;
+    SDL_Texture* p_player_texture = p_map->textures.p_texture_player[PLAYER_1];
+    SDL_Texture* p_heart_texture = p_map->textures.p_texture_heart[PLAYER_1];
+    SDL_Texture* p_heart_num_texture = NULL;
 
     int w = 0;
     int h = 0;
@@ -72,25 +72,25 @@ void generate_view(SDL_Window* p_window, map_t* p_map)
     SDL_RenderCopy(p_renderer, p_goal_texture, NULL, &goal_rect);
 
     SDL_QueryTexture(p_player_texture, NULL, NULL, &w, &h);
-    SDL_Rect player_rect = {  p_map->player.current_pos.x, p_map->player.current_pos.y,  w, h};
+    SDL_Rect player_rect = {  p_map->player[PLAYER_1].current_pos.x, p_map->player[PLAYER_1].current_pos.y,  w, h};
     SDL_RenderCopy(p_renderer, p_player_texture, NULL, &player_rect);
 
     SDL_QueryTexture(p_heart_texture, NULL, NULL, &w, &h);
     SDL_Rect heart_rect = { p_map->space.x_max-50, p_map->space.y_max-50,  w, h };
     SDL_RenderCopy(p_renderer, p_heart_texture, NULL, &heart_rect);
 
-    sprintf(heart_num, "%d",  p_map->player.heart);
-    SDL_Surface* p_surface = TTF_RenderText_Solid(p_font, heart_num, color);
+    sprintf(heart_1_num, "%d",  p_map->player[PLAYER_1].heart);
+    SDL_Surface* p_surface = TTF_RenderText_Solid(p_font, heart_1_num, color);
     
-    p_heartNum_texture = SDL_CreateTextureFromSurface(p_renderer, p_surface);
-    SDL_QueryTexture(p_heartNum_texture, NULL, NULL, &w, &h);
+    p_heart_num_texture = SDL_CreateTextureFromSurface(p_renderer, p_surface);
+    SDL_QueryTexture(p_heart_num_texture, NULL, NULL, &w, &h);
     SDL_Rect heartNum_rect = { p_map->space.x_max - 28, p_map->space.y_max-48,  w, h };
-    SDL_RenderCopy(p_renderer, p_heartNum_texture, NULL, &heartNum_rect);
+    SDL_RenderCopy(p_renderer, p_heart_num_texture, NULL, &heartNum_rect);
 
     /**Display the content to render*/
     SDL_RenderPresent(p_renderer);
     /* Destroy*/
-    SDL_DestroyTexture(p_heartNum_texture);
+    SDL_DestroyTexture(p_heart_num_texture);
     SDL_FreeSurface(p_surface);
     TTF_CloseFont(p_font);
 

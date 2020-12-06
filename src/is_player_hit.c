@@ -21,7 +21,7 @@ int is_player_hit(map_t* map, player_index_t player_index) {
 	{
 		if (map->player[player_index].current_pos.x  <= map->arrow[i].current_pos.x &&
 		    map->player[player_index].current_pos.x + MAP_TEXTURE_PLAYER_WIDTH > map->arrow[i].current_pos.x &&
-		    map->player[player_index].current_pos.y  >  map->arrow[i].current_pos.y - ARROW_MOVE_STEP_SIZE &&
+		    map->player[player_index].current_pos.y  >  map->arrow[i].current_pos.y - ARROW_MOVE_STEP_SIZE(map->arrow[i].speed) &&
 		    map->player[player_index].current_pos.y  <=  map->arrow[i].current_pos.y)
 		{
 			flag = 1;

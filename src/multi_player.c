@@ -19,6 +19,7 @@
 
 #define TIMER_INTERVAL 20
 
+
 /**
  * \brief multi_player function
  *
@@ -45,14 +46,14 @@ bool multi_player(SDL_Window* p_window)
 	SDL_RenderPresent(p_renderer);
 
 	/*initialize map textures*/
-	map.textures1.p_texture_player = get_player_texture(p_renderer);
-	map.textures1.p_texture_player_1 = get_player_texture(p_renderer);
-	map.textures1.p_texture_heart = get_heart_texture(p_renderer);
-	map.textures1.p_texture_heart_1 = get_heart_texture(p_renderer);
-	map.textures1.p_texture_goal = get_goal_texture(p_renderer);
-	map.textures1.p_texture_arrow_down = get_arrow_down_texture(p_renderer);
-	map.textures1.p_texture_arrow_up = get_arrow_up_texture(p_renderer);
-	map.textures1.p_texture_barrier = get_barrier_texture(p_renderer, map.barrier[0].length);
+	map.textures.p_texture_player[PLAYER_1] = get_player_texture(p_renderer, PLAYER_1);
+	map.textures.p_texture_player[PLAYER_2] = get_player_texture(p_renderer, PLAYER_2);
+	map.textures.p_texture_heart[PLAYER_1] = get_heart_texture(p_renderer, PLAYER_1);
+	map.textures.p_texture_heart[PLAYER_2] = get_heart_texture(p_renderer, PLAYER_2);
+	map.textures.p_texture_goal = get_goal_texture(p_renderer);
+	map.textures.p_texture_arrow_down = get_arrow_down_texture(p_renderer);
+	map.textures.p_texture_arrow_up = get_arrow_up_texture(p_renderer);
+	map.textures.p_texture_barrier = get_barrier_texture(p_renderer, map.barrier[0].length);
 
 	/*read an event until window is not quit.*/
 	SDL_Event event;
@@ -99,9 +100,9 @@ bool multi_player(SDL_Window* p_window)
 						event.key.keysym.sym == SDLK_DOWN ? DIRECTION_DOWN :
 						event.key.keysym.sym == SDLK_RIGHT ? DIRECTION_RIGHT : DIRECTION_LEFT;
 
-					if ((is_barrier_hit(map, direction) == false) && (map.player.heart > 0))
+					if ((is_barrier_hit(map, direction, PLAYER_1) == false) && (map.player[PLAYER_1].heart > 0))
 					{
-						update_player_pos(&map.player, direction);
+						update_player_pos(&map.player[PLAYER_1], direction);
 					}
 				}
 				else if (event.key.keysym.sym == SDLK_w ||
@@ -113,9 +114,9 @@ bool multi_player(SDL_Window* p_window)
 						event.key.keysym.sym == SDLK_s ? DIRECTION_DOWN :
 						event.key.keysym.sym == SDLK_d ? DIRECTION_RIGHT : DIRECTION_LEFT;
 
-					if ((is_barrier_hit(map, direction) == false) && (map.player1.heart > 0))
+					if ((is_barrier_hit(map, direction, PLAYER_2) == false) && (map.player[PLAYER_2].heart > 0))
 					{
-						update_player_pos(&map.player1, direction);
+						update_player_pos(&map.player[PLAYER_2], direction);
 					}
 				}
 				break;
@@ -128,27 +129,27 @@ bool multi_player(SDL_Window* p_window)
 					update_arrow(map.arrow, &map);
 					generate_view_multi(p_window, &map);
 
-					if (is_player_hit(&map) == true)
+					if (is_player_hit(&map, PLAYER_1) == true)
 					{
 						take_heart(&map.player);
-						if ((map.player.heart == 0) && (map.player1.heart == 0))
+						if ((map.player[PLAYER_1].heart == 0) && (map.player[PLAYER_2].heart == 0))
 						{
 							game_over(p_window);
 							game_state = GAME_STATE_LOSE;
 						}
 						
 					}
-					else if (is_player_hit_1(&map) == true)
+					else if (is_player_hit(&map, PLAYER_2) == true)
 					{
-						take_heart(&map.player1);
-						if ((map.player.heart == 0) && (map.player1.heart == 0))
+						take_heart(&map.player[PLAYER_2]);
+						if ((map.player[PLAYER_1].heart == 0) && (map.player[PLAYER_2].heart == 0))
 						{
 							game_over(p_window);
 							game_state = GAME_STATE_LOSE;
 						}
 
 					}
-					else if ((is_reach_goal(&map.player, &map.goal) == true) || (is_reach_goal(&map.player1, &map.goal) == true))
+					else if ((is_reach_goal(&map.player[PLAYER_1], &map.goal) == true) || (is_reach_goal(&map.player[PLAYER_2], &map.goal) == true))
 					{
 						win_game(p_window);
 						game_state = GAME_STATE_WIN;

@@ -1,11 +1,9 @@
 ﻿#ifdef _WIN64
 #include <SDL.h>
 #include <sdl_ttf.h>
-#include <SDL_image.h>
 #elif __APPLE__
 #include <SDL2/SDL.h>
 #include <SDL2/sdl_ttf.h>
-#include <SDL2/SDL_image.h>
 #endif
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,7 +11,7 @@
 #include <stdbool.h>
 #include "../include/map.h"
 #include "../include/menu.h"
-//#include "../include/single_player.h"
+#include "../include/single_player.h"
 
 int main()
 {
@@ -31,7 +29,7 @@ int main()
                                SDL_WINDOWPOS_UNDEFINED,
                                screen_width,
                                screen_higth,
-                               SDL_WINDOW_RESIZABLE);
+                               SDL_WINDOW_OPENGL);
 
     if (p_window == NULL)
     {

@@ -19,6 +19,8 @@
  */
 bool multi_player(SDL_Window* p_window);
 
+Uint32 timer_callback(Uint32, void*);
+
 
 #endif /* MULTI_PLAYER_H_ */
 #pragma once

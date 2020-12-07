@@ -33,15 +33,15 @@ void generate_view_multi(SDL_Window* p_window, map_t* p_map)
     SDL_Color color = { 0, 255, 255 };
     char heart_num[10], heart_num1[10];
 
-    SDL_Texture* p_barrier_texture = p_map->textures1.p_texture_barrier;
-    SDL_Texture* p_arrow_down_texture = p_map->textures1.p_texture_arrow_down;
-    SDL_Texture* p_arrow_up_texture = p_map->textures1.p_texture_arrow_up;
-    SDL_Texture* p_goal_texture = p_map->textures1.p_texture_goal;
-    SDL_Texture* p_player_texture = p_map->textures1.p_texture_player;
-    SDL_Texture* p_heart_texture = p_map->textures1.p_texture_heart;
+    SDL_Texture* p_barrier_texture = p_map->textures.p_texture_barrier;
+    SDL_Texture* p_arrow_down_texture = p_map->textures.p_texture_arrow_down;
+    SDL_Texture* p_arrow_up_texture = p_map->textures.p_texture_arrow_up;
+    SDL_Texture* p_goal_texture = p_map->textures.p_texture_goal;
+    SDL_Texture* p_player_texture = p_map->textures.p_texture_player[PLAYER_1];
+    SDL_Texture* p_heart_texture = p_map->textures.p_texture_heart[PLAYER_1];
     SDL_Texture* p_heartNum_texture = NULL;
-    SDL_Texture* p_player_texture1 = p_map->textures1.p_texture_player_1;
-    SDL_Texture* p_heart_texture1 = p_map->textures1.p_texture_heart_1;
+    SDL_Texture* p_player_texture1 = p_map->textures.p_texture_player[PLAYER_2];
+    SDL_Texture* p_heart_texture1 = p_map->textures.p_texture_heart[PLAYER_2];
     SDL_Texture* p_heartNum_texture1 = NULL;
 
     int w = 0;
@@ -81,11 +81,11 @@ void generate_view_multi(SDL_Window* p_window, map_t* p_map)
 
     /**draw the players'texture on a SDL window with renders*/
     SDL_QueryTexture(p_player_texture, NULL, NULL, &w, &h);
-    SDL_Rect player_rect = { p_map->player.current_pos.x, p_map->player.current_pos.y,  w, h };
+    SDL_Rect player_rect = { p_map->player[PLAYER_1].current_pos.x, p_map->player[PLAYER_1].current_pos.y,  w, h };
     SDL_RenderCopy(p_renderer, p_player_texture, NULL, &player_rect);
 
     SDL_QueryTexture(p_player_texture1, NULL, NULL, &w, &h);
-    SDL_Rect player_rect1 = { p_map->player1.current_pos.x, p_map->player1.current_pos.y,  w, h };
+    SDL_Rect player_rect1 = { p_map->player[PLAYER_2].current_pos.x, p_map->player[PLAYER_2].current_pos.y,  w, h };
     SDL_RenderCopy(p_renderer, p_player_texture1, NULL, &player_rect1);
 
     /**draw the hearts'texture on a SDL window with renders*/
@@ -98,7 +98,7 @@ void generate_view_multi(SDL_Window* p_window, map_t* p_map)
     SDL_RenderCopy(p_renderer, p_heart_texture1, NULL, &heart_rect1);
 
     /**draw the texture of the number of the player's hearts on a SDL window with renders*/
-    sprintf(heart_num, "%d", p_map->player.heart);
+    sprintf(heart_num, "%d", p_map->player[PLAYER_1].heart);
     SDL_Surface* p_surface = TTF_RenderText_Solid(p_font, heart_num, color);
 
     p_heartNum_texture = SDL_CreateTextureFromSurface(p_renderer, p_surface);
@@ -106,7 +106,7 @@ void generate_view_multi(SDL_Window* p_window, map_t* p_map)
     SDL_Rect heartNum_rect = { p_map->space.x_max - 28, p_map->space.y_max - 48,  w, h };
     SDL_RenderCopy(p_renderer, p_heartNum_texture, NULL, &heartNum_rect);
 
-    sprintf(heart_num1, "%d", p_map->player1.heart);
+    sprintf(heart_num1, "%d", p_map->player[PLAYER_1].heart);
     p_surface = TTF_RenderText_Solid(p_font, heart_num1, color);
 
     p_heartNum_texture1 = SDL_CreateTextureFromSurface(p_renderer, p_surface);

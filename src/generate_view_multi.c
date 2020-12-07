@@ -106,7 +106,7 @@ void generate_view_multi(SDL_Window* p_window, map_t* p_map)
     SDL_Rect heartNum_rect = { p_map->space.x_max - 28, p_map->space.y_max - 48,  w, h };
     SDL_RenderCopy(p_renderer, p_heartNum_texture, NULL, &heartNum_rect);
 
-    sprintf(heart_num1, "%d", p_map->player[PLAYER_1].heart);
+    sprintf(heart_num1, "%d", p_map->player[PLAYER_2].heart);
     p_surface = TTF_RenderText_Solid(p_font, heart_num1, color);
 
     p_heartNum_texture1 = SDL_CreateTextureFromSurface(p_renderer, p_surface);

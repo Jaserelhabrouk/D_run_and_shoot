@@ -2,6 +2,16 @@
 #include"map.h"
 #include<stdio.h>
 
+
+
+
+#ifdef _WIN64
+#include <SDL.h>
+#elif __APPLE__
+#include <SDL2/SDL.h>
+#endif
+
+
 #ifndef OPTION_H_
 #define OPTION_H_
 /**
@@ -10,31 +20,48 @@
 #define OPTION_ITEM_MAX_SIZE 1000
 #define OPTION_NUM_ITEMS 2
 #define OPTION_NUM_MAPS 2
-#define OPTION_NUM_DIFFICAULTIES 3 
+#define OPTION_NUM_DIFFICULTIES 3 
+
+
 
 /**
-* \enum Define enumeration constants.
-*/
-typedef enum {
-	OPTION_TOP,
-	OPTION_DIFFICAULTY,
-	OPTION_MAP,
-}option_menus_t;
+ * @enum options_items_t
+ * The enumeration of option items.
+ */
+typedef enum option_items{
+	OPTION_ITEM_EASY,
+	OPTION_ITEM_INTERMEDIATE,
+	OPTION_ITEM_HARD,
+	OPTION_ITEM_NUM_OF_ITEMS,
+}option_items_t;
 
-typedef struct option_item{
+/**
+ * @typedef item_t
+ * A structure represents items' name.
+ */
+typedef struct item{
 	char str[OPTION_ITEM_MAX_SIZE];
-} option_item_t;
+	char *map_file_path;
+} item_t;
 
+/**
+ * @typedef option_t
+ * A structure represents option item.
+ */
 typedef struct option{
-	int selector;
-	int difficualty_selector;
-	int map_selector;
-	option_item_t items[OPTION_NUM_ITEMS];
-	option_item_t difficaulty_items[OPTION_NUM_DIFFICAULTIES];
-	option_item_t map_items[OPTION_NUM_ITEMS];
-	option_menus_t option_menu;
-	FILE* config_file;
+	option_items_t selector;
+	item_t items[OPTION_ITEM_NUM_OF_ITEMS];
 } option_t;
+
+
+/**
+* @brief Prints the game options menu on SDL window.
+* @param[in] p_window A SDL window is passed to the function.
+* @param[in] p_option A structure represents option item.
+* @return void
+*/
+void print_options(SDL_Window* p_window, option_t* p_option);
+
 
 #endif /* OPTION_H_ */
 

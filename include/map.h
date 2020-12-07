@@ -19,7 +19,7 @@
 #define MAP_MAX_NUM_OF_ARROWS 20
 #define MAP_MAX_NUM_OF_PLAYERS 2
 #define BARRIER_MOVE_STEP_SIZE 1
-#define ARROW_MOVE_STEP_SIZE 4
+#define ARROW_MOVE_STEP_SIZE(speed) (((speed)+1)*2)
 #define PLAYER_MOVE_STEP_SIZE 10
 
 /**
@@ -41,16 +41,6 @@ typedef enum direction {
 	DIRECTION_UP,
 	DIRECTION_DOWN
 } direction_t;
-
-/**
- * @enum speed_t
- * The enumeration of speed level.
- */
-typedef enum speed {
-	SPEED_LOW,
-	SPEED_NORMAL,
-	SPEED_HIGH,
-} speed_t;
 
 
 typedef enum player_index {
@@ -86,7 +76,7 @@ typedef struct map_barrier {
  */
 typedef struct arrow {
 	position_t current_pos;    /**< current position of an arrow*/
-	speed_t speed;             /**< the speed of an arrow*/
+	int speed;                 /**< the speed of an arrow*/
 	direction_t direction;     /**< direction of an arrow*/
 } arrow_t;
 

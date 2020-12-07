@@ -36,24 +36,24 @@ void update_arrow(arrow_t* p_arrow, map_t* map) {
 			if (p_arr->current_pos.y  < map->space.y_min)  /**< the arrow reaches the up boundary of the map sapce.*/
 			{
 				p_arr->direction = DIRECTION_DOWN;
-				p_arr->current_pos.y += ARROW_MOVE_STEP_SIZE;
+				p_arr->current_pos.y += ARROW_MOVE_STEP_SIZE(p_arr->speed);
 				break;
 			}
 			else
 			{
-			    p_arr->current_pos.y -= ARROW_MOVE_STEP_SIZE;  /**< move the arrow upward with y value decreased by STEP_SIZE.*/
+			    p_arr->current_pos.y -= ARROW_MOVE_STEP_SIZE(p_arr->speed);  /**< move the arrow upward with y value decreased by STEP_SIZE.*/
 			}
 			break;
 		case DIRECTION_DOWN:
 			if (p_arr->current_pos.y + MAP_TEXTURE_ARROW_HEIGHT > map->space.y_max) /**< the arrow reaches the down boundary of the map sapce.*/
 			{
 				p_arr->direction = DIRECTION_UP;
-				p_arr->current_pos.y -= ARROW_MOVE_STEP_SIZE;
+				p_arr->current_pos.y -= ARROW_MOVE_STEP_SIZE(p_arr->speed);
 				break;
 			}
 			else
 			{
-			    p_arr->current_pos.y += ARROW_MOVE_STEP_SIZE;  /**< move the arrow downward with y value increased by STEP_SIZE.*/
+			    p_arr->current_pos.y += ARROW_MOVE_STEP_SIZE(p_arr->speed);  /**< move the arrow downward with y value increased by STEP_SIZE.*/
 			}
 			break;
 		default:

@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <assert.h>
-#include "../include/option.h"
+#include "../include/menu.h"
 
 /**
  * @brief Tests print options function.
@@ -57,7 +57,7 @@ void print_options_test() {
     SDL_Renderer* p_renderer = SDL_CreateRenderer(p_window, -1, 0);
 
     /** call print_options function*/
-    print_options(p_window, &option);
+    options(p_window, option);
 
     /* quit the window if the quit botton is pressed*/
     bool quit = false;

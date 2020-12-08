@@ -13,6 +13,7 @@
  *
  * This function checks if the player is hit by an arrow.
  * @param [in] map represent the map structure which has player position and arrows' positions.
+ * @param [in] player_index  can be PLAYER1 or PLAYER2.
  * @return flag if the player is hit, flag = 1, otherwise flag = 0.
  */
 int is_player_hit(map_t* map, player_index_t player_index) {

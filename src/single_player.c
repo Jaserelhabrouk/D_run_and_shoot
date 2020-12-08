@@ -13,8 +13,8 @@
 #include <assert.h>
 
 #include "../include/map.h"
+#include "../include/menu.h"
 #include "../include/single_player.h"
-#include "../include/map_textures.h"
 #include "../include/map_textures.h"
 
 #define TIMER_INTERVAL 20
@@ -36,9 +36,10 @@ Uint32 timer_callback(Uint32 interval, void *param)
  * according to the input key different entities is updated and a view will be generated.
  * A timer is initialized to update every thing in each TIMER_INTERVAL seconds.
  * @param[in] p_window a SDL window which is passed from the main function.
+ * @param[in] difficulty game difficulty specify the map file that should be loaded.
  * @return bool if window is quit or back_space key is pressed, return true.
  */
-bool single_player(SDL_Window* p_window)
+bool single_player(SDL_Window* p_window, option_items_t difficulty)
 {
 	/*initialize timer*/
     SDL_TimerID timer = SDL_AddTimer(TIMER_INTERVAL, timer_callback, NULL);
@@ -47,7 +48,30 @@ bool single_player(SDL_Window* p_window)
 	game_state_t game_state = GAME_STATE_RUN;
 
 	/*initialize and load map*/
-	map_t map = load_map("data/map_file.txt");
+	map_t map = {0};
+	switch (difficulty)
+	{
+	    case OPTION_ITEM_EASY:
+	    {
+	        map = load_map("data/single_player_easy.txt");
+	        break;
+	    }
+	    case OPTION_ITEM_INTERMEDIATE:
+	    {
+	        map = load_map("data/single_player_intermediate.txt");
+	        break;
+	    }
+	    case OPTION_ITEM_HARD:
+        {
+            map = load_map("data/single_player_hard.txt");
+            break;
+        }
+	    default:
+	    {
+	        map = load_map("data/map_file.txt");
+	        break;
+	    }
+	}
 
 	SDL_Renderer* p_renderer = SDL_GetRenderer(p_window);
 	SDL_RenderClear(p_renderer);

@@ -14,112 +14,69 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <assert.h>
-#include "../include/option.h"
+#include "../include/menu.h"
 
 /**
-* @brief Prints the game options menu on SDL window.
+* @brief Handles user input to choose between difficulty levels.
+*
+* This function show you different level of difficulty and let
+* user to choos between difficulty levels using return key.
 * @param[in] p_window A SDL window is passed to the function.
-* @param[in] p_option A structure represents menu item.
-* @return void
+* @param[out] p_option_items final selected item.
+* @return bool if window is quit or back_space key is pressed, return true.
 */
-void print_options(SDL_Window* p_window, option_t* p_option){
-    int w;
-    int h;
-    SDL_GetWindowSize(p_window, &w, &h);
-    SDL_Renderer* p_renderer = SDL_GetRenderer(p_window);
-    SDL_RenderClear(p_renderer);
+bool options(SDL_Window* p_window, option_items_t* p_option_items) {
 
-    /**loading font file from data directory and initialize color of text*/
-    TTF_Font* p_font = TTF_OpenFont("data/FreeSans.ttf", 40);
-    assert(p_font != NULL);
-    SDL_Color default_color = {0, 255, 0};
-
-
-
-    int option_item_step = 60;
-
-    for (int i = 0; i < OPTION_ITEM_NUM_OF_ITEMS; i++)
+    /**initialize menu structure*/
+    option_t options = {
+           .selector = OPTION_ITEM_INTERMEDIATE,
+           .items[0] = {"Easy"},
+           .items[1] = {"Intermediate"},
+           .items[2] = {"Hard"},
+    };
+    /**read an event until window is not quit.*/
+    SDL_Event event;
+    bool quit = false;
+    print_options(p_window, &options);
+    while (!quit)
     {
-        SDL_Color color = default_color;
-        if (i == p_option->selector)
+        while (SDL_PollEvent(&event))
         {
-            color.b = 255;
-        }
-
-        SDL_Surface* p_surface = TTF_RenderText_Solid(p_font,
-                                                      p_option->items[i].str,
-                                                      color);
-
-        SDL_Texture* p_texture = SDL_CreateTextureFromSurface(p_renderer, p_surface);
-
-        /**put text in a given point*/
-        int tex_w = 0;
-        int tex_h = 0;
-        SDL_QueryTexture(p_texture, NULL, NULL, &tex_w, &tex_h);
-        SDL_Rect dstrect = {w / 2 - tex_w / 2, 200 + option_item_step * i, tex_w, tex_h};
-
-        /**update renderer*/
-        SDL_RenderCopy(p_renderer, p_texture, NULL, &dstrect);
-
-        SDL_DestroyTexture(p_texture);
-        SDL_FreeSurface(p_surface);
-    }
-    SDL_RenderPresent(p_renderer);
-    TTF_CloseFont(p_font);
-
-}
-/**
-* @brief Handles user input to choose between levels and return the path top the map file.
-* @param[in] p_window A SDL window is passed to the function.
-* @param[in] p_option A structure represents menu item.
-* @return void
-*/
-char* options(SDL_Window* p_window, option_t* p_option) {
-    /*read an event until window is not quit.*/
-	SDL_Event event;
-	bool quit = false;
-    print_options(p_window,p_option);
-	while (!quit)
-	{
-		while (SDL_PollEvent(&event))
-		{
-			switch (event.type)
+            switch (event.type)
             {
                 case SDL_QUIT:
-				{
-					quit = true;
-					break;
-				}
+                {
+                    quit = true;
+                    break;
+                }
                 case SDL_KEYDOWN:
                 {
                     if (event.key.keysym.sym == SDLK_DOWN)
                     {
-                        if (p_option->selector < OPTION_ITEM_NUM_OF_ITEMS - 1)
+                        if (options.selector < OPTION_ITEM_NUM_OF_ITEMS - 1)
                         {
-                            p_option->selector++;
+                            options.selector++;
                         }
-                        print_options(p_window, p_option);
-
                     }
                     else if (event.key.keysym.sym == SDLK_UP)
                     {
-                        if (p_option->selector > 0)
+                        if (options.selector > 0)
                         {
-                            p_option->selector--;
+                            options.selector--;
                         }
-                        print_options(p_window, p_option);
                     }
                     else if (event.key.keysym.sym == SDLK_RETURN)
                     {
-                        return p_option->items[p_option->selector].map_file_path;
+                        *p_option_items = options.selector;
+                        quit = true;
                     }
+                    print_options(p_window, &options);
                     break;
                 }
                 default:
                     break;
-            }   
+            }
         }
     }
+    return event.type == SDL_QUIT;
 }
-
-

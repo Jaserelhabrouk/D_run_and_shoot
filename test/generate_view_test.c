@@ -2,14 +2,18 @@
 * @file update_barrier_test.c
 * @author Jin
 */
+#ifdef _WIN32
+#include <SDL.h>
+#include <SDL_ttf.h>
+#elif __APPLE__
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include <SDL.h>
-#include <sdl_ttf.h>
-#include <SDL_image.h>
 #include <stdbool.h>
-#include"map.h"
+#include"../include/map.h"
 
 extern SDL_Window* g_window;
 extern SDL_Renderer* g_renderer;
@@ -51,7 +55,7 @@ int generate_view_test()
     {
         exit(-1);
     }
-    atexit(SDL_Quit);// 注册SDL_Quit，当退出时调用，使得退出时程序自动清理
+    atexit(SDL_Quit);//
 
 
 

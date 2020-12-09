@@ -20,6 +20,8 @@
 #define BARRIER_MOVE_STEP_SIZE 1
 #define ARROW_MOVE_STEP_SIZE 4
 #define PLAYER_MOVE_STEP_SIZE 10
+#define BULLET_MOVE_STEP_SIZE 4
+#define MAP_MAX_NUM_OF_BULLETS 2
 
 /**
  * @typedef position_t
@@ -41,15 +43,18 @@ typedef enum direction {
 	DIRECTION_DOWN
 } direction_t;
 
-/**
- * @enum speed_t
- * The enumeration of speed level.
- */
-typedef enum speed {
-	SPEED_LOW,
-	SPEED_NORMAL,
-	SPEED_HIGH,
-} speed_t;
+
+typedef enum player_index {
+    PLAYER_1,
+    PLAYER_2,
+} player_index_t;
+
+
+typedef enum bullet_index {
+	BULLET_1,
+	BULLET_2,
+} bullet_index_t;
+
 
 /**
  * @typedef map_space_t
@@ -110,6 +115,18 @@ typedef struct map_textures {
 } map_textures_t;
 
 /**
+ * @typedef bullet_t
+ * A structure represents a bullet in the map
+ */
+typedef struct bullet {
+	position_t current_pos;    /**< current position of an arrow*/
+	int speed;                 /**< the speed of an arrow*/
+	direction_t direction;     /**< direction of an arrow*/
+} bullet_t;
+
+
+
+/**
  * @typedef map_t
  * A structure represents the map
  */
@@ -120,8 +137,9 @@ typedef struct map {
 	map_barrier_t barrier[MAP_MAX_NUM_OF_BARRIERS];    /**< barries in the map*/
 	arrow_t arrow[MAP_MAX_NUM_OF_ARROWS];              /**< arrows in the map*/
 	goal_t goal;                                       /**< goal in the map*/
-	player_t player;                                   /**< player in the map*/
+	player_t player[MAP_MAX_NUM_OF_PLAYERS];           /**< player in the map*/
 	map_textures_t textures;                           /**< map element textures*/
+	bullet_t bullet[MAP_MAX_NUM_OF_BULLETS];		   /**< bullet in the map*/
 } map_t;
 
 /**

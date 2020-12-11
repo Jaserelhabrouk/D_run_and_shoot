@@ -13,6 +13,7 @@
 
 #include <stdbool.h>
 #include "map.h"
+#include "menu.h"
 
 typedef enum game_state {
     GAME_STATE_UNDEFINED,
@@ -22,17 +23,6 @@ typedef enum game_state {
     GAME_STATE_WIN,
 } game_state_t;
 
-/**
- * @brief single_player function
- *
- * This is the main function which handle single player mode.
- * Different functions are called here: first a map file is loaded and then
- * according to the input key different entities is updated and a view will be generated.
- * A timer is initialized to update every thing in each TIMER_INTERVAL seconds.
- * @param[in] p_window a SDL window which is passed from the main function.
- * @return bool if window is quit or back_space key is pressed, return true.
- */
-bool single_player(SDL_Window* p_window);
 
 /**
  * @brief game over function
@@ -57,14 +47,14 @@ void win_game(SDL_Window* p_window);
  *
  * This function checks if the player is hit by an arrow.
  * @param [in] map represent the map structure which has player position and arrows' positions.
+ * @param [in] player_index  can be PLAYER1 or PLAYER2.
  * @return flag if the player is hit, flag = 1, otherwise flag = 0.
  */
-int is_player_hit(map_t* map);
+int is_player_hit(map_t* map, player_index_t player_index);
 
 
-bool credit(SDL_Window* p_window);
-bool user_manual(SDL_Window* p_window);
-bool is_barrier_hit(map_t map, direction_t direction);
+
+bool is_barrier_hit(map_t map, direction_t direction, player_index_t player_index);
 void update_player_pos(player_t* player, direction_t direction);
 void generate_view(SDL_Window* p_window, map_t* p_map);
 bool is_reach_goal(player_t* p_player, goal_t* p_goal);

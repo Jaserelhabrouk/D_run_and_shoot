@@ -13,6 +13,7 @@
 #include <assert.h>
 
 #include "../include/map.h"
+#include "../include/menu.h"
 #include "../include/single_player.h"
 #include "../include/map_textures.h"
 
@@ -35,9 +36,10 @@ Uint32 timer_callback(Uint32 interval, void *param)
  * according to the input key different entities is updated and a view will be generated.
  * A timer is initialized to update every thing in each TIMER_INTERVAL seconds.
  * @param[in] p_window a SDL window which is passed from the main function.
+ * @param[in] difficulty game difficulty specify the map file that should be loaded.
  * @return bool if window is quit or back_space key is pressed, return true.
  */
-bool single_player(SDL_Window* p_window)
+bool single_player(SDL_Window* p_window, option_items_t difficulty)
 {
 	/*initialize timer*/
     SDL_TimerID timer = SDL_AddTimer(TIMER_INTERVAL, timer_callback, NULL);
@@ -46,15 +48,38 @@ bool single_player(SDL_Window* p_window)
 	game_state_t game_state = GAME_STATE_RUN;
 
 	/*initialize and load map*/
-	map_t map = load_map("data/map_file.txt");
+	map_t map = {0};
+	switch (difficulty)
+	{
+	    case OPTION_ITEM_EASY:
+	    {
+	        map = load_map("data/single_player_easy.txt");
+	        break;
+	    }
+	    case OPTION_ITEM_INTERMEDIATE:
+	    {
+	        map = load_map("data/single_player_intermediate.txt");
+	        break;
+	    }
+	    case OPTION_ITEM_HARD:
+        {
+            map = load_map("data/single_player_hard.txt");
+            break;
+        }
+	    default:
+	    {
+	        map = load_map("data/map_file.txt");
+	        break;
+	    }
+	}
 
 	SDL_Renderer* p_renderer = SDL_GetRenderer(p_window);
 	SDL_RenderClear(p_renderer);
 	SDL_RenderPresent(p_renderer);
 
 	/*initialize map textures*/
-    map.textures.p_texture_player = get_player_texture(p_renderer);
-	map.textures.p_texture_heart = get_heart_texture(p_renderer);
+    map.textures.p_texture_player[PLAYER_1] = get_player_texture(p_renderer, PLAYER_1);
+	map.textures.p_texture_heart[PLAYER_1] = get_heart_texture(p_renderer, PLAYER_1);
     map.textures.p_texture_goal = get_goal_texture(p_renderer);
     map.textures.p_texture_arrow_down = get_arrow_down_texture(p_renderer);
     map.textures.p_texture_arrow_up = get_arrow_up_texture(p_renderer);
@@ -101,13 +126,16 @@ bool single_player(SDL_Window* p_window)
 							 event.key.keysym.sym == SDLK_RIGHT ||
 							 event.key.keysym.sym == SDLK_LEFT)
 				    {
-				        direction_t direction = event.key.keysym.sym == SDLK_UP ? DIRECTION_UP :
-				                                event.key.keysym.sym == SDLK_DOWN ? DIRECTION_DOWN:
-				                                event.key.keysym.sym == SDLK_RIGHT? DIRECTION_RIGHT: DIRECTION_LEFT;
+						if (game_state == GAME_STATE_RUN){
+							
+							direction_t direction = event.key.keysym.sym == SDLK_UP ? DIRECTION_UP :
+													event.key.keysym.sym == SDLK_DOWN ? DIRECTION_DOWN:
+													event.key.keysym.sym == SDLK_RIGHT? DIRECTION_RIGHT: DIRECTION_LEFT;
 
-						if (is_barrier_hit(map, direction) == false)
-						{
-						    update_player_pos(&map.player, direction);
+							if (is_barrier_hit(map, direction, PLAYER_1) == false)
+							{
+								update_player_pos(&map.player[PLAYER_1], direction);
+							}
 						}
 					}
 					break;
@@ -120,16 +148,16 @@ bool single_player(SDL_Window* p_window)
 						update_arrow(map.arrow, &map);
                         generate_view(p_window, &map);
 
-					    if (is_player_hit(&map) == true)
+					    if (is_player_hit(&map,PLAYER_1) == true)
                         {
-                            take_heart(&map.player);
-                            if (map.player.heart == 0)
+                            take_heart(&map.player[PLAYER_1]);
+                            if (map.player[PLAYER_1].heart == 0)
                             {
                                 game_over(p_window);
                                 game_state = GAME_STATE_LOSE;
                             }
                         }
-                        else if (is_reach_goal(&map.player, &map.goal) == true)
+                        else if (is_reach_goal(&map.player[PLAYER_1], &map.goal) == true)
                         {
                             win_game(p_window);
                             game_state = GAME_STATE_WIN;

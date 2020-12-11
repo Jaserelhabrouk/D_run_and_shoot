@@ -1,5 +1,5 @@
 /**
-* @file player.c
+* @file take_heart.c
 */
 #include "../include/single_player.h"
 #include <stdio.h>

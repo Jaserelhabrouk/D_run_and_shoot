@@ -114,6 +114,11 @@ int main()
                         quit = options(p_window, &difficulty);
                         print_menu(p_window, &menu);
                     }
+                    else if (menu.selector == MENU_ITEM_MULTI_PLAYER)
+                    {
+                        quit = multi_player(p_window);
+                        print_menu(p_window, &menu);
+                    }
                     else if (menu.selector == MENU_ITEM_CREDIT)
                     {
                         quit = credit(p_window);

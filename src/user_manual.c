@@ -1,6 +1,6 @@
 /**
  * @file user_manual.c
- * @brief contain user_manul function.
+ * \brief contain user_manul function.
  */
 #ifdef _WIN64
 #include <SDL.h>
@@ -19,7 +19,7 @@
 #include "../include/single_player.h"
 
 /**
- * @brief Prints user manual on an input window.
+ * \brief Prints user manual on an input window.
  * @param[in] p_window a SDL window which is passed from the main function.
  * @return bool if window is quit or back_space key is pressed, return true.
  */

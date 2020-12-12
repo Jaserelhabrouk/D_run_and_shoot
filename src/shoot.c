@@ -16,41 +16,41 @@
   * @param [in] map represent the map structure which has players' position.
   */
 
-void shoot(map_t * map, int player_num) { 
+void shoot(map_t * map, player_index_t player_num) {
 
 
-	if (player_num == 1 && map->bullet[BULLET_1].speed == 0) {/**< player1 shoots towards player2*/
-		map->bullet[BULLET_1].current_pos.x = map->player[PLAYER_1].current_pos.x;
-		map->bullet[BULLET_1].current_pos.y = map->player[PLAYER_1].current_pos.y;
+	if (player_num == PLAYER_1 && !map->player[PLAYER_1].bullet_is_active) {/**< player1 shoots towards player2*/
+		map->player[PLAYER_1].bullet.current_pos.x = map->player[PLAYER_1].current_pos.x;
+		map->player[PLAYER_1].bullet.current_pos.y = map->player[PLAYER_1].current_pos.y;
+		map->player[PLAYER_1].bullet_is_active = true;
 
 		/**< Defining bullet's direction based on player 2 position*/
 
-		if (map->player[PLAYER_2].current_pos.x > map->player[PLAYER_1].current_pos.x) { /**< player2 is on the right of player1*/
-			map->bullet[BULLET_1].direction = DIRECTION_RIGHT;
-			map->bullet[BULLET_1].speed = BULLET_MOVE_STEP_SIZE;
+		if (map->player[PLAYER_2].current_pos.x > map->player[PLAYER_1].current_pos.x) { /**< player2 is on the right of player1 -> player1 shoots right*/
+			map->player[PLAYER_1].bullet.direction = DIRECTION_RIGHT;
+			map->player[PLAYER_1].bullet.speed = BULLET_MOVE_STEP_SIZE;
 		}
 		else { /**< player2 is on the left of player1*/
-			map->bullet[BULLET_1].direction = DIRECTION_LEFT;
-			map->bullet[BULLET_1].speed = BULLET_MOVE_STEP_SIZE;
+			map->player[PLAYER_1].bullet.direction = DIRECTION_LEFT;
+			map->player[PLAYER_1].bullet.speed = BULLET_MOVE_STEP_SIZE;
 		}
 
 	}
-	else { /**< player2 shoots towards player1*/
-		if (map->bullet[BULLET_2].speed == 0) { /**< If we don't have any existing bullet already, it generates a bullet2*/
-			map->bullet[BULLET_2].current_pos.x = map->player[PLAYER_2].current_pos.x;
-			map->bullet[BULLET_2].current_pos.y = map->player[PLAYER_2].current_pos.y;
+	else if(player_num == PLAYER_2 && !map->player[PLAYER_2].bullet_is_active){ /**< player2 shoots towards player1*/
+			map->player[PLAYER_2].bullet.current_pos.x = map->player[PLAYER_2].current_pos.x;
+			map->player[PLAYER_2].bullet.current_pos.y = map->player[PLAYER_2].current_pos.y;
+			map->player[PLAYER_2].bullet_is_active = true;
 
 			/**< Defining bullet's direction based on player 1 position*/
 
-			if (map->player[PLAYER_1].current_pos.x > map->player[PLAYER_2].current_pos.x) { /**< player1 is on the right of player2*/
-				map->bullet[BULLET_2].direction = DIRECTION_RIGHT;
-				map->bullet[BULLET_2].speed = BULLET_MOVE_STEP_SIZE;
+			if (map->player[PLAYER_1].current_pos.x > map->player[PLAYER_2].current_pos.x) { /**< player1 is on the right of player2 -> player2 shoots right*/
+				map->player[PLAYER_2].bullet.direction = DIRECTION_RIGHT;
+				map->player[PLAYER_2].bullet.speed = BULLET_MOVE_STEP_SIZE;
 			}
 			else { /**< player1 is on the left of player2*/
-				map->bullet[BULLET_2].direction = DIRECTION_LEFT;
-				map->bullet[BULLET_2].speed = BULLET_MOVE_STEP_SIZE;
+				map->player[PLAYER_2].bullet.direction = DIRECTION_LEFT;
+				map->player[PLAYER_2].bullet.speed = BULLET_MOVE_STEP_SIZE;
 			}
-		}
 	}
 	
 

@@ -14,6 +14,7 @@
 #include <SDL2/sdl_ttf.h>
 #endif
 #include <assert.h>
+#include "map.h"
 
 #define MAP_TEXTURE_PLAYER_WIDTH 30
 #define MAP_TEXTURE_PLAYER_HEIGHT 30
@@ -33,7 +34,7 @@
  * @param[in] p_renderer
  * @return p_texture player texture
  */
-static inline SDL_Texture* get_player_texture(SDL_Renderer* p_renderer)
+static inline SDL_Texture* get_player_texture(SDL_Renderer* p_renderer, player_index_t player_index)
 {
     SDL_Surface* p_surface = SDL_CreateRGBSurface(SDL_SWSURFACE,
                                                   MAP_TEXTURE_PLAYER_WIDTH,   //width,
@@ -82,7 +83,14 @@ static inline SDL_Texture* get_player_texture(SDL_Renderer* p_renderer)
     {
         if (pixels[i] == 1)
         {
-            pixels[i] = 0xffff00ff;
+            if (player_index == PLAYER_1)
+            {
+                pixels[i] = 0xffff00ff;
+            }
+            else
+            {
+                pixels[i] = 0x7d9bffff;
+            }
         }
         else if(pixels[i] == 3)
         {
@@ -104,7 +112,7 @@ static inline SDL_Texture* get_player_texture(SDL_Renderer* p_renderer)
  * @param[in] p_renderer
  * @return p_texture heart texture
  */
-static inline SDL_Texture* get_heart_texture(SDL_Renderer* p_renderer)
+static inline SDL_Texture* get_heart_texture(SDL_Renderer* p_renderer, player_index_t player_index)
 {
     SDL_Surface* p_surface = SDL_CreateRGBSurface(SDL_SWSURFACE,
                                                   MAP_TEXTURE_HEART_WIDTH,   //width,
@@ -150,7 +158,14 @@ static inline SDL_Texture* get_heart_texture(SDL_Renderer* p_renderer)
     {
         if (pixels[i] == 1)
         {
-            pixels[i] = 0xe31b1bff;
+            if (player_index == PLAYER_1)
+            {
+                pixels[i] = 0xffff00ff;
+            }
+            else
+            {
+                pixels[i] = 0x7d9bffff;
+            }
         }
        
     }

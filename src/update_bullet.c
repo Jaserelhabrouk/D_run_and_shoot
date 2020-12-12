@@ -16,31 +16,33 @@
   */
 void update_bullet(map_t* map) {
 
-	if (map->bullet[BULLET_1].speed != 0) { /**< We have a moving bullet shooted from player1*/
-		switch (map->bullet[BULLET_1].direction)
+	if (map->player[PLAYER_1].bullet.speed != 0 && map->player[PLAYER_1].bullet_is_active) { /**< We have a moving bullet shooted from player1*/
+		switch (map->player[PLAYER_1].bullet.direction)
 		{
 		case DIRECTION_RIGHT:
-			if (map->bullet[BULLET_1].current_pos.x <= map->space.x_max)
+			if (map->player[PLAYER_1].bullet.current_pos.x <= map->space.x_max)
 			{
-				map->bullet[BULLET_1].current_pos.x += map->bullet[BULLET_1].speed;
+				map->player[PLAYER_1].bullet.current_pos.x += map->player[PLAYER_1].bullet.speed;
 			}
 			else {
-				map->bullet[BULLET_1].current_pos.x = 10000000;
-				map->bullet[BULLET_1].current_pos.y = 10000000;
-				map->bullet[BULLET_1].speed = 0;
+				map->player[PLAYER_1].bullet.current_pos.x = 10000;
+				map->player[PLAYER_1].bullet.current_pos.y = 10000;
+				map->player[PLAYER_1].bullet_is_active = false;
+				map->player[PLAYER_1].bullet.speed = 0;
 			}
 
 			break;
 
 		case DIRECTION_LEFT:
-			if (map->bullet[BULLET_1].current_pos.x >= map->space.x_min)
+			if (map->player[PLAYER_1].bullet.current_pos.x >= map->space.x_min)
 			{
-				map->bullet[BULLET_1].current_pos.x -= map->bullet[BULLET_1].speed;
+				map->player[PLAYER_1].bullet.current_pos.x -= map->player[PLAYER_1].bullet.speed;
 			}
 			else {
-				map->bullet[BULLET_1].current_pos.x = 10000000;
-				map->bullet[BULLET_1].current_pos.y = 10000000;
-				map->bullet[BULLET_1].speed = 0;
+				map->player[PLAYER_1].bullet.current_pos.x = 10000;
+				map->player[PLAYER_1].bullet.current_pos.y = 10000;
+				map->player[PLAYER_1].bullet_is_active = false;
+				map->player[PLAYER_1].bullet.speed = 0;
 			}
 
 			break;
@@ -48,31 +50,33 @@ void update_bullet(map_t* map) {
 		default:
 			break;
 		}
-	} else if (map->bullet[BULLET_2].speed != 0) { /**< We have a moving bullet shooted from player2*/
-		switch (map->bullet[BULLET_2].direction)
+	} else if (map->player[PLAYER_2].bullet.speed != 0 && map->player[PLAYER_2].bullet_is_active) { /**< We have a moving bullet shooted from player2*/
+		switch (map->player[PLAYER_2].bullet.direction)
 		{
 		case DIRECTION_RIGHT:
-			if (map->bullet[BULLET_2].current_pos.x <= map->space.x_max)
+			if (map->player[PLAYER_2].bullet.current_pos.x <= map->space.x_max)
 			{
-				map->bullet[BULLET_2].current_pos.x += map->bullet[BULLET_2].speed;
+				map->player[PLAYER_2].bullet.current_pos.x += map->player[PLAYER_2].bullet.speed;
 			}
 			else {
-				map->bullet[BULLET_2].current_pos.x = 10000000;
-				map->bullet[BULLET_2].current_pos.y = 10000000;
-				map->bullet[BULLET_2].speed = 0;
+				map->player[PLAYER_2].bullet.current_pos.x = 10000;
+				map->player[PLAYER_2].bullet.current_pos.y = 10000;
+				map->player[PLAYER_2].bullet_is_active = false;
+				map->player[PLAYER_2].bullet.speed = 0;
 			}
 
 			break;
 
 		case DIRECTION_LEFT:
-			if (map->bullet[BULLET_2].current_pos.x >= map->space.x_min)
+			if (map->player[PLAYER_2].bullet.current_pos.x >= map->space.x_min)
 			{
-				map->bullet[BULLET_2].current_pos.x -= map->bullet[BULLET_1].speed;
+				map->player[PLAYER_2].bullet.current_pos.x -= map->player[PLAYER_2].bullet.speed;
 			}
 			else {
-				map->bullet[BULLET_2].current_pos.x = 10000000;
-				map->bullet[BULLET_2].current_pos.y = 10000000;
-				map->bullet[BULLET_2].speed = 0;
+				map->player[PLAYER_2].bullet.current_pos.x = 10000;
+				map->player[PLAYER_2].bullet.current_pos.y = 10000;
+				map->player[PLAYER_2].bullet_is_active = false;
+				map->player[PLAYER_2].bullet.speed = 0;
 			}
 
 			break;

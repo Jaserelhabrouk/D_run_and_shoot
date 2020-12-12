@@ -16,15 +16,21 @@
 int update_bullet_test() {
 	map_t map = { 0 };
 	
-	map.bullet[BULLET_1].current_pos.x = 100;
-	map.bullet[BULLET_1].current_pos.y = 200;
-	map.bullet[BULLET_1].direction = DIRECTION_RIGHT;
-	map.bullet[BULLET_2].current_pos.x = 300;
-	map.bullet[BULLET_2].current_pos.y = 200;
-	map.bullet[BULLET_2].direction = DIRECTION_LEFT;
+	map.player[PLAYER_1].bullet.current_pos.x = 100;
+	map.player[PLAYER_1].bullet.current_pos.y = 200;
+	map.player[PLAYER_1].bullet.direction = DIRECTION_RIGHT;
+	map.player[PLAYER_1].bullet_is_active = true;
+	map.player[PLAYER_2].bullet.current_pos.x = 300;
+	map.player[PLAYER_2].bullet.current_pos.y = 200;
+	map.player[PLAYER_2].bullet.direction = DIRECTION_LEFT;
+	map.player[PLAYER_2].bullet_is_active = true;
 
 	update_bullet(map);
-	assert(map.bullet[BULLET_1].current_pos.x == 104 && map.bullet[BULLET_2].current_pos.x == 296);
+	assert(map.player[PLAYER_1].bullet.current_pos.x == 104 && map.player[PLAYER_1].bullet.current_pos.x == 296);
+	map.player[PLAYER_1].bullet_is_active = false;
+	map.player[PLAYER_2].bullet_is_active = false;
+	assert(map.player[PLAYER_1].bullet.current_pos.x == 104 && map.player[PLAYER_1].bullet.current_pos.x == 296);
+
 
 	return 0;
 }

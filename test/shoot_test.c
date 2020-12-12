@@ -21,10 +21,10 @@ int shoot_test() {
 	map.player[PLAYER_2].current_pos.x = 300;
 	map.player[PLAYER_2].current_pos.y = 200;
 
-	shoot(map, 1); /**< Player1 shoots player2 */
-	assert(map.bullet[BULLET_1].current_pos.x == 100 && map.bullet[BULLET_1].current_pos.y == 200 && map.bullet[BULLET_1].direction == DIRECTION_RIGHT);
-	shoot(map, 1); /**< Player2 shoots player1 */
-	assert(map.bullet[BULLET_2].current_pos.x == 300 && map.bullet[BULLET_2].current_pos.y == 200 && map.bullet[BULLET_2].direction == DIRECTION_LEFT);
+	shoot(map, PLAYER_1); /**< Player1 shoots player2 */
+	assert(map.player[PLAYER_1].bullet.current_pos.x == 100 && map.player[PLAYER_1].bullet.current_pos.y == 200 && map.player[PLAYER_1].bullet.direction == DIRECTION_RIGHT);
+	shoot(map, PLAYER_2); /**< Player2 shoots player1 */
+	assert(map.player[PLAYER_2].bullet.current_pos.x == 300 && map.player[PLAYER_2].bullet.current_pos.y == 200 && map.player[PLAYER_2].bullet.direction == DIRECTION_LEFT);
 
 	return 0;
 }

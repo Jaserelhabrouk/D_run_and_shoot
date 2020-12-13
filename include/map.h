@@ -85,7 +85,6 @@ typedef struct arrow {
  * A structure represents a player in the map
  */
 typedef struct player {
-	char name;                 /**< name of the player*/
 	position_t current_pos;    /**< current position of the player*/
 	int heart;                 /**< number of the heart the player have*/
 } player_t;

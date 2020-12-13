@@ -1,12 +1,18 @@
 /**
 * @file update_barrier_test.c
-* @author Jin
 */
 
 #include "../include/map.h"
+#include "../include/single_player.h"
 #include <assert.h>
 
-void update_barrier_test()
+/**
+ * @brief update barrier's test function
+ *
+ * Checks if update_barrier() works properly.
+ * @return 0 in success
+ */
+int update_barrier_test()
 {
     map_t map = {0};
     map_barrier_t barriers[MAP_MAX_NUM_OF_BARRIERS] = {
@@ -26,13 +32,21 @@ void update_barrier_test()
     map.space.x_max = 100; 
     map.space.y_min = 0;
     map.space.y_max = 100;
-    map.number_of_barriers = 10;
+    map.number_of_barriers = MAP_MAX_NUM_OF_BARRIERS;
 
-    update_barrier(&barriers, &map);
+    update_barrier(barriers, &map);
 
-    assert(barriers[4].current_pos.x == 93);
-    assert(barriers[5].current_pos.x == 2);
-    assert(barriers[6].current_pos.y == 2);
-    assert(barriers[7].current_pos.y == 98);
+    assert(barriers[0].current_pos.x == 61 && barriers[0].current_pos.y == 10);
+    assert(barriers[1].current_pos.x == 39 && barriers[1].current_pos.y == 20);
+    assert(barriers[2].current_pos.x == 30 && barriers[2].current_pos.y == 30);
+    assert(barriers[3].current_pos.x == 3 && barriers[3].current_pos.y == 90);
+    assert(barriers[4].current_pos.x == 94 && barriers[4].current_pos.y == 30);
+    assert(barriers[5].current_pos.x == 1 && barriers[5].current_pos.y == 10);
+    assert(barriers[6].current_pos.x == 10 && barriers[6].current_pos.y == 0);
+    assert(barriers[7].current_pos.x == 10 && barriers[7].current_pos.y == 100);
+    assert(barriers[8].current_pos.x == 1 && barriers[8].current_pos.y == 4);
+    assert(barriers[9].current_pos.x == 21 && barriers[9].current_pos.y == 20);
 
+    printf("update_barrier_test PASSED\n");
+    return 0;
 }

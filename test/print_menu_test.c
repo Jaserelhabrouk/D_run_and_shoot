@@ -24,7 +24,7 @@
  * The programmer should check if all items is shown in its proper location.
  * @return void
  */
-void print_menu_test() {
+int print_menu_test() {
 
     TTF_Init();
     int screen_width = 1000;
@@ -75,4 +75,5 @@ void print_menu_test() {
     SDL_DestroyRenderer(p_renderer);
     SDL_DestroyWindow(p_window);
     TTF_Quit();
+    return 0;
 }

@@ -7,13 +7,13 @@ endif
 
 CC=gcc 
 
-INCLUDES = include/map.h include/menu.h include/single_player.h include/map_textures.h
+INCLUDES = include/map.h include/menu.h include/single_player.h include/map_textures.h include/multi_player.h
 
 OBJECTS = build/main.o build/credit.o build/game_over.o build/generate_view.o build/is_barrier_hit.o \
  		  build/is_player_hit.o build/is_reach_goal.o build/load_map.o build/print_menu.o \
  		  build/single_player.o build/take_heart.o build/update_arrow.o build/update_barrier.o \
  		  build/update_player_pos.o build/user_manual.o build/win_game.o \
- 		  build/options.o build/print_options.o
+ 		  build/options.o build/print_options.o build/multi_player.o build/generate_view_multi.o
  		 
 build/main : $(OBJECTS)
 	$(CC) -o build/main $(OBJECTS) $(LIBFLAGS)
@@ -72,6 +72,10 @@ build/options.o: src/options.c $(INCLUDES)
 
 build/print_options.o: src/print_options.c $(INCLUDES)
 	$(CC) -c src/print_options.c -o build/print_options.o
+build/multi_player.o: src/multi_player.c $(INCLUDES)
+	$(CC) -c src/multi_player.c -o build/multi_player.o
+build/generate_view_multi.o: src/generate_view_multi.c $(INCLUDES)
+	$(CC) -c src/generate_view_multi.c -o build/generate_view_multi.o
 
 	
 #CLEAN COMMANDS 

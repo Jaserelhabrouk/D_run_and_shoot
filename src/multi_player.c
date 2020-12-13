@@ -28,9 +28,10 @@
  * according to the input key different entities is updated and a view will be generated.
  * A timer is initialized to update every thing in each TIMER_INTERVAL seconds.
  * @param[in] p_window a SDL window which is passed from the main function.
+ * @param[in] difficulty game difficulty specify the map file that should be loaded.
  * @return bool if window is quit or back_space key is pressed, return true.
  */
-bool multi_player(SDL_Window* p_window)
+bool multi_player(SDL_Window* p_window,option_items_t difficulty)
 {
 	/*initialize timer*/
 	SDL_TimerID timer = SDL_AddTimer(TIMER_INTERVAL, timer_callback, NULL);
@@ -39,7 +40,30 @@ bool multi_player(SDL_Window* p_window)
 	game_state_t game_state = GAME_STATE_RUN;
 
 	/*initialize and load map*/
-	map_t map = load_map("data/map_file.txt");
+    map_t map = {0};
+    switch (difficulty)
+    {
+        case OPTION_ITEM_EASY:
+        {
+            map = load_map("data/multi_player_easy.txt");
+            break;
+        }
+        case OPTION_ITEM_INTERMEDIATE:
+        {
+            map = load_map("data/multi_player_intermediate.txt");
+            break;
+        }
+        case OPTION_ITEM_HARD:
+        {
+            map = load_map("data/multi_player_hard.txt");
+            break;
+        }
+        default:
+        {
+            map = load_map("data/multi_player_easy.txt");
+            break;
+        }
+    }
 
 	SDL_Renderer* p_renderer = SDL_GetRenderer(p_window);
 	SDL_RenderClear(p_renderer);
@@ -69,7 +93,7 @@ bool multi_player(SDL_Window* p_window)
 				quit = true;
 				break;
 			}
-			case SDL_KEYDOWN:
+			case SDL_KEYUP:
 			{
 				if (event.key.keysym.sym == SDLK_BACKSPACE)
 				{
@@ -131,7 +155,8 @@ bool multi_player(SDL_Window* p_window)
 
 					if (is_player_hit(&map, PLAYER_1) == true)
 					{
-						take_heart(&map.player);
+						take_heart(&map.player[PLAYER_1]);
+                        take_heart(&map.player[PLAYER_2]);
 						if ((map.player[PLAYER_1].heart == 0) && (map.player[PLAYER_2].heart == 0))
 						{
 							game_over(p_window);

@@ -68,7 +68,7 @@ bool single_player(SDL_Window* p_window, option_items_t difficulty)
         }
 	    default:
 	    {
-	        map = load_map("data/map_file.txt");
+	        map = load_map("data/single_player_easy.txt");
 	        break;
 	    }
 	}

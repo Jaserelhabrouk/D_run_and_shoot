@@ -104,11 +104,6 @@ int main()
                         quit = single_player(p_window, difficulty);
                         print_menu(p_window, &menu);
                     }
-//                    else if (menu.selector == MENU_ITEM_MULTI_PLAYER)
-//                    {
-//                        quit = multi_player(p_window);
-//                        print_menu(p_window, &menu);
-//                    }
                     else if (menu.selector == MENU_ITEM_OPTIONS)
                     {
                         quit = options(p_window, &difficulty);
@@ -116,7 +111,7 @@ int main()
                     }
                     else if (menu.selector == MENU_ITEM_MULTI_PLAYER)
                     {
-                        quit = multi_player(p_window);
+                        quit = multi_player(p_window, difficulty);
                         print_menu(p_window, &menu);
                     }
                     else if (menu.selector == MENU_ITEM_CREDIT)

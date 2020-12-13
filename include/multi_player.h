@@ -17,10 +17,11 @@
  * @param[in] p_window a SDL window which is passed from the main function.
  * @return bool if window is quit or back_space key is pressed, return true.
  */
-bool multi_player(SDL_Window* p_window);
+bool multi_player(SDL_Window* p_window,option_items_t difficulty);
 
 Uint32 timer_callback(Uint32, void*);
 
+void generate_view_multi(SDL_Window* p_window, map_t* p_map);
 
 #endif /* MULTI_PLAYER_H_ */
 #pragma once

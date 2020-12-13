@@ -84,9 +84,23 @@ bool user_manual(SDL_Window* p_window);
  * according to the input key different entities is updated and a view will be generated.
  * A timer is initialized to update every thing in each TIMER_INTERVAL seconds.
  * @param[in] p_window a SDL window which is passed from the main function.
+ * @param[in] difficulty game difficulty specify the map file that should be loaded.
  * @return bool if window is quit or back_space key is pressed, return true.
  */
 bool single_player(SDL_Window* p_window, option_items_t difficulty);
+
+/**
+ * \brief multi_player function
+ *
+ * This is the main function which handle multi player mode.
+ * Different functions are called here: first a map file is loaded and then
+ * according to the input key different entities is updated and a view will be generated.
+ * A timer is initialized to update every thing in each TIMER_INTERVAL seconds.
+ * @param[in] p_window a SDL window which is passed from the main function.
+ * @param[in] difficulty game difficulty specify the map file that should be loaded.
+ * @return bool if window is quit or back_space key is pressed, return true.
+ */
+bool multi_player(SDL_Window* p_window,option_items_t difficulty);
 
 /**
 * @brief Handles user input to choose between difficulty levels.

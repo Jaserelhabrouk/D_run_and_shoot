@@ -87,12 +87,18 @@ static inline SDL_Texture* get_player_texture(SDL_Renderer* p_renderer, player_i
             }
             else
             {
-                pixels[i] = 0x7d9bffff;
+                pixels[i] = 0xff0000ff;
             }
         }
         else if(pixels[i] == 3)
-        {
-            pixels[i] = 0xe31b1bff;
+        {   if (player_index == PLAYER_1)
+            {
+                pixels[i] = 0xe31b1bff;
+            }
+            else
+            {
+                pixels[i] = 0x000000ff;
+            }
         }
     }
 
@@ -162,7 +168,7 @@ static inline SDL_Texture* get_heart_texture(SDL_Renderer* p_renderer, player_in
             }
             else
             {
-                pixels[i] = 0x7d9bffff;
+                pixels[i] = 0xff0000ff;
             }
         }
        

@@ -7,12 +7,16 @@
 #define INCLUDE_MAP_TEXTURES_H_
 
 #ifdef _WIN64
-#include <SDL.h>
+#include "SDL2/SDL"
 #include <sdl_ttf.h>
 #elif __APPLE__
 #include <SDL2/SDL.h>
 #include <SDL2/sdl_ttf.h>
 #endif
+
+#define SDL_MAIN_HANDLED
+#include "../SDL2/include/SDL.h"
+#include "../SDL2_ttf/SDL_ttf.h"
 #include <assert.h>
 #include "map.h"
 

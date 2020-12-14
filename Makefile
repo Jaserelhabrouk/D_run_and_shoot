@@ -1,22 +1,22 @@
-ifdef OS
-# WINDOWS version
-# TODO
-else
-	LIBFLAGS = -l sdl2 -l sdl2_ttf
-endif
-
 CC=gcc 
+#TODO MAC
+LDLIBS = -Llib -l SDL2main -l SDL2 -l SDL2_ttf
+
+
+#CREATE BIN AND BUILD FOLDERS TO SAVE THE COMPILED FILES DURING RUNTIME IF THEY DO NOT EXIST
+bin_folder := $(shell mkdir -p bin) 
+build_folder := $(shell mkdir -p build) 
+results_folder := $(shell mkdir -p program_output) 	
 
 INCLUDES = include/map.h include/menu.h include/single_player.h include/map_textures.h include/multi_player.h
+
 
 OBJECTS = build/main.o build/credit.o build/game_over.o build/generate_view.o build/is_barrier_hit.o \
  		  build/is_player_hit.o build/is_reach_goal.o build/load_map.o build/print_menu.o \
  		  build/single_player.o build/take_heart.o build/update_arrow.o build/update_barrier.o \
  		  build/update_player_pos.o build/user_manual.o build/win_game.o \
  		  build/options.o build/print_options.o build/multi_player.o build/generate_view_multi.o
- 		 
-bin/main : run_tests $(OBJECTS)
-	$(CC) -o bin/main $(OBJECTS) $(LIBFLAGS)
+
 
 #TARGET TO GENERATE THE OBJECT FILES FOR SRC.
 build/main.o: src/main.c $(INCLUDES)
@@ -163,7 +163,13 @@ build/update_barrier_test.o: test/update_barrier_test.c $(INCLUDES)
 build/update_player_pos_test.o: test/update_player_pos_test.c $(INCLUDES)
 	$(CC) -c test/update_player_pos_test.c -o build/update_player_pos_test.o
 
-	
+
+main: $(OBJECTS)
+	$(CC) -g -o bin/main $(OBJECTS) $(LDLIBS)
+
+#TARGET TO GENERATE ALL THE EXECUTABLES (MAIN PROGRAM + TESTS TOGETHER)
+all: main
+
 #CLEAN COMMANDS 
 clean:  
-	rm -f bin/* build/* data/log.txt
+	rm -f bin/* build/* 

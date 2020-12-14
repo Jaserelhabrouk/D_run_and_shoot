@@ -9,11 +9,14 @@
 #define MENU_H_
 
 #ifdef _WIN64
-#include <SDL.h>
+#include "SDL2/SDLS"
 #elif __APPLE__
 #include <SDL2/SDL.h>
 #endif
 
+#define SDL_MAIN_HANDLED
+#include "../SDL2/include/SDL.h"
+#include "../SDL2_ttf/SDL_ttf.h"
 #include <stdbool.h>
 
 #define MAX_ITEM_SIZE 100              /**< maximum legth of menu item*/

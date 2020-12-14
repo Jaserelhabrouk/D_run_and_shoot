@@ -6,11 +6,14 @@
 #define SINGLE_PLAYER_H_
 
 #ifdef _WIN64
-#include <SDL.h>
+#include "SDL2/SDL"
 #elif __APPLE__
 #include <SDL2/SDL.h>
 #endif
 
+#define SDL_MAIN_HANDLED
+#include "../SDL2/include/SDL.h"
+#include "../SDL2_ttf/SDL_ttf.h"
 #include <stdbool.h>
 #include "map.h"
 #include "menu.h"

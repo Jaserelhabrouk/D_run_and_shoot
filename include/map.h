@@ -7,13 +7,16 @@
 #ifndef MAP_H_
 #define MAP_H_
 #ifdef _WIN32
-	#include <SDL.h>
+	#include "SDL2/SDL"
 	#include <sdl_ttf.h>
 	#include <SDL_image.h>
 #elif __APPLE__
 	#include <SDL2/SDL.h>
 #endif
 
+#define SDL_MAIN_HANDLED
+#include "../SDL2/include/SDL.h"
+#include "../SDL2_ttf/SDL_ttf.h"
 
 #define MAP_MAX_NUM_OF_BARRIERS 10
 #define MAP_MAX_NUM_OF_ARROWS 20

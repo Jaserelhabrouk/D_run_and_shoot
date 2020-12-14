@@ -156,7 +156,6 @@ bool multi_player(SDL_Window* p_window,option_items_t difficulty)
 					if (is_player_hit(&map, PLAYER_1) == true)
 					{
 						take_heart(&map.player[PLAYER_1]);
-                        take_heart(&map.player[PLAYER_2]);
 						if ((map.player[PLAYER_1].heart == 0) && (map.player[PLAYER_2].heart == 0))
 						{
 							game_over(p_window);

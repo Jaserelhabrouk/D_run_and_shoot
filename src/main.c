@@ -22,9 +22,8 @@
  */
 int main()
 {
-    map_t map = load_map("data/map_file.txt");
-    int screen_width = map.space.x_max - map.space.x_min + 1;
-    int screen_higth = map.space.y_max - map.space.y_min + 1;
+    int screen_width = 1024 ;
+    int screen_higth = 768;
     option_items_t difficulty = OPTION_ITEM_EASY;
 
     /*initialize SDL*/

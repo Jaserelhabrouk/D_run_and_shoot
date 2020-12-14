@@ -6,12 +6,13 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-#include "map.h"
-#include "is_barrier_hit.h"
+#include <assert.h>
+#include "../include/map.h"
+#include "../include/single_player.h"
 
 
 
-int main(){
+int is_barrier_hit_test(){
 
     map_t map = {0};
 
@@ -23,8 +24,8 @@ int main(){
 
 
     /** player is in place of (6,5)*/
-    map.player.current_pos.x = 6;
-    map.player.current_pos.y = 5;
+    map.player[PLAYER_1].current_pos.x = 6;
+    map.player[PLAYER_1].current_pos.y = 5;
 
 
     /** defining barriers position, direction and size*/
@@ -47,55 +48,55 @@ int main(){
 
     /** 1.Checking the collision with barriers of the map*/
 
-    hit = is_barrier_hit(map,DIRECTION_UP);
+    hit = is_barrier_hit(map,DIRECTION_UP, PLAYER_1);
 
     assert(hit==1);
 
 
 
-    hit = is_barrier_hit(map,DIRECTION_RIGHT);
-
-    assert(hit==0);
-
-
-	hit = is_barrier_hit(map,DIRECTION_DOWN);
+    hit = is_barrier_hit(map,DIRECTION_RIGHT, PLAYER_1);
 
     assert(hit==1);
 
 
-    hit = is_barrier_hit(map,DIRECTION_LEFT);
+	hit = is_barrier_hit(map,DIRECTION_DOWN, PLAYER_1);
 
-    assert(hit==0);
+    assert(hit==1);
+
+
+    hit = is_barrier_hit(map,DIRECTION_LEFT, PLAYER_1);
+
+    assert(hit==1);
 
 
     /** player is in place of (1,4)*/
-    map.player.current_pos.x = 1;
-    map.player.current_pos.y = 4;
+    map.player[PLAYER_1].current_pos.x = 1;
+    map.player[PLAYER_1].current_pos.y = 4;
 
 
-    hit = is_barrier_hit(map,DIRECTION_RIGHT);
+    hit = is_barrier_hit(map,DIRECTION_RIGHT, PLAYER_1);
 
     assert(hit==1);
 
 
 
     /** player is in place of (7,6)*/
-    map.player.current_pos.x = 7;
-    map.player.current_pos.y = 6;
+    map.player[PLAYER_1].current_pos.x = 7;
+    map.player[PLAYER_1].current_pos.y = 6;
 
 
-    hit = is_barrier_hit(map,DIRECTION_LEFT);
+    hit = is_barrier_hit(map,DIRECTION_LEFT, PLAYER_1);
 
     assert(hit==1);
 
 
 
     /** player is in place of (5,7)*/
-    map.player.current_pos.x = 5;
-    map.player.current_pos.y = 7;
+    map.player[PLAYER_1].current_pos.x = 5;
+    map.player[PLAYER_1].current_pos.y = 7;
 
 
-    hit = is_barrier_hit(map,DIRECTION_UP);
+    hit = is_barrier_hit(map,DIRECTION_UP, PLAYER_1);
 
     assert(hit==1);
 
@@ -104,64 +105,63 @@ int main(){
     /** 2.Checking the borders of the map*/
 
 	/** player is in place of (7,0) top right corner*/
-	map.player.current_pos.x = 7;
-    map.player.current_pos.y = 0;
+	map.player[PLAYER_1].current_pos.x = 7;
+    map.player[PLAYER_1].current_pos.y = 0;
 
 
-	hit = is_barrier_hit(map,DIRECTION_UP);
+	hit = is_barrier_hit(map,DIRECTION_UP, PLAYER_1);
 
     assert(hit==1);
 
-	hit = is_barrier_hit(map,DIRECTION_RIGHT);
+	hit = is_barrier_hit(map,DIRECTION_RIGHT, PLAYER_1);
 
     assert(hit==1);
 
 
 
     /** player is in place of (0,0) top left corner*/
-    map.player.current_pos.x = 0;
-    map.player.current_pos.y = 0;
+    map.player[PLAYER_1].current_pos.x = 0;
+    map.player[PLAYER_1].current_pos.y = 0;
 
 
-	hit = is_barrier_hit(map,DIRECTION_UP);
+	hit = is_barrier_hit(map,DIRECTION_UP, PLAYER_1);
 
     assert(hit==1);
 
-	hit = is_barrier_hit(map,DIRECTION_LEFT);
+	hit = is_barrier_hit(map,DIRECTION_LEFT, PLAYER_1);
 
     assert(hit==1);
 
 
     /** player is in place of (0,7) bottom left corner*/
-    map.player.current_pos.x = 0;
-    map.player.current_pos.y = 7;
+    map.player[PLAYER_1].current_pos.x = 0;
+    map.player[PLAYER_1].current_pos.y = 7;
 
 
-	hit = is_barrier_hit(map,DIRECTION_DOWN);
+	hit = is_barrier_hit(map,DIRECTION_DOWN, PLAYER_1);
 
     assert(hit==1);
 
-	hit = is_barrier_hit(map,DIRECTION_LEFT);
+	hit = is_barrier_hit(map,DIRECTION_LEFT, PLAYER_1);
 
     assert(hit==1);
 
 
 
     /** player is in place of (7,7) bottom right corner*/
-    map.player.current_pos.x = 7;
-    map.player.current_pos.y = 7;
+    map.player[PLAYER_1].current_pos.x = 20;
+    map.player[PLAYER_1].current_pos.y = 40;
 
 
 
-	hit = is_barrier_hit(map,DIRECTION_DOWN);
-
-    assert(hit==1);
-
-	hit = is_barrier_hit(map,DIRECTION_RIGHT);
+	hit = is_barrier_hit(map,DIRECTION_DOWN, PLAYER_1);
 
     assert(hit==1);
 
+	hit = is_barrier_hit(map,DIRECTION_RIGHT, PLAYER_1);
 
+    assert(hit==1);
 
+    printf("is_barrier_hit_test PASSED\n");
     return 0;
 }

@@ -4,7 +4,7 @@
  */
 #include <stdio.h>
 #include <assert.h>
-#include "menu.h"
+#include "../include/menu.h"
 
 /**
  * \brief tests choose_menu_item() function.

@@ -18,11 +18,12 @@
  */
 int load_map_test(){
 
-	char file_path[1000] = "./test_file.txt";
+	char file_path[1000] = "../data/test_file.txt";
 	FILE* map_file = fopen((const char*)file_path, "w");
 	fprintf(map_file,
 			"space = 0 1000 0 1000\n"
 			"goal = 50 50\n"
+	        "number_of_players = 1\n"
 			"player = 900 500 3\n"
 			"number_of_barriers = 2\n"
 			"barrier = 250 200 300 0\n"
@@ -56,9 +57,11 @@ int load_map_test(){
 	assert(map.arrow[4].current_pos.x == 900 && map.arrow[4].current_pos.y == 0);
 	assert(map.arrow[4].speed == 1 && map.arrow[4].direction == 3);
 	assert(map.goal.pos.x == 50 && map.goal.pos.y == 50);
-	assert(map.player.current_pos.x == 900 && map.player.current_pos.y == 500);
-	assert(map.player.heart == 3);
+	assert(map.number_of_players == 1);
+	assert(map.player[PLAYER_1].current_pos.x == 900 && map.player[PLAYER_1].current_pos.y == 500);
+	assert(map.player[PLAYER_1].heart == 3);
 
+	printf("load_map_test PASSED\n");
 	return 0;
 }
 

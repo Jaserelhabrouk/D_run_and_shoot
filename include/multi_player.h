@@ -22,6 +22,9 @@ bool multi_player(SDL_Window* p_window,option_items_t difficulty);
 Uint32 timer_callback(Uint32, void*);
 
 void generate_view_multi(SDL_Window* p_window, map_t* p_map);
+void shoot(map_t* map, player_index_t player_num);
+void update_bullet(map_t* map, player_index_t player_num);
+int is_bullet_hit(map_t* map, player_index_t player_index);
 
 #endif /* MULTI_PLAYER_H_ */
 #pragma once

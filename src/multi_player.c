@@ -78,6 +78,7 @@ bool multi_player(SDL_Window* p_window,option_items_t difficulty)
 	map.textures.p_texture_arrow_down = get_arrow_down_texture(p_renderer);
 	map.textures.p_texture_arrow_up = get_arrow_up_texture(p_renderer);
 	map.textures.p_texture_barrier = get_barrier_texture(p_renderer, map.barrier[0].length);
+	map.textures1.p_textture_bullet = get_bullet_texture(p_renderer);
 
 	/*read an event until window is not quit.*/
 	SDL_Event event;
@@ -143,6 +144,15 @@ bool multi_player(SDL_Window* p_window,option_items_t difficulty)
 						update_player_pos(&map.player[PLAYER_2], direction);
 					}
 				}
+
+				else if (event.key.keysym.sym == SDLK_m) {
+					shoot(&map, PLAYER_1);
+				}
+				else if (event.key.keysym.sym == SDLK_g) {
+					shoot(&map, PLAYER_2);
+				}
+
+
 				break;
 			}
 			case SDL_USEREVENT: /**timer*/
@@ -151,6 +161,8 @@ bool multi_player(SDL_Window* p_window,option_items_t difficulty)
 				{
 					update_barrier(map.barrier, &map);
 					update_arrow(map.arrow, &map);
+					update_bullet(&map, PLAYER_1);
+					update_bullet(&map, PLAYER_2);
 					generate_view_multi(p_window, &map);
 
 					if (is_player_hit(&map, PLAYER_1) == true)
@@ -172,6 +184,12 @@ bool multi_player(SDL_Window* p_window,option_items_t difficulty)
 							game_state = GAME_STATE_LOSE;
 						}
 
+					}
+					else if (is_bullet_hit(&map, PLAYER_1 == true)) {
+						take_heart(&map.player[PLAYER_1]);
+					}
+					else if (is_bullet_hit(&map, PLAYER_2 == true)) {
+						take_heart(&map.player[PLAYER_2]);
 					}
 					else if ((is_reach_goal(&map.player[PLAYER_1], &map.goal) == true) || (is_reach_goal(&map.player[PLAYER_2], &map.goal) == true))
 					{

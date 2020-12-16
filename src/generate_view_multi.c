@@ -43,6 +43,8 @@ void generate_view_multi(SDL_Window* p_window, map_t* p_map)
     SDL_Texture* p_player_texture1 = p_map->textures.p_texture_player[PLAYER_2];
     SDL_Texture* p_heart_texture1 = p_map->textures.p_texture_heart[PLAYER_2];
     SDL_Texture* p_heartNum_texture1 = NULL;
+    SDL_Texture* p_bullet_texture = p_map->textures1.p_textture_bullet;
+
 
     int w = 0;
     int h = 0;
@@ -121,6 +123,19 @@ void generate_view_multi(SDL_Window* p_window, map_t* p_map)
         SDL_Rect heartNum_rect1 = { p_map->space.x_min + 72, p_map->space.y_max - 48,  w, h };
         SDL_RenderCopy(p_renderer, p_heartNum_texture1, NULL, &heartNum_rect1);
         SDL_FreeSurface(p_surface);
+    }
+
+
+    if (p_map->player[PLAYER_1].bullet_is_active) {
+        SDL_QueryTexture(p_bullet_texture, NULL, NULL, &w, &h);
+        SDL_Rect bullet_rect1 = { p_map->player[PLAYER_1].bullet.current_pos.x, p_map->player[PLAYER_1].bullet.current_pos.y,  w, h };
+        SDL_RenderCopy(p_renderer, p_bullet_texture, NULL, &bullet_rect1);
+    }
+
+    if (p_map->player[PLAYER_2].bullet_is_active) {
+        SDL_QueryTexture(p_bullet_texture, NULL, NULL, &w, &h);
+        SDL_Rect bullet_rect2 = { p_map->player[PLAYER_2].bullet.current_pos.x, p_map->player[PLAYER_2].bullet.current_pos.y,  w, h };
+        SDL_RenderCopy(p_renderer, p_bullet_texture, NULL, &bullet_rect2);
     }
 
     /**Display the content to render*/

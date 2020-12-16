@@ -26,6 +26,10 @@
 #define MAP_TEXTURE_ARROW_HEIGHT 40
 #define MAP_TEXTURE_BARRIER_HEIGHT 3
 #define MAP_TEXTURE_BARRIER_WIDTH_MAX 400
+#define MAP_TEXTURE_BULLET_WIDTH 15
+#define MAP_TEXTURE_BULLET_HEIGHT 15
+
+
 
 /**
  * @brief creats player texture.
@@ -434,6 +438,55 @@ static inline SDL_Texture* get_barrier_texture(SDL_Renderer* p_renderer, int len
     for (int i = 0; i < MAP_TEXTURE_BARRIER_HEIGHT * width; i++)
     {
         pixels[i] = 0xfaa32aff;
+    }
+
+    SDL_LockSurface(p_surface);
+    SDL_memcpy(p_surface->pixels, pixels, p_surface->h * p_surface->pitch);
+    SDL_UnlockSurface(p_surface);
+
+    SDL_Texture* p_texture = SDL_CreateTextureFromSurface(p_renderer, p_surface);
+
+    return p_texture;
+}
+
+static inline SDL_Texture* get_bullet_texture(SDL_Renderer* p_renderer)
+{
+    SDL_Surface* p_surface = SDL_CreateRGBSurface(SDL_SWSURFACE,
+        MAP_TEXTURE_BULLET_WIDTH,   //width,
+        MAP_TEXTURE_BULLET_HEIGHT,  //height,
+        32,    //depth,
+        0xff000000,  // Rmask,
+        0x00ff0000,  // Gmask,
+        0x0000ff00,  // Bmask,
+        0x000000ff); //Amask
+
+    Uint32 pixels[MAP_TEXTURE_BULLET_WIDTH * MAP_TEXTURE_BULLET_HEIGHT] = {
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0,
+            0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+            0, 0, 1, 0, 2, 2, 2, 2, 2, 2, 0, 1, 0, 0, 0,
+            0, 0, 1, 0, 2, 2, 2, 2, 2, 2, 0, 1, 0, 0, 0,
+            0, 0, 1, 0, 2, 2, 2, 2, 2, 2, 0, 1, 0, 0, 0,
+            0, 0, 1, 0, 2, 2, 2, 2, 2, 2, 0, 1, 0, 0, 0,
+            0, 0, 1, 0, 2, 2, 2, 2, 2, 2, 0, 1, 0, 0, 0,
+            0, 0, 1, 0, 2, 2, 2, 2, 2, 2, 0, 1, 0, 0, 0,
+            0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+            0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+    for (int i = 0; i < MAP_TEXTURE_BULLET_WIDTH * MAP_TEXTURE_BULLET_HEIGHT; i++)
+    {
+        if (pixels[i] == 2)
+        {
+            pixels[i] = 0xf51da9ff;
+        }
+        else if (pixels[i] == 1)
+        {
+            pixels[i] = 0xefc7ffff;
+        }
     }
 
     SDL_LockSurface(p_surface);

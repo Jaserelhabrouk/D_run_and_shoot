@@ -18,7 +18,7 @@
  */
 int load_map_test(){
 
-	char file_path[1000] = "../data/test_file.txt";
+	char file_path[1000] = "data/test_file.txt";
 	FILE* map_file = fopen((const char*)file_path, "w");
 	fprintf(map_file,
 			"space = 0 1000 0 1000\n"

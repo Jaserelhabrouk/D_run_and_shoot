@@ -22,7 +22,7 @@
 #define BARRIER_MOVE_STEP_SIZE 1
 #define ARROW_MOVE_STEP_SIZE(speed) (((speed)+1)*2)
 #define PLAYER_MOVE_STEP_SIZE 10
-#define BULLET_MOVE_STEP_SIZE 4
+#define BULLET_MOVE_STEP_SIZE 6
 #define MAP_MAX_NUM_OF_BULLETS 2
 
  /**
@@ -100,7 +100,6 @@ typedef struct bullet {
  * A structure represents a player in the map
  */
 typedef struct player {
-	char name;                 /**< name of the player*/
 	position_t current_pos;    /**< current position of the player*/
 	int heart;                 /**< number of the heart the player have*/
 	bullet_t bullet;		   /**< bullet generated from player*/
@@ -152,7 +151,6 @@ typedef struct map {
 	goal_t goal;                                       /**< goal in the map*/
 	player_t player[MAP_MAX_NUM_OF_PLAYERS];           /**< player in the map*/
 	map_textures_t textures;                           /**< map element textures*/
-	player_t player1;                                  /**< player in the map*/
 	map_textures_multi_t textures1;                    /**< map element textures*/
 } map_t;
 

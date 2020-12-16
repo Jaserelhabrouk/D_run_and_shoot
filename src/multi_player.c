@@ -185,10 +185,10 @@ bool multi_player(SDL_Window* p_window,option_items_t difficulty)
 						}
 
 					}
-					else if (is_bullet_hit(&map, PLAYER_1 == true)) {
+					else if (is_bullet_hit(&map, PLAYER_1) == true) {
 						take_heart(&map.player[PLAYER_1]);
 					}
-					else if (is_bullet_hit(&map, PLAYER_2 == true)) {
+					else if (is_bullet_hit(&map, PLAYER_2) == true) {
 						take_heart(&map.player[PLAYER_2]);
 					}
 					else if ((is_reach_goal(&map.player[PLAYER_1], &map.goal) == true) || (is_reach_goal(&map.player[PLAYER_2], &map.goal) == true))

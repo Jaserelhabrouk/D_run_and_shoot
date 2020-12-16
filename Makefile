@@ -1,6 +1,6 @@
 ifdef OS
 # WINDOWS version
-# TODO
+	LIBFLAGS = -lmingw32 -lSDL2main -lSDL2
 else
 	LIBFLAGS = -l sdl2 -l sdl2_ttf
 endif
@@ -13,12 +13,13 @@ OBJECTS = build/main.o build/credit.o build/game_over.o build/generate_view.o bu
  		  build/is_player_hit.o build/is_reach_goal.o build/load_map.o build/print_menu.o \
  		  build/single_player.o build/take_heart.o build/update_arrow.o build/update_barrier.o \
  		  build/update_player_pos.o build/user_manual.o build/win_game.o \
- 		  build/options.o build/print_options.o build/multi_player.o build/generate_view_multi.o
+ 		  build/options.o build/print_options.o build/multi_player.o build/generate_view_multi.o \
+ 		  build/is_bullet_hit.o build/shoot.o build/update_bullet.o
  		 
 bin/main : run_tests $(OBJECTS)
 	$(CC) -o bin/main $(OBJECTS) $(LIBFLAGS)
 
-#TARGET TO GENERATE THE OBJECT FILES FOR SRC.
+#TARGET TO GENERATE THE OBJECT FILES .
 build/main.o: src/main.c $(INCLUDES)
 	$(CC) -c src/main.c -o build/main.o
 
@@ -78,6 +79,15 @@ build/multi_player.o: src/multi_player.c $(INCLUDES)
 	
 build/generate_view_multi.o: src/generate_view_multi.c $(INCLUDES)
 	$(CC) -c src/generate_view_multi.c -o build/generate_view_multi.o
+
+build/is_bullet_hit.o: src/is_bullet_hit.c $(INCLUDES)
+	$(CC) -c src/is_bullet_hit.c -o build/is_bullet_hit.o
+
+build/shoot.o: src/shoot.c $(INCLUDES)
+	$(CC) -c src/shoot.c -o build/shoot.o
+
+build/update_bullet.o: src/update_bullet.c $(INCLUDES)
+	$(CC) -c src/update_bullet.c -o build/update_bullet.o
 	
 
 OBJECTS_TEST = build/is_player_hit.o build/is_player_hit_test.o \
@@ -87,7 +97,10 @@ OBJECTS_TEST = build/is_player_hit.o build/is_player_hit_test.o \
 			   build/is_barrier_hit.o build/is_barrier_hit_test.o \
 			   build/update_arrow.o build/update_arrow_test.o \
 			   build/update_barrier.o build/update_barrier_test.o \
-			   build/update_player_pos.o build/update_player_pos_test.o
+			   build/update_player_pos.o build/update_player_pos_test.o \
+			   build/is_bullet_hit.o build/is_bullet_hit_test.o \
+			   build/shoot.o build/shoot_test.o \
+			   build/update_bullet.o build/update_bullet_test.o
 
 TESTS = bin/is_player_hit_test \
 		bin/is_reach_goal_test \
@@ -96,7 +109,10 @@ TESTS = bin/is_player_hit_test \
 		bin/is_barrier_hit_test \
 		bin/update_arrow_test \
 		bin/update_barrier_test \
-		bin/update_player_pos_test
+		bin/update_player_pos_test \
+		bin/is_bullet_hit_test \
+		bin/shoot_test \
+		bin/update_bullet_test
 
 LOG = data/log.txt
 
@@ -111,9 +127,12 @@ run_tests: $(TESTS)
 	-echo "update_arrow_test STARTED" >> $(LOG); ./bin/update_arrow_test >> $(LOG) 2>&1
 	-echo "update_barrier_test STARTED" >> $(LOG); ./bin/update_barrier_test >> $(LOG) 2>&1
 	-echo "update_player_pos_test STARTED" >> $(LOG); ./bin/update_player_pos_test >> $(LOG) 2>&1
+	-echo "is_bullet_hit_test STARTED" >> $(LOG); ./bin/is_bullet_hit_test >> $(LOG) 2>&1
+	-echo "shoot_test STARTED" >> $(LOG); ./bin/shoot_test >> $(LOG) 2>&1
+	-echo "update_bullet_test STARTED" >> $(LOG); ./bin/update_bullet_test >> $(LOG) 2>&1
 
 
-# build test executables
+# BUILD TEST EXECUTABLES
 bin/is_player_hit_test: $(OBJECTS_TEST)
 	$(CC) -e _is_player_hit_test -o bin/is_player_hit_test $(OBJECTS_TEST)
 
@@ -138,7 +157,16 @@ bin/update_barrier_test: $(OBJECTS_TEST)
 bin/update_player_pos_test: $(OBJECTS_TEST)
 	$(CC) -e _update_player_pos_test -o bin/update_player_pos_test $(OBJECTS_TEST)	
 
-# build .o files for tests
+bin/is_bullet_hit_test: $(OBJECTS_TEST)
+	$(CC) -e _is_bullet_hit_test -o bin/is_bullet_hit_test $(OBJECTS_TEST)
+
+bin/shoot_test: $(OBJECTS_TEST)
+	$(CC) -e _shoot_test -o bin/shoot_test $(OBJECTS_TEST) 
+
+bin/update_bullet_test: $(OBJECTS_TEST)
+	$(CC) -e _update_bullet_test -o bin/update_bullet_test $(OBJECTS_TEST) 
+
+# BUILD .o FILES FOR TESTS
 build/is_barrier_hit_test.o: test/is_barrier_hit_test.c $(INCLUDES)
 	$(CC) -c test/is_barrier_hit_test.c -o build/is_barrier_hit_test.o
 
@@ -163,7 +191,16 @@ build/update_barrier_test.o: test/update_barrier_test.c $(INCLUDES)
 build/update_player_pos_test.o: test/update_player_pos_test.c $(INCLUDES)
 	$(CC) -c test/update_player_pos_test.c -o build/update_player_pos_test.o
 
+build/is_bullet_hit_test.o: test/is_bullet_hit_test.c $(INCLUDES)
+	$(CC) -c test/is_bullet_hit_test.c -o build/is_bullet_hit_test.o
+
+build/shoot_test.o: test/shoot_test.c $(INCLUDES)
+	$(CC) -c test/shoot_test.c -o build/shoot_test.o
+
+build/update_bullet_test.o: test/update_bullet_test.c $(INCLUDES)
+	$(CC) -c test/update_bullet_test.c -o build/update_bullet_test.o
+
 	
 #CLEAN COMMANDS 
 clean:  
-	rm -f bin/* build/* data/log.txt
+	rm -f bin/* build/* data/log.txt data/test_file.txt

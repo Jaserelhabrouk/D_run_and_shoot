@@ -30,7 +30,3 @@ int is_player_hit_test() {
 	printf("is_player_hit_test PASSED\n");
 	return 0;
 }
-
-
-
-

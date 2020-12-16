@@ -1,6 +1,6 @@
 /**
  * @file game_over_test.c
- * \brief game over test file
+ * @brief game over test file
  */
 #ifdef _WIN64
 #include <SDL.h>
@@ -21,7 +21,7 @@
  *
  * This function creates a window and renderer and pass them as inputs to the game_over function.
  * By calling game_over a text (game over) is shown on the window.
- * The user should check the text location and its color.
+ * The user should check the text location and its color manually.
  * The window will quit if the quit botton is pressed.
  * At the end window and renderer will destroy.
  *
@@ -73,4 +73,3 @@ int game_over_test() {
 	TTF_Quit();
 	return 0;
 }
-

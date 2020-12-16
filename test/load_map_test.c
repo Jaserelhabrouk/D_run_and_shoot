@@ -64,5 +64,3 @@ int load_map_test(){
 	printf("load_map_test PASSED\n");
 	return 0;
 }
-
-

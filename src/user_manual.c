@@ -19,7 +19,7 @@
 #include "../include/single_player.h"
 
 /**
- * \brief Prints user manual on an input window.
+ * @brief Prints user manual on an input window.
  * @param[in] p_window a SDL window which is passed from the main function.
  * @return bool if window is quit or back_space key is pressed, return true.
  */
@@ -55,7 +55,7 @@ bool user_manual(SDL_Window* p_window)
     SDL_QueryTexture(p_texture_2, NULL, NULL, &text_w, &text_h);
     SDL_Rect rect_2 = { w / 2 - 420, h / 2 , text_w, text_h };
 
-    SDL_Surface* p_surface_3 = TTF_RenderText_Solid(p_font, " key: first player shooting key", color);
+    SDL_Surface* p_surface_3 = TTF_RenderText_Solid(p_font, "m key: first player shooting key", color);
     SDL_Texture* p_texture_3 = SDL_CreateTextureFromSurface(p_renderer, p_surface_3);
     SDL_QueryTexture(p_texture_3, NULL, NULL, &text_w, &text_h);
     SDL_Rect rect_3 = { w/ 2 - 420, h / 2 + 50 , text_w, text_h };
@@ -66,7 +66,7 @@ bool user_manual(SDL_Window* p_window)
     SDL_QueryTexture(p_texture_4, NULL, NULL, &text_w, &text_h);
     SDL_Rect rect_4 = { w/ 2 - 420, h / 2 + 100 , text_w, text_h };
 
-    SDL_Surface* p_surface_5 = TTF_RenderText_Solid(p_font, " key: second player shooting key", color);
+    SDL_Surface* p_surface_5 = TTF_RenderText_Solid(p_font, "g key: second player shooting key", color);
     SDL_Texture* p_texture_5 = SDL_CreateTextureFromSurface(p_renderer, p_surface_5);
     SDL_QueryTexture(p_texture_5, NULL, NULL, &text_w, &text_h);
     SDL_Rect rect_5 = { w / 2 - 420, h / 2 + 150 , text_w, text_h };

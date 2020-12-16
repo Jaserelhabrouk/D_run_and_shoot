@@ -8,12 +8,12 @@
 #include "../include/map.h"
 #include "../include/single_player.h"
 
- /**
-  * @brief updates the position of generated bullet
-  *
-  * This function shoot a bullet in a direction in which an oppenent exists.
-  * @param [in] map represent the map structure which has bullet's position and direction.
-  */
+/**
+ * @brief updates the position of generated bullet
+ *
+ * This function shoot a bullet in a direction in which an oppenent exists.
+ * @param [in] map represent the map structure which has bullet's position and direction.
+ */
 void update_bullet(map_t* map , player_index_t player_num) {
 
 	if (player_num == PLAYER_1 && map->player[PLAYER_1].bullet_is_active) { /**< We have a moving bullet shooted from player1*/

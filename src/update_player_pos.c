@@ -1,6 +1,5 @@
 /**
  * @file update_player_pos.c
- * @author Mahsa
  * @brief updates player's position
  */
 
@@ -15,10 +14,9 @@
  * This function gets the direction in which the player wants to move as well as the player
  * itself and updates the player's position based on the direction.
  * NOTE: This function only be called after validation of the player's move;
- * So we are not worry about the collision with any barrier(s).
- * @param [in] player , gets player for its current position
- * @param [in] direction, gets the direction to move player into that direction
- * @param [out] player, the position of the player will be updated
+ * @param[in] player information of the player: position, ... .
+ * @param[in] direction player's movement direction.
+ * @param[out] player's position will be updated.
  */
 void update_player_pos(player_t* player, direction_t direction)
 {

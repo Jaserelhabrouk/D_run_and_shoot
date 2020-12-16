@@ -8,7 +8,6 @@
 #include "../include/map.h"
 #include "../include/multi_player.h"
 
-
  /**
   * @brief tests shoot() function .
   *

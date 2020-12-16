@@ -1,6 +1,5 @@
 /**
  * @file is_barrier_hit.c
- * @author Mahsa
  * @brief Check the collision between the player and a barrier
  */
 
@@ -12,23 +11,21 @@
 #include "../include/map_textures.h"
 
 
-
 /**
  * @brief check the collision
  *
  * This function get player's position and checks if it hits any of the barriers/borders.
  * NOTE: The border of the map also be considered as barrier.
- * @param [in] player , gets player for its position
- * @param [in] barrier, pointer to barriers for identifying their positions
- * @param [in] space, for checking borders of the map
- * @param [in] direction, for player's next move prediction
- * @return boolean that represents if player hit a barrier or not
+ * @param[in] map  map structure represents players, barriers, and... position.
+ * @param[in] direction specify player's next movement.
+ * @param[in] player_index specify the player: PLAYER_1/PLAYER_2.
+ * @return bool true if player hit a barrier or borders and false otherwise.
  */
 bool is_barrier_hit(map_t map, direction_t direction, player_index_t player_index)
 {
     bool hitted = false;
 
-    /** 1.Checking the borders */
+    /** Checking the borders */
 
     switch (direction)
     {
@@ -68,7 +65,7 @@ bool is_barrier_hit(map_t map, direction_t direction, player_index_t player_inde
     }
 
 
-    /** 2.Checking the barriers collision with player*/
+    /** Checking the barriers collision with player*/
 
     map_barrier_t* p_barrier;
 
@@ -116,7 +113,6 @@ bool is_barrier_hit(map_t map, direction_t direction, player_index_t player_inde
             default:
                 hitted = false;
         }
-    }/** End for loop */
-
+    }
     return hitted;
 }

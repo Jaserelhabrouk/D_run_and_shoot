@@ -1,6 +1,6 @@
 /**
-* @file update_barrier_test.c
-*/
+ * @file update_barrier_test.c
+ */
 
 #include "../include/map.h"
 #include "../include/single_player.h"

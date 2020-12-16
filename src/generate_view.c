@@ -16,12 +16,12 @@
 
 
 /** 
-* \brief generate_view function
+* @brief generate_view function
 * 
-* This function is to generate a 2d graphic map using updated information
+* This function is to generate a graphic map using updated information
 * @param[in] p_window a SDL window which is passed from the main function.
 * @param[in] p_map a defined map which is passed from the main function.
-* @return: void 
+* @return void
 */
 void generate_view(SDL_Window* p_window, map_t* p_map)
 {
@@ -100,5 +100,4 @@ void generate_view(SDL_Window* p_window, map_t* p_map)
  
     SDL_FreeSurface(p_surface);
     TTF_CloseFont(p_font);
-
 }

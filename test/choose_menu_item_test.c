@@ -1,13 +1,13 @@
 /**
  * @file choose_menu_item_test.c
- * \brief A testcase to check if choose_menu_item() works correctly.
+ * @brief A testcase to check if choose_menu_item() works correctly.
  */
 #include <stdio.h>
 #include <assert.h>
 #include "../include/menu.h"
 
 /**
- * \brief tests choose_menu_item() function.
+ * @brief tests choose_menu_item() function.
  *
  * This is a test function for choose_menu_item() and check if it performs correctly.
  * It has no input.
@@ -22,6 +22,3 @@ int choose_menu_item_test() {
 	}
 	return 0;
 }
-
-
-

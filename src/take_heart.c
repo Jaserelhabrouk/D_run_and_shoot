@@ -5,9 +5,9 @@
 #include <stdio.h>
 
 /**
-* \brief This function is to takes a heart from the player.
-* @param [in] player a Player type pointer.
-*/
+ * @brief This function is to take a heart from the player.
+ * @param[in] player a structure represents the player: position, heart, ....
+ */
 void take_heart(player_t* p_player)
 {
 	if (p_player == NULL) {  /**< if the player pointer is invalid, exit the function.*/

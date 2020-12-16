@@ -73,5 +73,3 @@ int win_game_test() {
     TTF_Quit();
     return 0;
 }
-
-

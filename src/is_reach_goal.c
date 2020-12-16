@@ -1,6 +1,6 @@
 /**
-* @file is_reach_goal.c
-*/
+ * @file is_reach_goal.c
+ */
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -19,8 +19,8 @@ int abs(int x)
 /**
  * @brief Checks if the player reached the goal
  *
- * @param[in] p_player
- * @param[in] p_goal
+ * @param[in] p_player player information including position.
+ * @param[in] p_goal goal's position
  * @return false if the player does not reach the goal and true otherwise.
  */
 bool is_reach_goal(player_t* p_player, goal_t* p_goal)
@@ -32,5 +32,3 @@ bool is_reach_goal(player_t* p_player, goal_t* p_goal)
     }
     return false;
 }
-
-

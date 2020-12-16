@@ -21,7 +21,7 @@
 
 
 /**
- * \brief multi_player function
+ * @brief multi_player function
  *
  * This is the main function which handle multi player mode.
  * Different functions are called here: first a map file is loaded and then
@@ -209,4 +209,3 @@ bool multi_player(SDL_Window* p_window,option_items_t difficulty)
 	SDL_RemoveTimer(timer);
 	return event.type == SDL_QUIT;
 }
-

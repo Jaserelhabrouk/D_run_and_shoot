@@ -7,9 +7,8 @@
 #include "../include/map.h"
 #include "../include/multi_player.h"
 
-
  /**
-  * @brief tests is_bullet_hit() function .
+  * @brief tests is_bullet_hit() function.
   *
   * This function tests if is_bullet_hit() works properly.
   * @return 0 in success.

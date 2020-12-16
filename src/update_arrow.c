@@ -1,7 +1,6 @@
 /**
-* @file update_arrow.c
-* @author Jaser
-*/
+ * @file update_arrow.c
+ */
 
 #include <stdio.h>
 #include "../include/map.h"
@@ -9,11 +8,11 @@
 #include "../include/map_textures.h"
 
 /**
-* \brief This function is to update arrow position in the map.
-* @param [in] arrow a pointer to access to each arrow stored in a arrow structure array.
-* @param [in] space represents a map_space structure.
-*/
-
+ * @brief This function is to update arrow position in the map.
+ * @param[in] arrow a pointer to access to each arrow stored in a arrow structure array.
+ * @param[in] map represents map's structure.
+ * @param[out] update arrow's position.
+ */
 void update_arrow(arrow_t* p_arrow, map_t* map) {
 
 	arrow_t* p_arr;
@@ -41,7 +40,7 @@ void update_arrow(arrow_t* p_arrow, map_t* map) {
 			}
 			else
 			{
-			    p_arr->current_pos.y -= ARROW_MOVE_STEP_SIZE(p_arr->speed);  /**< move the arrow upward with y value decreased by STEP_SIZE.*/
+			    p_arr->current_pos.y -= ARROW_MOVE_STEP_SIZE(p_arr->speed);  /**< move the arrow upward with y value decreased by ARROW_MOVE_STEP_SIZE .*/
 			}
 			break;
 		case DIRECTION_DOWN:
@@ -53,12 +52,11 @@ void update_arrow(arrow_t* p_arrow, map_t* map) {
 			}
 			else
 			{
-			    p_arr->current_pos.y += ARROW_MOVE_STEP_SIZE(p_arr->speed);  /**< move the arrow downward with y value increased by STEP_SIZE.*/
+			    p_arr->current_pos.y += ARROW_MOVE_STEP_SIZE(p_arr->speed);  /**< move the arrow downward with y value increased by ARROW_MOVE_STEP_SIZE.*/
 			}
 			break;
 		default:
 			break;
 		}
 	}
-
 }

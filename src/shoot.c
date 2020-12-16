@@ -11,11 +11,12 @@
  /**
   * @brief Generates a bullet
   *
-  * This function generate a bullet in the player's current position and give it proper speed and direction. 
-  * Bullet1 is shooted from player1 and Bullet2 is shooted from player2
-  * @param [in] map represent the map structure which has players' position.
+  * This function generates a bullet in the player's current position
+  * and initialize the speed and direction.
+  * @param[in] map represent the map structure which has players' position.
+  * @param[in] player_num represent the player index: PLAYER_1/PLAYER_2.
   */
-void shoot(map_t * map, player_index_t player_num) {
+void shoot(map_t* map, player_index_t player_num) {
 
 
 	if (player_num == PLAYER_1 && !map->player[PLAYER_1].bullet_is_active && map->player[PLAYER_1].heart != 0) {/**< player1 shoots towards player2*/

@@ -2,7 +2,7 @@
  * @file map.h
  * @brief decleration of the map
  *
- * Function decleration and type definition for the game's map.
+ * Function decleration and type definition for the map.
  */
 #ifndef MAP_H_
 #define MAP_H_
@@ -35,7 +35,7 @@ typedef struct position {
 } position_t;
 
 /**
- * @enum direction_t
+ * @typedef direction_t
  * The enumeration of movement direction.
  */
 typedef enum direction {
@@ -45,7 +45,10 @@ typedef enum direction {
 	DIRECTION_DOWN
 } direction_t;
 
-
+/**
+ * @typedef player_index_t
+ * The enumeration of player.
+ */
 typedef enum player_index {
 	PLAYER_1,
 	PLAYER_2,
@@ -89,9 +92,9 @@ typedef struct arrow {
  * A structure represents a bullet in the map
  */
 typedef struct bullet {
-	position_t current_pos;    /**< current position of an arrow*/
-	int speed;                 /**< the speed of an arrow*/
-	direction_t direction;     /**< direction of an arrow*/
+	position_t current_pos;    /**< current position of a bullet*/
+	int speed;                 /**< the speed of a bullet*/
+	direction_t direction;     /**< direction of a bullet*/
 } bullet_t;
 
 
@@ -115,6 +118,10 @@ typedef struct goal {
 	position_t pos;         /**< position of the goal in the map*/
 } goal_t;
 
+/**
+ * @typedef map_textures_t
+ * A structure represents the single player map's textures.
+ */
 typedef struct map_textures {
 	SDL_Texture* p_texture_player[MAP_MAX_NUM_OF_PLAYERS];
 	SDL_Texture* p_texture_heart[MAP_MAX_NUM_OF_PLAYERS];
@@ -124,6 +131,10 @@ typedef struct map_textures {
 	SDL_Texture* p_texture_barrier;
 } map_textures_t;
 
+/**
+ * @typedef map_textures_multi_t
+ * A structure represents the multi player map's textures.
+ */
 typedef struct map_textures_multi {
 	SDL_Texture* p_texture_player;
 	SDL_Texture* p_texture_heart;
@@ -139,7 +150,7 @@ typedef struct map_textures_multi {
 
 /**
  * @typedef map_t
- * A structure represents the map
+ * A structure represents the map entities
  */
 typedef struct map {
 	map_space_t space;                                 /**< space of the map*/
@@ -150,8 +161,8 @@ typedef struct map {
 	arrow_t arrow[MAP_MAX_NUM_OF_ARROWS];              /**< arrows in the map*/
 	goal_t goal;                                       /**< goal in the map*/
 	player_t player[MAP_MAX_NUM_OF_PLAYERS];           /**< player in the map*/
-	map_textures_t textures;                           /**< map element textures*/
-	map_textures_multi_t textures1;                    /**< map element textures*/
+	map_textures_t textures;                           /**< single player map's element textures*/
+	map_textures_multi_t textures1;                    /**< multi player map's element textures*/
 } map_t;
 
 /**
@@ -164,4 +175,3 @@ typedef struct map {
 map_t load_map(char* file_path);
 
 #endif /* MAP_H_ */
-

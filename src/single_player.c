@@ -175,4 +175,3 @@ bool single_player(SDL_Window* p_window, option_items_t difficulty)
 	SDL_RemoveTimer(timer);
 	return event.type == SDL_QUIT;
 }
-

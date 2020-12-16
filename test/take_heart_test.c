@@ -1,11 +1,17 @@
 /**
-* @file take_heart_test.c
-*/
+ * @file take_heart_test.c
+ */
 
 #include <assert.h>
 #include "../include/map.h"
 #include "../include/single_player.h"
 
+/**
+ * @brief checks if take_heart() function works properly.
+ * This function initialize the player and it's heart numbers.
+ * Then call take_heart function and check if the player's number of hearts reduced.
+ * return 0 in sucess.
+ */
 int take_heart_test() {
 
     player_t p1 = {{.x = 20,.y = 20},2 };

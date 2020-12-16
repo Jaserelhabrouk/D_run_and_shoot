@@ -1,6 +1,6 @@
 /**
-* @file update_arrow_test.c
-*/
+ * @file update_arrow_test.c
+ */
 
 #include <assert.h>
 #include "../include/map.h"

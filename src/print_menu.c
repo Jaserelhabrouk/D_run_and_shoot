@@ -17,8 +17,9 @@
 
 /**
 * @brief Prints the game start up menu on SDL window.
+*
 * @param[in] p_window A SDL window is passed to the function.
-* @param[in] p_menu A structure represents menu item.
+* @param[in] p_menu A structure represents menu items.
 * @return void
 */
 void print_menu(SDL_Window* p_window, menu_t* p_menu) {

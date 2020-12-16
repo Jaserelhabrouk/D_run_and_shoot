@@ -18,10 +18,10 @@
 /**
 * \brief generate_view_multi function
 *
-* This function is to generate a 2d graphic map using updated information
+* This function is to generate a graphic map using updated information
 * @param[in] p_window a SDL window which is passed from the main function.
 * @param[in] p_map a defined map which is passed from the main function.
-* @return: void
+* @return void
 */
 void generate_view_multi(SDL_Window* p_window, map_t* p_map)
 {
@@ -143,5 +143,4 @@ void generate_view_multi(SDL_Window* p_window, map_t* p_map)
     /**Destroy*/
     SDL_DestroyTexture(p_heartNum_texture);
     TTF_CloseFont(p_font);
-
 }

@@ -18,8 +18,9 @@
 
 /**
 * @brief Prints the game different difficulty options on an SDL window.
+*
 * @param[in] p_window A SDL window is passed to the function.
-* @param[in] p_options A structure represents options item.
+* @param[in] p_options A structure represents options items.
 * @return void
 */
 void print_options(SDL_Window* p_window, option_t* p_options) {

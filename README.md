@@ -51,6 +51,5 @@ $ cd repo
 $ mingw32-make
 $ bin/main.exe
 ```
-
 # Documentation
 You can find a complete description of the game, user guide and developer guide of the application on [Wiki](https://github.com/Jaserelhabrouk/D_run_and_shoot/wiki).

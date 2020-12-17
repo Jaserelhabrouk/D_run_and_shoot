@@ -1,4 +1,8 @@
-﻿#ifdef _WIN64
+﻿/**
+ * @file main.c
+ * @brief The main function which handle the whole project.
+ */
+#ifdef _WIN64
 #include <SDL.h>
 #include <sdl_ttf.h>
 #elif __APPLE__

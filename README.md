@@ -17,6 +17,8 @@ The application is for fun purposes where the player has to reach a certain goal
 /data includes data files such as map coordinates 
 /doc includes all files for deliverable 1 and 2 as well as the team presentations
 
+# Dependcies
+SDL library needs to be downloaded from this link https://www.libsdl.org/download-2.0.php
 
 # Compilation
 Mac OS:

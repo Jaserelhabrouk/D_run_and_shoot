@@ -9,7 +9,7 @@
 #define MENU_H_
 
 #ifdef _WIN64
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #else
 #include <SDL2/SDL.h>
 #endif

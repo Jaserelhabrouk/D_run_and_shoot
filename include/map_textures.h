@@ -7,8 +7,8 @@
 #define INCLUDE_MAP_TEXTURES_H_
 
 #ifdef _WIN64
-#include <SDL.h>
-#include <sdl_ttf.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #else
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>

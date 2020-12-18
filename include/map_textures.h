@@ -7,8 +7,8 @@
 #define INCLUDE_MAP_TEXTURES_H_
 
 #ifdef _WIN64
-#include <SDL.h>
-#include <sdl_ttf.h>
+#include <SDL2/SDL.h>
+#include <SDL2/sdl_ttf.h>
 #elif __APPLE__
 #include <SDL2/SDL.h>
 #include <SDL2/sdl_ttf.h>
@@ -34,7 +34,6 @@
 /**
  * @brief creats player texture.
  * @param[in] p_renderer
- * @param[in] player_index
  * @return p_texture player texture
  */
 static inline SDL_Texture* get_player_texture(SDL_Renderer* p_renderer, player_index_t player_index)
@@ -42,11 +41,11 @@ static inline SDL_Texture* get_player_texture(SDL_Renderer* p_renderer, player_i
     SDL_Surface* p_surface = SDL_CreateRGBSurface(SDL_SWSURFACE,
                                                   MAP_TEXTURE_PLAYER_WIDTH,   //width,
                                                   MAP_TEXTURE_PLAYER_HEIGHT,  //height,
-                                                  32,                         //depth,
-                                                  0xff000000,                 // Rmask,
-                                                  0x00ff0000,                 // Gmask,
-                                                  0x0000ff00,                 // Bmask,
-                                                  0x000000ff);                 //Amask
+                                                  32,    //depth,
+                                                  0xff000000,  // Rmask,
+                                                  0x00ff0000,  // Gmask,
+                                                  0x0000ff00,  // Bmask,
+                                                  0x000000ff); //Amask
 
 
 
@@ -117,9 +116,8 @@ static inline SDL_Texture* get_player_texture(SDL_Renderer* p_renderer, player_i
 }
 
 /**
- * @brief creats heart texture for each player.
+ * @brief creats heart texture.
  * @param[in] p_renderer
- * @param[in] player_index
  * @return p_texture heart texture
  */
 static inline SDL_Texture* get_heart_texture(SDL_Renderer* p_renderer, player_index_t player_index)
@@ -127,11 +125,11 @@ static inline SDL_Texture* get_heart_texture(SDL_Renderer* p_renderer, player_in
     SDL_Surface* p_surface = SDL_CreateRGBSurface(SDL_SWSURFACE,
                                                   MAP_TEXTURE_HEART_WIDTH,   //width,
                                                   MAP_TEXTURE_HEART_HEIGHT,  //height,
-                                                  32,                        //depth,
-                                                  0xff000000,                // Rmask,
-                                                  0x00ff0000,                // Gmask,
-                                                  0x0000ff00,                // Bmask,
-                                                  0x000000ff);               //Amask
+                                                  32,    //depth,
+                                                  0xff000000,  // Rmask,
+                                                  0x00ff0000,  // Gmask,
+                                                  0x0000ff00,  // Bmask,
+                                                  0x000000ff); //Amask
 
 
 
@@ -199,11 +197,11 @@ static inline SDL_Texture* get_goal_texture(SDL_Renderer* p_renderer)
     SDL_Surface* p_surface = SDL_CreateRGBSurface(SDL_SWSURFACE,
                                                   MAP_TEXTURE_GOAL_WIDTH,   //width,
                                                   MAP_TEXTURE_GOAL_HEIGHT,  //height,
-                                                  32,                       //depth,
-                                                  0xff000000,               // Rmask,
-                                                  0x00ff0000,               // Gmask,
-                                                  0x0000ff00,               // Bmask,
-                                                  0x000000ff);              //Amask
+                                                  32,    //depth,
+                                                  0xff000000,  // Rmask,
+                                                  0x00ff0000,  // Gmask,
+                                                  0x0000ff00,  // Bmask,
+                                                  0x000000ff); //Amask
 
     Uint32 pixels[MAP_TEXTURE_GOAL_WIDTH * MAP_TEXTURE_GOAL_HEIGHT] = {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -267,11 +265,11 @@ static inline SDL_Texture* get_arrow_down_texture(SDL_Renderer* p_renderer)
     SDL_Surface* p_surface = SDL_CreateRGBSurface(SDL_SWSURFACE,
                                                   MAP_TEXTURE_ARROW_WIDTH ,   //width,
                                                   MAP_TEXTURE_ARROW_HEIGHT ,  //height,
-                                                  32,                         //depth,
-                                                  0xff000000,                 // Rmask,
-                                                  0x00ff0000,                 // Gmask,
-                                                  0x0000ff00,                 // Bmask,
-                                                  0x000000ff);                //Amask
+                                                  32,    //depth,
+                                                  0xff000000,  // Rmask,
+                                                  0x00ff0000,  // Gmask,
+                                                  0x0000ff00,  // Bmask,
+                                                  0x000000ff); //Amask
 
     Uint32 pixels[MAP_TEXTURE_ARROW_WIDTH * MAP_TEXTURE_ARROW_HEIGHT] = {
             1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
@@ -345,12 +343,12 @@ static inline SDL_Texture* get_arrow_up_texture(SDL_Renderer* p_renderer)
 {
     SDL_Surface* p_surface = SDL_CreateRGBSurface(SDL_SWSURFACE,
                                                   MAP_TEXTURE_ARROW_WIDTH ,   //width,
-                                                  MAP_TEXTURE_ARROW_HEIGHT,   //height,
-                                                  32,                         //depth,
-                                                  0xff000000,                 // Rmask,
-                                                  0x00ff0000,                 // Gmask,
-                                                  0x0000ff00,                 // Bmask,
-                                                  0x000000ff);                //Amask
+                                                  MAP_TEXTURE_ARROW_HEIGHT,  //height,
+                                                  32,    //depth,
+                                                  0xff000000,  // Rmask,
+                                                  0x00ff0000,  // Gmask,
+                                                  0x0000ff00,  // Bmask,
+                                                  0x000000ff); //Amask
 
     Uint32 pixels[MAP_TEXTURE_ARROW_WIDTH * MAP_TEXTURE_ARROW_HEIGHT] = {
             0, 0, 0, 2, 2, 2, 2, 0, 0, 0,
@@ -418,7 +416,7 @@ static inline SDL_Texture* get_arrow_up_texture(SDL_Renderer* p_renderer)
 /**
  * @brief creats barrier texture.
  * @param[in] p_renderer
- * @param[in] length of barrier, is read from map file.
+ * @param[in] length of barrier. Read from map file.
  * @return p_texture barrier texture
  */
 static inline SDL_Texture* get_barrier_texture(SDL_Renderer* p_renderer, int length)
@@ -426,13 +424,13 @@ static inline SDL_Texture* get_barrier_texture(SDL_Renderer* p_renderer, int len
     int width = length;
 
     SDL_Surface* p_surface = SDL_CreateRGBSurface(SDL_SWSURFACE,
-                                                  width,                       //width,
+                                                  width,   //width,
                                                   MAP_TEXTURE_BARRIER_HEIGHT,  //height,
-                                                  32,                          //depth,
-                                                  0xff000000,                  // Rmask,
-                                                  0x00ff0000,                  // Gmask,
-                                                  0x0000ff00,                  // Bmask,
-                                                  0x000000ff);                 //Amask
+                                                  32,    //depth,
+                                                  0xff000000,  // Rmask,
+                                                  0x00ff0000,  // Gmask,
+                                                  0x0000ff00,  // Bmask,
+                                                  0x000000ff); //Amask
 
     assert(width <= MAP_TEXTURE_BARRIER_WIDTH_MAX);
     Uint32 pixels[MAP_TEXTURE_BARRIER_HEIGHT * MAP_TEXTURE_BARRIER_WIDTH_MAX];
@@ -451,21 +449,16 @@ static inline SDL_Texture* get_barrier_texture(SDL_Renderer* p_renderer, int len
     return p_texture;
 }
 
-/**
- * @brief creats bullet texture.
- * @param[in] p_renderer
- * @return p_texture bullet texture
- */
 static inline SDL_Texture* get_bullet_texture(SDL_Renderer* p_renderer)
 {
     SDL_Surface* p_surface = SDL_CreateRGBSurface(SDL_SWSURFACE,
-                                                  MAP_TEXTURE_BULLET_WIDTH,   //width,
-                                                  MAP_TEXTURE_BULLET_HEIGHT,  //height,
-                                                  32,                         //depth,
-                                                  0xff000000,                 // Rmask,
-                                                  0x00ff0000,                 // Gmask,
-                                                  0x0000ff00,                 // Bmask,
-                                                  0x000000ff);                //Amask
+        MAP_TEXTURE_BULLET_WIDTH,   //width,
+        MAP_TEXTURE_BULLET_HEIGHT,  //height,
+        32,    //depth,
+        0xff000000,  // Rmask,
+        0x00ff0000,  // Gmask,
+        0x0000ff00,  // Bmask,
+        0x000000ff); //Amask
 
     Uint32 pixels[MAP_TEXTURE_BULLET_WIDTH * MAP_TEXTURE_BULLET_HEIGHT] = {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

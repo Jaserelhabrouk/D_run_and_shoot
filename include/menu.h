@@ -1,6 +1,6 @@
 /**
  * @file menu.h
- * @brief decleration of the menu related variables.
+ * @brief decleration of the menu
  *
  * Function decleration and type definition for the game's menu.
  */
@@ -9,7 +9,7 @@
 #define MENU_H_
 
 #ifdef _WIN64
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #elif __APPLE__
 #include <SDL2/SDL.h>
 #endif
@@ -62,7 +62,7 @@ typedef enum option_items{
 
 /**
  * @typedef option_t
- * A structure represents option's item.
+ * A structure represents option item.
  */
 typedef struct option{
     option_items_t selector;
@@ -90,7 +90,7 @@ bool user_manual(SDL_Window* p_window);
 bool single_player(SDL_Window* p_window, option_items_t difficulty);
 
 /**
- * @brief multi_player function
+ * \brief multi_player function
  *
  * This is the main function which handle multi player mode.
  * Different functions are called here: first a map file is loaded and then
@@ -106,7 +106,7 @@ bool multi_player(SDL_Window* p_window,option_items_t difficulty);
 * @brief Handles user input to choose between difficulty levels.
 *
 * This function show you different level of difficulty and let
-* user to choose between difficulty levels using return/enter key.
+* user to choos between difficulty levels using return key.
 *
 * @param[in] p_window A SDL window is passed to the function.
 * @param[out] p_option_items final selected item.
@@ -116,7 +116,6 @@ bool options(SDL_Window* p_window, option_items_t* p_option_items);
 
 /**
  * @brief Prints Credits Information on the input window.
- *
  * @param[in] p_window a SDL window which is passed from the main function.
  * @return bool if window is quit or back_space key is pressed, return true.
  */
@@ -124,9 +123,8 @@ bool credit(SDL_Window* p_window);
 
 /**
 * @brief Prints the game start up menu on an input SDL window.
-*
 * @param[in] p_window A SDL window is passed to the function.
-* @param[in] p_menu A structure represents menu items.
+* @param[in] p_menu A structure represents menu item.
 * @return void
 */
 void print_menu(SDL_Window* p_window, menu_t* p_menu);

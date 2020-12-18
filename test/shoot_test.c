@@ -40,3 +40,8 @@ int shoot_test() {
     printf("shoot_test PASSED\n");
     return 0;
 }
+
+
+int main() {
+  return shoot_test();
+}

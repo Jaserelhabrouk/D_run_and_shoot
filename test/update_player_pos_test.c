@@ -62,5 +62,9 @@ int update_player_pos_test() {
     return 0;
 }
 
+int main() {
+    return update_player_pos_test();
+}
+
 
 

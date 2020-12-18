@@ -5,9 +5,9 @@
 #ifdef _WIN64
 #include <SDL.h>
 #include <sdl_ttf.h>
-#elif __APPLE__
+#else
 #include <SDL2/SDL.h>
-#include <SDL2/sdl_ttf.h>
+#include <SDL2/SDL_ttf.h>
 #endif
 #include <stdio.h>
 #include <stdlib.h>

@@ -107,3 +107,7 @@ int is_barrier_hit_test() {
     printf("is_barrier_hit_test PASSED\n");
     return 0;
 }
+
+int main() {
+    return is_barrier_hit_test();
+}

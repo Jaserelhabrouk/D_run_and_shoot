@@ -33,3 +33,7 @@ int take_heart_test() {
     printf("take_heart_test PASSED\n");
     return 0;
 }
+
+int main() {
+    return take_heart_test();
+}

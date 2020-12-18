@@ -42,3 +42,7 @@ int update_bullet_test() {
     printf("update_bullet_test PASSED\n");
     return 0;
 }
+
+int main() {
+    return update_bullet_test();
+}

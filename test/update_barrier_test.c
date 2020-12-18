@@ -50,3 +50,7 @@ int update_barrier_test()
     printf("update_barrier_test PASSED\n");
     return 0;
 }
+
+int main() {
+  return update_barrier_test();
+}

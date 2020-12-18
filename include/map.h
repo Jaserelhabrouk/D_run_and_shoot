@@ -10,7 +10,7 @@
 #include <SDL.h>
 #include <sdl_ttf.h>
 #include <SDL_image.h>
-#elif __APPLE__
+#else
 #include <SDL2/SDL.h>
 #endif
 

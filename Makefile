@@ -93,100 +93,13 @@ build/generate_view_multi.o:
 	
 build/is_bullet_hit.o: 
 	$(CC) -c src/is_bullet_hit.c $(INCLUDES)  -o build/is_bullet_hit.o
+
 build/update_bullet.o: 
 	$(CC) -c src/update_bullet.c $(INCLUDES)  -o build/update_bullet.o
 	
 build/shoot.o: 
 	$(CC) -c src/shoot.c $(INCLUDES)  -o build/shoot.o
-	
-	
-OBJECTS_TEST = build/is_player_hit.o build/is_player_hit_test.o \
-			   build/is_reach_goal.o build/is_reach_goal_test.o \
-			   build/load_map.o build/load_map_test.o \
-			   build/take_heart.o build/take_heart_test.o \
-			   build/is_barrier_hit.o build/is_barrier_hit_test.o \
-			   build/update_arrow.o build/update_arrow_test.o \
-			   build/update_barrier.o build/update_barrier_test.o \
-			   build/update_player_pos.o build/update_player_pos_test.o
 
-TESTS = bin/is_player_hit_test \
-		bin/is_reach_goal_test \
-		bin/load_map_test \
-		bin/take_heart_test \
-		bin/is_barrier_hit_test \
-		bin/update_arrow_test \
-		bin/update_barrier_test \
-		bin/update_player_pos_test
-
-LOG = data/log.txt
-
-run_tests: $(TESTS)
-	rm -rf $(LOG)
-	touch $(LOG)
-	-echo "is_player_hit_test STARTED" >> $(LOG); ./bin/is_player_hit_test >> $(LOG) 2>&1
-	-echo "is_reach_goal_test STARTED" >> $(LOG); ./bin/is_reach_goal_test >> $(LOG) 2>&1 
-	-echo "load_map_test STARTED" >> $(LOG); ./bin/load_map_test >> $(LOG) 2>&1
-	-echo "take_heart_test STARTED" >> $(LOG); ./bin/take_heart_test >> $(LOG) 2>&1
-	-echo "is_barrier_hit_test STARTED" >> $(LOG); ./bin/is_barrier_hit_test >> $(LOG) 2>&1
-	-echo "update_arrow_test STARTED" >> $(LOG); ./bin/update_arrow_test >> $(LOG) 2>&1
-	-echo "update_barrier_test STARTED" >> $(LOG); ./bin/update_barrier_test >> $(LOG) 2>&1
-	-echo "update_player_pos_test STARTED" >> $(LOG); ./bin/update_player_pos_test >> $(LOG) 2>&1
-
-
-# build test executables
-bin/is_player_hit_test: $(OBJECTS_TEST)
-	$(CC) -e _is_player_hit_test -o bin/is_player_hit_test $(OBJECTS_TEST)
-
-bin/is_reach_goal_test: $(OBJECTS_TEST)
-	$(CC) -e  _is_reach_goal_test -o bin/is_reach_goal_test $(OBJECTS_TEST)
-
-bin/load_map_test: $(OBJECTS_TEST)
-	$(CC) -e _load_map_test -o bin/load_map_test $(OBJECTS_TEST) 
-
-bin/take_heart_test: $(OBJECTS_TEST)
-	$(CC) -e _take_heart_test -o bin/take_heart_test $(OBJECTS_TEST)
-
-bin/is_barrier_hit_test: $(OBJECTS_TEST)
-	$(CC) -e _is_barrier_hit_test -o bin/is_barrier_hit_test $(OBJECTS_TEST)
-
-bin/update_arrow_test: $(OBJECTS_TEST)
-	$(CC) -e _update_arrow_test -o bin/update_arrow_test $(OBJECTS_TEST)
-
-bin/update_barrier_test: $(OBJECTS_TEST)
-	$(CC) -e _update_barrier_test -o bin/update_barrier_test $(OBJECTS_TEST)
-
-bin/update_player_pos_test: $(OBJECTS_TEST)
-	$(CC) -e _update_player_pos_test -o bin/update_player_pos_test $(OBJECTS_TEST)	
-
-# build .o files for tests
-build/is_barrier_hit_test.o: 
-	$(CC) -c test/is_barrier_hit_test.c $(INCLUDES) -o build/is_barrier_hit_test.o
-
-build/is_player_hit_test.o: 
-	$(CC) -c test/is_player_hit_test.c $(INCLUDES) -o build/is_player_hit_test.o
-
-build/is_reach_goal_test.o: 
-	$(CC) -c test/is_reach_goal_test.c $(INCLUDES) -o build/is_reach_goal_test.o
-
-build/load_map_test.o: 
-	$(CC) -c test/load_map_test.c $(INCLUDES) -o build/load_map_test.o
-
-build/take_heart_test.o: 
-	$(CC) -c test/take_heart_test.c $(INCLUDES) -o build/take_heart_test.o
-
-build/update_arrow_test.o: 
-	$(CC) -c test/update_arrow_test.c $(INCLUDES) -o build/update_arrow_test.o
-
-build/update_barrier_test.o: 
-	$(CC) -c test/update_barrier_test.c $(INCLUDES) -o build/update_barrier_test.o
-
-build/update_player_pos_test.o: 
-	$(CC) -c test/update_player_pos_test.c $(INCLUDES) -o build/update_player_pos_test.o
-
-
-#CLEAN COMMANDS 
-clean:  
-	rm -f bin/* build/* data/log.txt
 else
 # Mac and Linux version
 LIBFLAGS = -l SDL2 -l SDL2_ttf

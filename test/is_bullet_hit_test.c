@@ -42,3 +42,7 @@ int is_bullet_hit_test() {
 
 	return 0;
 }
+
+int main() {
+	return is_bullet_hit_test();
+}

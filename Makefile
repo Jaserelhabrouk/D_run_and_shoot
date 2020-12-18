@@ -90,18 +90,6 @@ build/update_bullet.o: src/update_bullet.c $(INCLUDES)
 	$(CC) -c src/update_bullet.c -o build/update_bullet.o
 	
 
-OBJECTS_TEST = build/is_player_hit.o build/is_player_hit_test.o \
-			   build/is_reach_goal.o build/is_reach_goal_test.o \
-			   build/load_map.o build/load_map_test.o \
-			   build/take_heart.o build/take_heart_test.o \
-			   build/is_barrier_hit.o build/is_barrier_hit_test.o \
-			   build/update_arrow.o build/update_arrow_test.o \
-			   build/update_barrier.o build/update_barrier_test.o \
-			   build/update_player_pos.o build/update_player_pos_test.o \
-			   build/is_bullet_hit.o build/is_bullet_hit_test.o \
-			   build/shoot.o build/shoot_test.o \
-			   build/update_bullet.o build/update_bullet_test.o
-
 TESTS = bin/is_player_hit_test \
 		bin/is_reach_goal_test \
 		bin/load_map_test \
@@ -131,40 +119,39 @@ run_tests: $(TESTS)
 	-echo "shoot_test STARTED" >> $(LOG); ./bin/shoot_test >> $(LOG) 2>&1
 	-echo "update_bullet_test STARTED" >> $(LOG); ./bin/update_bullet_test >> $(LOG) 2>&1
 
-
 # BUILD TEST EXECUTABLES
-bin/is_player_hit_test: $(OBJECTS_TEST)
-	$(CC) -e _is_player_hit_test -o bin/is_player_hit_test $(OBJECTS_TEST)
+bin/is_player_hit_test: build/is_player_hit_test.o build/is_player_hit.o
+	$(CC) -o bin/is_player_hit_test build/is_player_hit_test.o build/is_player_hit.o
 
-bin/is_reach_goal_test: $(OBJECTS_TEST)
-	$(CC) -e  _is_reach_goal_test -o bin/is_reach_goal_test $(OBJECTS_TEST)
+bin/is_reach_goal_test: build/is_reach_goal_test.o build/is_reach_goal.o
+	$(CC) -o bin/is_reach_goal_test build/is_reach_goal_test.o build/is_reach_goal.o
 
-bin/load_map_test: $(OBJECTS_TEST)
-	$(CC) -e _load_map_test -o bin/load_map_test $(OBJECTS_TEST) 
+bin/load_map_test: build/load_map_test.o build/load_map.o
+	$(CC) -o bin/load_map_test build/load_map_test.o build/load_map.o
 
-bin/take_heart_test: $(OBJECTS_TEST)
-	$(CC) -e _take_heart_test -o bin/take_heart_test $(OBJECTS_TEST)
+bin/take_heart_test: build/take_heart_test.o build/take_heart.o
+	$(CC) -o bin/take_heart_test build/take_heart_test.o build/take_heart.o
 
-bin/is_barrier_hit_test: $(OBJECTS_TEST)
-	$(CC) -e _is_barrier_hit_test -o bin/is_barrier_hit_test $(OBJECTS_TEST)
+bin/is_barrier_hit_test: build/is_barrier_hit_test.o build/is_barrier_hit.o
+	$(CC) -o bin/is_barrier_hit_test build/is_barrier_hit_test.o build/is_barrier_hit.o
 
-bin/update_arrow_test: $(OBJECTS_TEST)
-	$(CC) -e _update_arrow_test -o bin/update_arrow_test $(OBJECTS_TEST)
+bin/update_arrow_test: build/update_arrow_test.o build/update_arrow.o
+	$(CC) -o bin/update_arrow_test build/update_arrow_test.o build/update_arrow.o
 
-bin/update_barrier_test: $(OBJECTS_TEST)
-	$(CC) -e _update_barrier_test -o bin/update_barrier_test $(OBJECTS_TEST)
+bin/update_barrier_test: build/update_barrier_test.o build/update_barrier.o
+	$(CC) -o bin/update_barrier_test build/update_barrier_test.o build/update_barrier.o
 
-bin/update_player_pos_test: $(OBJECTS_TEST)
-	$(CC) -e _update_player_pos_test -o bin/update_player_pos_test $(OBJECTS_TEST)	
+bin/update_player_pos_test: build/update_player_pos.o build/update_player_pos_test.o
+	$(CC) -o bin/update_player_pos_test build/update_player_pos.o build/update_player_pos_test.o
 
-bin/is_bullet_hit_test: $(OBJECTS_TEST)
-	$(CC) -e _is_bullet_hit_test -o bin/is_bullet_hit_test $(OBJECTS_TEST)
+bin/is_bullet_hit_test: build/is_bullet_hit_test.o build/is_bullet_hit.o
+	$(CC) -o bin/is_bullet_hit_test build/is_bullet_hit_test.o build/is_bullet_hit.o
 
-bin/shoot_test: $(OBJECTS_TEST)
-	$(CC) -e _shoot_test -o bin/shoot_test $(OBJECTS_TEST) 
+bin/shoot_test: build/shoot.o build/shoot_test.o
+	$(CC) -o bin/shoot_test build/shoot.o build/shoot_test.o 
 
-bin/update_bullet_test: $(OBJECTS_TEST)
-	$(CC) -e _update_bullet_test -o bin/update_bullet_test $(OBJECTS_TEST) 
+bin/update_bullet_test: build/update_bullet_test.o build/update_bullet.o
+	$(CC) -o bin/update_bullet_test build/update_bullet_test.o build/update_bullet.o
 
 # BUILD .o FILES FOR TESTS
 build/is_barrier_hit_test.o: test/is_barrier_hit_test.c $(INCLUDES)

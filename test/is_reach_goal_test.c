@@ -26,3 +26,7 @@ int is_reach_goal_test() {
     printf("is_reach_goal_test PASSED\n");
     return 0;
 }
+
+int main() {
+    return is_reach_goal_test();
+}

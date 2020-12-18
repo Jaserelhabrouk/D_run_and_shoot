@@ -39,3 +39,7 @@ int update_arrow_test()
     printf("update_arrow_test PASSED\n");
     return 0;
 }
+
+int main() {
+    return update_arrow_test();
+}

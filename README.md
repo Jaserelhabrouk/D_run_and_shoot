@@ -14,7 +14,6 @@ Run and Shoot is a game that is developed for entertainment purposes. The user s
 - data: contains map files and a font file. The tests’ log file after compilation will be created here as well.
 - doc: contains documentation that is prepared during the course as well as html folder which is created for doxygen comments.
 - include: contains all header files.
-lib
 - src: contains source files including all functions and the main file.
 - test: contains all test functions.
 - Doxyfile: a file that is created for doxygen usage.

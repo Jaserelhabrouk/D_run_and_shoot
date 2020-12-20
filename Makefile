@@ -1,9 +1,108 @@
-ifdef OS
+ifdef ($(OS),Windows_NT)
 # WINDOWS version
-	LIBFLAGS = -lmingw32 -lSDL2main -lSDL2
+#INCLUDE_PATHS specifies the additional include paths we'll need
+INCLUDE_PATHS = -IC:\mingw_dev_lib\include
+
+#LIBRARY_PATHS specifies the additional library paths we'll need
+LIBRARY_PATHS = -LC:\mingw_dev_lib\lib
+
+#COMPILER_FLAGS specifies the additional compilation options we're using
+# -w suppresses all warnings
+# -Wl,-subsystem,windows gets rid of the console window
+COMPILER_FLAGS = -w -Wl,-subsystem,windows
+
+#LINKER_FLAGS specifies the libraries we're linking against
+LIBFLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
+
+#CC specifies which compiler we're using
+CC = gcc
+
+INCLUDES = $(INCLUDE_PATHS) -Iinclude
+
+OBJECTS = build/main.o build/credit.o build/game_over.o build/generate_view.o build/is_barrier_hit.o \
+		  build/is_player_hit.o build/is_reach_goal.o build/load_map.o build/print_menu.o \
+		  build/single_player.o build/take_heart.o build/update_arrow.o build/update_barrier.o \
+		  build/update_player_pos.o build/user_manual.o build/win_game.o \
+		  build/options.o build/print_options.o build/multi_player.o build/generate_view_multi.o \
+		  build/is_bullet_hit.o build/update_bullet.o build/shoot.o
+		 
+bin/main : $(OBJECTS)
+	$(CC) -o bin/main $(OBJECTS) $(LIBRARY_PATHS) $(COMPILER_FLAGS) $(LIBFLAGS)
+   
+	
+#TARGET TO GENERATE THE OBJECT FILES FOR SRC.
+build/main.o: 
+	$(CC) -c src/main.c $(INCLUDES) -o build/main.o
+
+build/credit.o:
+	$(CC) -c src/credit.c $(INCLUDES) -o build/credit.o
+
+build/game_over.o:
+	$(CC) -c src/game_over.c  $(INCLUDES)  -o build/game_over.o
+
+build/generate_view.o: 
+	$(CC) -c src/generate_view.c $(INCLUDES)  -o build/generate_view.o
+
+build/is_barrier_hit.o: 
+	$(CC) -c src/is_barrier_hit.c $(INCLUDES)  -o build/is_barrier_hit.o
+
+build/is_player_hit.o: 
+	$(CC) -c src/is_player_hit.c $(INCLUDES)  -o build/is_player_hit.o
+
+build/is_reach_goal.o:
+	$(CC) -c src/is_reach_goal.c $(INCLUDES)  -o build/is_reach_goal.o
+
+build/load_map.o:
+	$(CC) -c src/load_map.c  $(INCLUDES)  -o build/load_map.o
+
+build/print_menu.o: 
+	$(CC) -c src/print_menu.c $(INCLUDES)  -o build/print_menu.o
+
+build/single_player.o: 
+	$(CC) -c src/single_player.c $(INCLUDES)  -o build/single_player.o
+
+build/take_heart.o: 
+	$(CC) -c src/take_heart.c $(INCLUDES)  -o build/take_heart.o
+
+build/update_arrow.o: 
+	$(CC) -c src/update_arrow.c $(INCLUDES)  -o build/update_arrow.o
+
+build/update_barrier.o:
+	$(CC) -c src/update_barrier.c $(INCLUDES) -o build/update_barrier.o
+
+build/update_player_pos.o:  
+	$(CC) -c src/update_player_pos.c $(INCLUDES)  -o build/update_player_pos.o
+
+build/user_manual.o:
+	$(CC) -c src/user_manual.c $(INCLUDES)  -o build/user_manual.o
+
+build/win_game.o:
+	$(CC) -c src/win_game.c $(INCLUDES) -o build/win_game.o
+
+build/options.o: 
+	$(CC) -c src/options.c $(INCLUDES) -o build/options.o
+
+build/print_options.o:  
+	$(CC) -c src/print_options.c $(INCLUDES)  -o build/print_options.o
+	
+build/multi_player.o:
+	$(CC) -c src/multi_player.c $(INCLUDES)  -o build/multi_player.o
+	
+build/generate_view_multi.o: 
+	$(CC) -c src/generate_view_multi.c $(INCLUDES)  -o build/generate_view_multi.o
+	
+build/is_bullet_hit.o: 
+	$(CC) -c src/is_bullet_hit.c $(INCLUDES)  -o build/is_bullet_hit.o
+
+build/update_bullet.o: 
+	$(CC) -c src/update_bullet.c $(INCLUDES)  -o build/update_bullet.o
+	
+build/shoot.o: 
+	$(CC) -c src/shoot.c $(INCLUDES)  -o build/shoot.o
+
 else
-	LIBFLAGS = -l sdl2 -l sdl2_ttf
-endif
+# Mac and Linux version
+LIBFLAGS = -l SDL2 -l SDL2_ttf
 
 CC=gcc 
 
@@ -19,7 +118,7 @@ OBJECTS = build/main.o build/credit.o build/game_over.o build/generate_view.o bu
 bin/main : run_tests $(OBJECTS)
 	$(CC) -o bin/main $(OBJECTS) $(LIBFLAGS)
 
-#TARGET TO GENERATE THE OBJECT FILES .
+#TARGET TO GENERATE THE OBJECT FILES.
 build/main.o: src/main.c $(INCLUDES)
 	$(CC) -c src/main.c -o build/main.o
 
@@ -191,3 +290,5 @@ build/update_bullet_test.o: test/update_bullet_test.c $(INCLUDES)
 #CLEAN COMMANDS 
 clean:  
 	rm -f bin/* build/* data/log.txt data/test_file.txt
+
+endif

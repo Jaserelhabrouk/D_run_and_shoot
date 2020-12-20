@@ -1,0 +1,16 @@
+space = 0 1024 0 768
+goal = 50 50
+number_of_players = 1
+player = 950 650 3
+number_of_barriers = 2
+barrier = 250 200 250 0
+barrier = 800 500 250 0
+number_of_arrows = 8
+arrow = 100 0 1 3
+arrow = 500 500 3 3
+arrow = 300 300 2 3
+arrow = 700 600 3 3
+arrow = 200 300 2 2
+arrow = 600 600 1 2
+arrow = 850 500 3 2
+arrow = 350 700 1 2

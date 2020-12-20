@@ -1,0 +1,96 @@
+\documentclass[a4paper, 11pt, oneside]{article}
+\usepackage{minted}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} 
+\usepackage{fouriernc}
+\usepackage{listings} 
+\lstset{language=C}   
+\usepackage{xcolor}
+\usepackage{float}
+
+\usepackage{tabularx}
+\usepackage{amsmath}  
+\usepackage{graphicx}
+\usepackage[margin=1in,letterpaper]{geometry}
+\usepackage{cite} 
+\usepackage[final]{hyperref} 
+\hypersetup{
+	colorlinks=true,       % false: boxed links; true: colored links
+	linkcolor=blue,        % color of internal links
+	citecolor=blue,        % color of links to bibliography
+	filecolor=magenta,     % color of file links
+	urlcolor=blue         
+}
+\usepackage{blindtext}
+
+\begin{document} 
+\begin{titlepage} 
+\centering
+%\scshape
+\vspace*{\baselineskip}
+\rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt} 
+\rule{\textwidth}{0.4pt} 
+\vspace{0.75\baselineskip} 
+
+{\LARGE Run and Shoot}
+
+\vspace{0.75\baselineskip} 
+\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}
+\rule{\textwidth}{1.6pt}
+\vspace{2\baselineskip}
+
+	{\Large Deliverable 2: Software Design \& Project Set-up} % Subtitle or further description
+	
+	\vspace*{3\baselineskip} % Whitespace under the subtitle
+	
+	%------------------------------------------------
+	%	Editor(s)
+	%------------------------------------------------
+	
+	Group D:
+	
+	\vspace{2.0\baselineskip} % Whitespace before the editors
+	
+	{ Jaser El-Habrouk\\
+	  Parichehreh Firoozishahmirzadi\\
+	  Mahsa Layeghi\\
+	  Jin Xu\\
+	}
+	
+	\vspace{3\baselineskip} 
+	
+	%\textit{Carleton University} % Editor affiliation
+	GitHub IDs:\\
+	\vspace{0.5\baselineskip} % Whitespace 
+	Jaserelhabrouk\\
+	Pari-Firoozi\\
+	layeghimahsa1996\\
+	JeanneXu1122\\
+	\vspace{2.0\baselineskip} % Whitespace 
+	GitHub Repository:
+	\vspace{0.5\baselineskip} % Whitespace 
+	
+	{https://github.com/Jaserelhabrouk/D\_run\_and\_shoot.git}
+	
+	\vspace{3\baselineskip} % Whitespace 
+	
+	Course Title:
+	\vspace{0.5\baselineskip} % Whitespace 
+	
+	{\Large Software Development with C} 
+	
+	\vfill % Whitespace between editor names and publisher logo
+	
+	
+	\vspace{0.3\baselineskip} % Whitespace under the publisher logo
+	
+	Tuesday, 20\textsuperscript{th} of October, 2020 % Publication year
+\end{titlepage}
+
+\input{menu.tex}
+\input{singleplayer.tex}
+\input{multiplayer.tex}
+\input{options.tex}
+\section{Project setup}
+Finally, a GitHub repository is created and functions are assigned to group members and the instructor is added as a collaborator. Please check the link below:\\ https://github.com/Jaserelhabrouk/D\_run\_and\_shoot.git
+\end{document}
